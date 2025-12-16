@@ -1,10 +1,15 @@
 #!/bin/bash
 
+TOOLBOX_NAME="toolbox"
 CONFIG_FILE="${HOME}/.config/dune-os/toolbox.ini"
 if [ -f "$CONFIG_FILE" ]; then
-    TOOLBOX_NAME=$(grep '^\[' "$CONFIG_FILE" | head -1 | sed 's/\[\(.*\)\]/\1/')
-else
-    TOOLBOX_NAME="toolbox"
+  TOOLBOX_NAME=$(
+    /usr/bin/grep '^\[' "$CONFIG_FILE" |
+      /usr/bin/head -1 |
+      /usr/bin/sed 's/\[\(.*\)\]/\1/'
+  )
 fi
 
 /usr/bin/ghostty --gtk-single-instance=true -e distrobox enter "$TOOLBOX_NAME"
+
+[ $? -eq 0 ] || notify-send "Failed to launch Ghostty with toolbox"
