@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONFIG_FILE="${HOME}/.config/dune-os/toolbox.ini"
+if [ -f "$CONFIG_FILE" ]; then
+  distrobox assemble create -v --file "$CONFIG_FILE"
+elif [ -f /usr/dune-os/toolbox.ini ]; then
+  distrobox assemble create -v --file /usr/dune-os/toolbox.ini
+else
+  exit 1
+fi

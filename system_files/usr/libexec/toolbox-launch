@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONFIG_FILE="${HOME}/.config/dune-os/toolbox.ini"
+if [ -f "$CONFIG_FILE" ]; then
+    TOOLBOX_NAME=$(grep '^\[' "$CONFIG_FILE" | head -1 | sed 's/\[\(.*\)\]/\1/')
+else
+    TOOLBOX_NAME="toolbox"
+fi
+
+/usr/bin/ghostty --gtk-single-instance=true -e distrobox enter "$TOOLBOX_NAME"
