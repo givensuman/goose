@@ -13,7 +13,7 @@
 
 This is a custom Linux build designed around Fedora's [Atomic Desktops](https://fedoraproject.org/atomic-desktops/), as a community-driven adaptation of the [Universal Blue](https://universal-blue.org/) project. These systems are immutable by nature, which means users are actually gated from directly modifying the system, providing an incredibly secure form of interacting with the Linux platform.
 
-This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC desktop environment](https://system76.com/cosmic/), [Homebrew](https://brew.sh/) for package management, and anything you could want for containerized development. It's unopinionated by design, other than preferring [Ghostty](https://ghostty.org/) for the terminal, and [Catppuccin](https://catppuccin.com/) for the system theme.
+This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC desktop environment](https://system76.com/cosmic/) with a focus on containerized development. It's unopinionated by design, other than preferring [Ghostty](https://ghostty.org/) over `cosmic-term` for the terminal, and [Catppuccin](https://catppuccin.com/) for the system theme.
 
 If you'd like to use this yourself, please feel free! If you'd like to build your own, consult the [DIY](./docs/DIY.md) document.
 
@@ -52,7 +52,7 @@ _Default configuration with some additional apps and the Fish shell (see: [given
 
 ## Usage
 
-You can layer whatever core packages you like on top of this build. I recommend installing your favorite shell:
+You can layer whatever core packages you like on top of this build. You might want your favorite shell:
 
 ```bash
 rpm-ostree install --apply-live fish
@@ -64,17 +64,6 @@ This is also a good time to set up rootless Docker, if you're into that sort of 
 ```bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
-```
-
-And then get the rest of your software through the included app store or with `brew`:
-
-```bash
-brew install \
-bat \
-eza \
-fd \
-ripgrep \
-zoxide
 ```
 
 Additional system utilities are run through Just, and can be seen by running `ujust`.
