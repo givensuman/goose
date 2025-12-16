@@ -14,7 +14,8 @@ dnf5 config-manager addrepo --from-repofile=https://download.docker.com/linux/fe
 dnf5 config-manager setopt terra.enabled=1 || true
 dnf5 config-manager setopt docker-ce.enabled=1 || true
 
-dnf5 -y install @development-tools
+dnf5 -y group install development-tools
+dnf5 -y group install development-libraries
 
 packages=(
   # System packages

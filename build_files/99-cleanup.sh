@@ -96,40 +96,6 @@ dnf5 config-manager setopt docker-ce.enabled=0 || true
 
 dnf5 config-manager setopt rpmfusion-nonfree-nvidia-driver.enabled=0 || true
 dnf5 config-manager setopt rpmfusion-nonfree-steam.enabled=0 || true
-# Or, as fallback
-for i in /etc/yum.repos.d/rpmfusion-*; do
-  sed -i 's@enabled=1@enabled=0@g' "$i"
-done
-
-# To be safe...
-repos=(
-  docker-ce
-  terra
-  fedora-cisco-openh264
-  fedora-updates
-  fedora-updates-archive
-  fedora-updates-testing
-  google-chrome
-  negativo17-fedora-multimedia
-  negativo17-fedora-nvidia
-  nvidia-container-toolkit
-  rpm-fusion-nonfree-nvidia-driver
-  rpm-fusion-nonfree-steam
-)
-
-for repo in "${repos[@]}"; do
-  if [[ -f "/etc/yum.repos.d/${repo}.repo" ]]; then
-    sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/${repo}.repo"
-  fi
-done
-
-if ls /etc/yum.repos.d/_copr*.repo &>/dev/null; then
-  coprs=()
-  mapfile -t coprs <<<"$(find /etc/yum.repos.d/_copr*.repo)"
-  for copr in "${coprs[@]}"; do
-    sed -i 's@enabled=1@enabled=0@g' "$copr"
-  done
-fi
 
 # Commit and lint container
 ostree container commit
