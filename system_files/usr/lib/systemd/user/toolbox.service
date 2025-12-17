@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount "toolbox" with Distrobox
+Description=Create toolbox container with Distrobox
 After=local-fs.target
 
 [Service]
@@ -7,4 +7,4 @@ ExecStart=/usr/libexec/toolbox-mount
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
