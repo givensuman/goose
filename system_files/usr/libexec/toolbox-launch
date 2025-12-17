@@ -2,7 +2,9 @@
 
 TOOLBOX_NAME="toolbox"
 CONFIG_FILE="${HOME}/.config/dune-os/toolbox.ini"
+
 if [ -f "$CONFIG_FILE" ]; then
+  # Set TOOLBOX_NAME to first [<name>] in toolbox.ini
   TOOLBOX_NAME=$(
     /usr/bin/grep '^\[' "$CONFIG_FILE" |
       /usr/bin/head -1 |
@@ -10,6 +12,13 @@ if [ -f "$CONFIG_FILE" ]; then
   )
 fi
 
+# Create toolbox if removed
+if ! /usr/bin/distrobox list --no-color | /usr/bin/grep -q "$TOOLBOX_NAME"; then
+  /usr/libexec/toolbox-mount
+fi
+
+# Launch toolbox inside of Ghostty
 /usr/bin/ghostty --gtk-single-instance=true -e distrobox enter "$TOOLBOX_NAME"
 
+# Ruh-roh
 [ $? -eq 0 ] || notify-send "Failed to launch Ghostty with toolbox"

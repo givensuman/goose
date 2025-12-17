@@ -1,10 +1,37 @@
 #!/bin/bash
 
-CONFIG_FILE="${HOME}/.config/dune-os/toolbox.ini"
+# If run as `toolbox-mount --replace`, pass that flag to `distrobox assemble`
+REPLACE=""
+if [ "$1" = "--replace" ]; then
+  REPLACE="--replace"
+fi
+
+TOOLBOX_NAME="toolbox"
+CONFIG_FILE="$HOME/.config/dune-os/toolbox.ini"
+
 if [ -f "$CONFIG_FILE" ]; then
-  /usr/bin/distrobox assemble create -v --file "$CONFIG_FILE"
+  # Set TOOLBOX_NAME to first [<name>] in toolbox.ini
+  TOOLBOX_NAME=$(
+    /usr/bin/grep '^\[' "$CONFIG_FILE" |
+      /usr/bin/head -1 |
+      /usr/bin/sed 's/\[\(.*\)\]/\1/'
+  )
+
+  # Ensure entry=true
+  TEMP_CONFIG=$(mktemp)
+  /usr/bin/cp "$CONFIG_FILE" "$TEMP_CONFIG"
+
+  if ! /usr/bin/grep -q '^entry=true' "$TEMP_CONFIG"; then
+    /usr/bin/sed -i '/^entry=/d' "$TEMP_CONFIG"
+    /usr/bin/sed -i "/^\[$TOOLBOX_NAME\]/a entry=true" "$TEMP_CONFIG"
+  fi
+
+  /usr/bin/distrobox assemble create -v $REPLACE --file "$TEMP_CONFIG"
+  /usr/bin/rm -rf "$TEMP_CONFIG"
+
 elif [ -f /usr/share/dune-os/toolbox.ini ]; then
-  /usr/bin/distrobox assemble create -v --file /usr/share/dune-os/toolbox.ini
+  /usr/bin/distrobox assemble create -v $REPLACE --file /usr/share/dune-os/toolbox.ini
+
 else
   echo "Can't find toolbox.ini configuration file..."
   exit 1
