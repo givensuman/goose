@@ -78,7 +78,7 @@ jobs:
             TAGS+=("${sha}")
             TAGS+=("${tag}")
             TAGS+=("${sha}-${tag}")
-          
+
             for entry in "${TAGS[@]}"; do
                 TAGS+=("${entry}-${timestamp}")
             done
