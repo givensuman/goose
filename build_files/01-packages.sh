@@ -34,6 +34,7 @@ core_packages=(
   vlc-plugin-bittorrent
   vlc-plugin-ffmpeg
   vlc-plugin-pause-click
+  wayland-protocols-devel
   wl-clipboard
   util-linux
 )
