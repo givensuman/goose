@@ -38,4 +38,4 @@ if ! toolbox list --containers | grep "$container_name" &>/dev/null; then
   toolbox create -y &>/dev/null
 fi
 
-toolbox enter
+ghostty --gtk-single-instance=false -e toolbox enter
