@@ -70,6 +70,8 @@ zoxide
 
 Additional system utilities are run through Just, and can be seen by running `ujust`.
 
+For development, use `toolbox create` to create a mutable, containerized OS, and `toolbox enter` to enter into it. See [givensuman/dune-toolbox](https://github.com/givensuman/dune-toolbox) for more information.
+
 <img src="./assets/moebius-02.jpg" />
 
 ## Secure Boot
