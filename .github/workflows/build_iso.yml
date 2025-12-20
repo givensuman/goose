@@ -40,7 +40,7 @@ jobs:
           image_tag: ${{ env.IMAGE_TAG }}
           secure_boot_key_url: "https://github.com/ublue-os/akmods/raw/main/certs/public_key.der"
           enrollment_password: "universalblue"
-          iso_name: ${{ env.IMAGE_NAME }}-${{ IMAGE_TAG }}.iso
+          iso_name: ${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}.iso
           enable_cache_dnf: "true"
           enable_cache_skopeo: "true"
           enable_flatpak_dependencies: "false"
