@@ -106,21 +106,11 @@ Intitial interest and some `systemd` patches:
 
 - [ublue-os/bluefin](github.com/ublue-os/bluefin)
 
-- [BillyAddlers/stellarite](https://github.com/BillyAddlers/stellarite)
-
-Bulk of CI/CD workflows:
-
-- [noelmiller/isengard](https://github.com/noelmiller/isengard)
-
 Interesting projects I stole bits and pieces from:
 
 - [astrovm/amyos](https://github.com/astrovm/amyos)
 
 - [m2Giles/m2os](https://github.com/m2Giles/m2os)
-
-- [Venefilyn/veneos](https://github.com/Venefilyn/veneos)
-
-- [reyemxela/pulsar](https://github.com/reyemxela/pulsar)
 
 ---
 
