@@ -174,7 +174,8 @@ jobs:
       - name: Sign container image
         shell: bash
         run: |
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/dune-os:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
+          cosign sign -y --key cosign.key \
+          ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PASSWORD: ""
