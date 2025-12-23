@@ -21,7 +21,6 @@ du -sh /tmp 2>/dev/null | awk '{print "  /tmp: " $1}' || true
 log_info "Disabling COPR repositories..."
 dnf5 -y copr disable ublue-os/staging || true
 dnf5 -y copr disable ublue-os/packages || true
-dnf5 -y copr disable phracek/PyCharm || true
 
 log_info "Disabling non-essential repositories..."
 disable_repo negativo17-fedora-multimedia || true
