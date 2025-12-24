@@ -33,7 +33,7 @@ This list is not comprehensive and in my experience building your own OS will ta
 
 - Run a `grep` search on "goose", "goose-linux", etc. and replace with your new OS's name.
 
-- Revise [`packages.sh`](./build_files/01-packages.sh) and [`desktop.sh`](./build_files/02-desktop.sh) to your liking. Note any changes you make may have cascading results; e.g. removing the `iwd` package from being installed will break WiFi unless you also remove [`NetworkManager/conf.d/iwd.conf`](./system_files/etc/NetworkManager/conf.d/iwd.conf).
+- Revise [`packages.sh`](./build_files/01-packages.sh) and [`desktop.sh`](./build_files/02-desktop.sh) to your liking.
 
 - Revise `systemd` services in [`/usr/lib/systemd/system/`](./system_files/usr/lib/systemd/system/), and their enabling in [`systemd.sh`](./build_files/51-systemd.sh).
 
