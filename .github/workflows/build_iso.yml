@@ -1,6 +1,5 @@
 ---
-name: build-isos
-
+name: "build dune-os iso file"
 on:
   pull_request:
     branches:
