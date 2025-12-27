@@ -10,3 +10,9 @@ dune-clean:
     rpm-ostree cleanup -bm
     sudo docker system prune -af
     sudo podman system prune -af
+
+# Build various Distrobox toolboxes with pre-defined volumes
+dune-build-toolboxes:
+    #!/usr/bin/env bash
+    distrobox assemble create --replace --file /usr/share/distrobox/distrobox.ini
+    distrobox assemble create --yes
