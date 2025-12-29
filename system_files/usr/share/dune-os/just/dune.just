@@ -14,5 +14,30 @@ dune-clean:
 # Build various Distrobox toolboxes with pre-defined volumes
 dune-build-toolboxes:
     #!/usr/bin/env bash
-    distrobox assemble create --replace --file /usr/share/distrobox/distrobox.ini
-    distrobox assemble create --yes
+    set -euox pipefail
+
+    toolbox_names="arch-toolbox debian-toolbox fedora-toolbox ubuntu-toolbox"
+
+    echo "Checking for existing toolboxes..."
+    existing_toolboxes=$(distrobox list --format json | jq -r '.[] | select(.Name | test("arch-toolbox|debian-toolbox|fedora-toolbox|ubuntu-toolbox")) | .Name' | tr '\n' ' ' || true)
+
+    replace=false
+    if [ -n "$existing_toolboxes" ]; then
+        echo "Existing toolboxes found: $existing_toolboxes"
+        read -p "Replace existing toolboxes? (y/N): " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            replace=true
+        fi
+    fi
+
+    if [ "$replace" = true ]; then
+        echo "Stopping existing toolboxes..."
+        distrobox stop $toolbox_names || true
+
+        echo "Building toolboxes with replacement..."
+        distrobox assemble create --replace --yes --file /usr/share/distrobox/distrobox.ini
+    else
+        echo "Building toolboxes..."
+        distrobox assemble create --yes --file /usr/share/distrobox/distrobox.ini
+    fi
