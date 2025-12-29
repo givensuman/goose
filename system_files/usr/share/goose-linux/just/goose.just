@@ -185,8 +185,8 @@ goose-build-toolboxes:
         distrobox assemble create --file /usr/share/distrobox/distrobox.ini
     fi
 
-# Enter a specific toolbox
-goose-enter-toolbox name='fedora-toolbox':
+# Upgrade the system
+dune-upgrade:
     #!/usr/bin/env bash
     set -euox pipefail
 
