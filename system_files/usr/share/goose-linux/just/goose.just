@@ -43,29 +43,10 @@ goose-build-toolboxes:
         distrobox assemble create --file /usr/share/distrobox/distrobox.ini
     fi
 
-# Upgrade the system
-dune-upgrade:
-    #!/usr/bin/env bash
-    set -euox pipefail
-
-    echo "Upgrading system..."
-    rpm-ostree upgrade
-
-# Pull latest toolbox images
-dune-pull-toolboxes:
-    #!/usr/bin/env bash
-    set -euox pipefail
-
-    echo "Pulling latest toolbox images..."
-    podman pull ghcr.io/ublue-os/arch-toolbox:latest
-    podman pull ghcr.io/ublue-os/debian-toolbox:latest
-    podman pull ghcr.io/ublue-os/fedora-toolbox:latest
-    podman pull ghcr.io/ublue-os/ubuntu-toolbox:latest
-
 # Enter a specific toolbox
 dune-enter-toolbox name='fedora-toolbox':
     #!/usr/bin/env bash
     set -euox pipefail
 
-    echo "Entering toolbox {{name}}..."
-    distrobox enter {{name}}
+    echo "Entering toolbox {{ name }}..."
+    distrobox enter {{ name }}
