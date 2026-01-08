@@ -74,6 +74,4 @@ distrobox enter arch-toolbox
 
 For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).
 
-<div align="center">
-  <img src="../assets/banner.png" />
-</div>
+For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).

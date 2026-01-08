@@ -50,6 +50,10 @@ _Default configuration with some additional apps and the Fish shell (see: [given
   <img src="./assets/horizontalrule.png" />
 </div>
 
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
 ## Usage
 
 You can layer whatever core packages you like on top of this build. I recommend installing your favorite shell:
