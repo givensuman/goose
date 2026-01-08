@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/goose.png" />
+  <img src="./assets/goose.png" width="250" />
 </div>
 
 ## `goose`: given's open-source operating system environment
