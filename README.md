@@ -48,6 +48,10 @@ A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/downl
   <img src="./assets/horizontalrule.png" />
 </div>
 
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
 ## Usage
 
 You can layer whatever core packages you like on top of this build. I recommend installing your favorite shell:
