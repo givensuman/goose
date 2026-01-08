@@ -2,7 +2,7 @@
   <img src="./assets/goose.png" />
 </div>
 
-## `goose`: given's open-source operating system environment
+## `goose`: given's own operating system experiment
 <div align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/givensuman/goose-linux/build.yml?labelColor=purple" />
   <img src="https://img.shields.io/github/actions/workflow/status/givensuman/goose-linux/build_iso.yml?label=build%20iso&labelColor=blue" />
