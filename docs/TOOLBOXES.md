@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/banner.png" />
+  <img src="../assets/goose.png" width="250" />
 </div>
 
 # Toolboxes
@@ -21,6 +21,10 @@ The default configuration uses the image `ghcr.io/givensuman/goose-toolbox` and 
 
 - `/usr:/usr/local:ro`
 - `/home/linuxbrew/.linuxbrew:/home/linuxbrew/.linuxbrew:ro`
+
+<div align="center">
+  <img src="../assets/horizontalrule.png" />
+</div>
 
 ## Pre-configured Toolboxes
 
@@ -46,6 +50,10 @@ distrobox create arch-toolbox
 distrobox enter arch-toolbox
 ```
 
+<div align="center">
+  <img src="../assets/horizontalrule.png" />
+</div>
+
 ## Usage Tips
 
 - Use `distrobox list` to see all your created containers.
@@ -61,8 +69,5 @@ distrobox enter arch-toolbox
 | goose-build-toolboxes | Builds all pre-configured toolboxes (arch, debian, fedora, ubuntu) | `ujust goose-build-toolboxes`      |
 | goose-enter-toolbox   | Enters a specified toolbox (defaults to fedora-toolbox)            | `ujust goose-enter-toolbox <name>` |
 
-For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).
 
-<div align="center">
-  <img src="../assets/banner.png" />
-</div>
+For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).

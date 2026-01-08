@@ -18,7 +18,7 @@ This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC des
 If you'd like to use this yourself, please feel free! If you'd like to build your own, consult the [DIY](./docs/DIY.md) document.
 
 <div align="center">
-  <img src="./assets/banner.png" />
+  <img src="./assets/horizontalrule.png" />
 </div>
 
 ## Installation
@@ -45,6 +45,10 @@ A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/downl
 
 ![goose-linux screenshot](./assets/screenshot.png)
 _Default configuration with some additional apps and the Fish shell (see: github.com/givensuman/goose-configs)_
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
 
 ## Usage
 
@@ -78,7 +82,7 @@ Additional system utilities are run through Just, and can be seen by running `uj
 For development, use `distrobox create` to create a mutable, containerized OS, and `distrobox enter` to enter into it. See [givensuman/goose-toolbox](https://github.com/givensuman/goose-toolbox) for specifics, and [TOOLBOXES](./docs/TOOLBOXES.md) for broader containerized development instructions.
 
 <div align="center">
-  <img src="./assets/banner.png" />
+  <img src="./assets/horizontalrule.png" />
 </div>
 
 ## Secure Boot
@@ -98,6 +102,10 @@ To enroll the key before installation or rebase, download the key and run:
 sudo mokutil --timeout -1
 sudo mokutil --import public_key.der
 ```
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
 
 ## Issues
 
