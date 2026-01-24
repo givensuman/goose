@@ -8,6 +8,9 @@ echo "::group:: ===$(basename "$0")==="
 set -euox pipefail
 trap 'log_error "Script failed at line $LINENO"' ERR
 
+# Trap errors
+trap 'log_error "Script failed at line $LINENO"' ERR
+
 shopt -s nullglob
 
 log_info "Starting cleanup process..."
