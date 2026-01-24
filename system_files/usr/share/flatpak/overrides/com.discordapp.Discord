@@ -2,15 +2,8 @@
 filesystems=xdg-config/fontconfig:ro
 
 [Environment]
-# Discord-specific scaling fixes
-# Discord uses Electron, which needs specific hints
 ELECTRON_OZONE_PLATFORM_HINT=auto
 GDK_SCALE=1
 GDK_DPI_SCALE=1
 XCURSOR_SIZE=24
-
-# Force Wayland when possible
 ELECTRON_ENABLE_WAYLAND=1
-
-# Disable GPU acceleration if causing issues (uncomment if needed)
-# ELECTRON_DISABLE_GPU=1
