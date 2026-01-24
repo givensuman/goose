@@ -20,6 +20,7 @@ services_to_enable=(
   flatpak-preinstall.service # Pre-install flatpak applications
   libvirtd-setup.service     # Setup libvirt networking
   ublue-fix-hostname.service # Fix hostname issues
+  goose-firstboot.service    # First boot welcome message
 )
 
 for service in "${services_to_enable[@]}"; do

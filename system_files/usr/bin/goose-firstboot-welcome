@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+# First boot welcome message for goose-linux
+# This script runs once on first boot to welcome users and provide guidance
+
+# Create state directory
+mkdir -p /var/lib/goose
+
+# Show welcome notification if in graphical session
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    # Try to send desktop notification
+    if command -v notify-send &>/dev/null; then
+        notify-send -t 15000 -u normal \
+            "Welcome to goose-linux! 🪿" \
+            "Open a terminal and run 'ujust goose-help' to get started.\n\nFor first-time setup: ujust goose-setup-firstboot"
+    fi
+fi
+
+# Mark first boot as complete
+touch /var/lib/goose/.firstboot-complete
+
+exit 0
