@@ -1,7 +1,3 @@
-# GNOME Core Applications
-# These provide essential desktop functionality compatible with COSMIC
-
-# === File Management ===
 [Flatpak Preinstall org.gnome.baobab]
 Branch=stable
 # Disk usage analyzer
@@ -10,7 +6,6 @@ Branch=stable
 Branch=stable
 # Archive manager (zip, tar, etc.)
 
-# === Productivity ===
 [Flatpak Preinstall org.gnome.Calculator]
 Branch=stable
 # Calculator application
@@ -31,7 +26,6 @@ Branch=stable
 Branch=stable
 # Modern text editor
 
-# === Utilities ===
 [Flatpak Preinstall org.gnome.Characters]
 Branch=stable
 # Special character picker
@@ -52,7 +46,6 @@ Branch=stable
 Branch=stable
 # Maps application
 
-# === Media ===
 [Flatpak Preinstall org.gnome.Loupe]
 Branch=stable
 # Image viewer
@@ -69,7 +62,6 @@ Branch=stable
 Branch=stable
 # Camera application
 
-# === System Tools ===
 [Flatpak Preinstall org.gnome.DejaDup]
 Branch=stable
 # Backup tool
@@ -86,7 +78,6 @@ Branch=stable
 Branch=stable
 # File previewer for Nautilus
 
-# === GTK Themes ===
 [Flatpak Preinstall org.gtk.Gtk3theme.adw-gtk3]
 Branch=stable
 IsRuntime=true

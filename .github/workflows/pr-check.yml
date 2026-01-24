@@ -1,0 +1,118 @@
+---
+name: "Pull Request Checks"
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  lint-scripts:
+    name: Lint Shell Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      
+      - name: Run ShellCheck
+        run: |
+          echo "Linting all shell scripts..."
+          find build_files tests -name "*.sh" -type f -exec shellcheck -S warning {} \;
+          echo "✅ Shell scripts passed linting"
+  
+  check-just-syntax:
+    name: Check Just Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Check Just Syntax
+        uses: ublue-os/just-action@v2
+        with:
+          command: check
+  
+  build-container:
+    name: Build Container Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Build Container
+        run: |
+          echo "Building container image..."
+          podman build --tag localhost/goose-linux:pr-test .
+          echo "✅ Container build successful"
+      
+      - name: Inspect Image
+        run: |
+          echo "Inspecting built image..."
+          podman inspect localhost/goose-linux:pr-test
+          echo "✅ Image inspection successful"
+  
+  validate-configs:
+    name: Validate Configuration Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Check Disk Configs
+        run: |
+          echo "Validating disk configuration files..."
+          if [ ! -f disk_config/disk.toml ]; then
+            echo "❌ disk_config/disk.toml not found"
+            exit 1
+          fi
+          if [ ! -f disk_config/iso.toml ]; then
+            echo "❌ disk_config/iso.toml not found"
+            exit 1
+          fi
+          echo "✅ Disk configs present"
+      
+      - name: Check System Files Structure
+        run: |
+          echo "Validating system_files structure..."
+          for dir in etc usr; do
+            if [ ! -d "system_files/$dir" ]; then
+              echo "❌ system_files/$dir not found"
+              exit 1
+            fi
+          done
+          echo "✅ System files structure valid"
+      
+      - name: Check Flatpak Preinstalls
+        run: |
+          echo "Validating flatpak preinstall files..."
+          find system_files/usr/share/flatpak/preinstall.d -name "*.preinstall" | while read -r file; do
+            if ! grep -q "Flatpak Preinstall" "$file"; then
+              echo "❌ Invalid flatpak preinstall: $file"
+              exit 1
+            fi
+          done
+          echo "✅ Flatpak preinstalls valid"
+  
+  summary:
+    name: Summary
+    runs-on: ubuntu-latest
+    needs: [lint-scripts, check-just-syntax, build-container, validate-configs]
+    if: always()
+    steps:
+      - name: Check Results
+        run: |
+          if [ "${{ needs.lint-scripts.result }}" != "success" ] || \
+             [ "${{ needs.check-just-syntax.result }}" != "success" ] || \
+             [ "${{ needs.build-container.result }}" != "success" ] || \
+             [ "${{ needs.validate-configs.result }}" != "success" ]; then
+            echo "❌ Some checks failed"
+            exit 1
+          fi
+          echo "✅ All checks passed!"

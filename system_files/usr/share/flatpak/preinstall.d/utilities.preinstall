@@ -1,7 +1,3 @@
-# System Utilities and Development Tools
-# Additional applications for system management and development
-
-# === Flatpak Management ===
 [Flatpak Preinstall com.github.tchx84.Flatseal]
 Branch=stable
 # Manage Flatpak permissions (GUI)
@@ -14,12 +10,10 @@ Branch=stable
 Branch=stable
 # Flatpak update notifier
 
-# === Container Management ===
 [Flatpak Preinstall io.podman_desktop.PodmanDesktop]
 Branch=stable
 # Podman and Docker container management GUI
 
-# === Virtualization ===
 [Flatpak Preinstall org.virt_manager.virt-manager]
 Branch=stable
 # Virtual machine manager GUI

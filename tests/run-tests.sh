@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-echo "🧪 Running goose-linux smoke tests..."
+echo "Running goose-linux smoke tests..."
 echo ""
 
 # Track results
@@ -17,7 +17,7 @@ test_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 for test in "$test_dir"/smoke/test-*.sh; do
   if [ ! -x "$test" ]; then
-    echo "⚠️  Skipping non-executable test: $(basename "$test")"
+    echo "⚠️ Skipping non-executable test: $(basename "$test")"
     continue
   fi
 
@@ -45,9 +45,8 @@ echo "Failed: $failed_tests"
 echo "========================================"
 
 if [ $failed_tests -gt 0 ]; then
-  echo "❌ Some tests FAILED"
   exit 1
 else
-  echo "✅ All tests PASSED"
+  echo "🎉 All tests passed!"
   exit 0
 fi

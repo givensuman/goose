@@ -1,7 +1,3 @@
-# Web Browser
-# Firefox is the default browser, provided as Flatpak for better sandboxing
-# The RPM version is removed in favor of this Flatpak version
-
 [Flatpak Preinstall org.mozilla.firefox]
 Branch=stable
 IsRuntime=false
