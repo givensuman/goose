@@ -4,7 +4,7 @@
 # integrate better with the COSMIC desktop environment
 
 # Enable all SDK extensions for flatpak (allows debugging and development)
-export FLATPAK_ENABLE_SDK_EXT=*
+export FLATPAK_ENABLE_SDK_EXT="*"
 
 # Additional Wayland hints for flatpak applications
 # These help apps detect and use Wayland properly
