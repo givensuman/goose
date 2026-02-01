@@ -1,0 +1,168 @@
+---
+name: "build goose-toolbox image"
+permissions: read-all
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "toolbox/**"
+      - ".github/workflows/build-toolbox.yml"
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - "toolbox/**"
+      - ".github/workflows/build-toolbox.yml"
+  schedule:
+    - cron: '0 0 * * MON'
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: 'goose-toolbox'
+  IMAGE_REGISTRY: 'ghcr.io/${{ github.repository_owner }}'
+  IMAGE_BASENAME: 'base'
+  IMAGE_TAG: '${{ github.ref_name }}' # Overriden in generate-tags
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  push-ghcr:
+    name: build and push image
+    runs-on: ubuntu-24.04
+    continue-on-error: false
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      # Checkout push-to-registry action GitHub repository
+      - name: Checkout Push to Registry action
+        uses: actions/checkout@v4
+
+      - name: Lint build script
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          shellcheck toolbox/build.sh || { echo "Shellcheck failed"; exit 1; }
+
+      # Generate additional build tags
+      - name: Generate tags
+        id: generate-tags
+        shell: bash
+        run: |
+          tag="${{ github.ref_name }}"
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+              tag="stable"
+          elif [[ "${{ github.ref_name }}" == "dev" ]]; then
+              tag="dev"
+          fi
+          echo IMAGE_TAG="$tag" >> $GITHUB_ENV
+
+          TAGS=()
+
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            TAGS+=("pr-${{ github.event.number }}")
+            TAGS+=("${GITHUB_SHA::7}")
+          else
+            timestamp="$(date +%Y%m%d)"
+
+            TAGS+=("latest")
+            TAGS+=("${tag}")
+            TAGS+=("${timestamp}")
+            TAGS+=("${tag}-${timestamp}")
+          fi
+
+          echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
+
+      # @echo version
+      - name: Get current version
+        id: labels
+        run: |
+          # Try to get version from base image, fallback to default if access fails
+          if version=$(skopeo inspect docker://docker.io/library/fedora:latest 2>/dev/null | jq -r '.Labels["org.opencontainers.image.version"]' 2>/dev/null); then
+            echo "VERSION=$version" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION=unknown" >> $GITHUB_OUTPUT
+          fi
+
+      # Write metadata
+      - name: Image Metadata
+        uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: |
+            ${{ env.IMAGE_NAME }}
+
+          labels: |
+            io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository }}/main/toolbox/README.md
+            io.artifacthub.package.logo-url=https://raw.githubusercontent.com/${{ github.repository }}/main/assets/goose.png
+            org.opencontainers.image.title=${{ env.IMAGE_NAME }}
+            org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
+
+      # Build image using Buildah action
+      - name: Build Image
+        id: build_image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          containerfiles: |
+            ./toolbox/Containerfile
+          context: ./toolbox
+          image: ${{ env.IMAGE_NAME }}
+          tags: |
+            ${{ steps.generate-tags.outputs.TAGS }}
+          build-args: |
+            BASE_IMAGE_NAME=${{ env.IMAGE_NAME }}
+            IMAGE_TAG=${{ env.IMAGE_TAG }}
+          labels: ${{ steps.meta.outputs.labels }}
+          oci: true
+
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Push the image to GHCR
+      - name: Push To GHCR
+        id: push
+        run: |
+          for tag in ${{ steps.generate-tags.outputs.TAGS }}; do
+            podman tag localhost/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag}
+            podman push ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag}
+            echo "digest=$(podman inspect ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag} --format '{{.Digest}}')" >> $GITHUB_OUTPUT
+          done
+
+      # Sign container
+      - uses: sigstore/cosign-installer@v3.8.2
+
+      - name: Write signing key to disk
+        run: echo "${{ secrets.SIGNING_SECRET }}" > cosign.key
+
+      - name: Sign container image
+        shell: bash
+        run: |
+          cosign sign -y --key cosign.key \
+          ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
+        env:
+          COSIGN_EXPERIMENTAL: false
+          COSIGN_PASSWORD: ""
+
+      # Clean up buildah/podman images and containers
+      - name: Cleanup
+        run: |
+          podman system prune -f
+          buildah prune -f
