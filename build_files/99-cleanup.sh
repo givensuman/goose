@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# Load shared functions
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
 set -euox pipefail
-
-# Trap errors
 trap 'log_error "Script failed at line $LINENO"' ERR
 
 shopt -s nullglob
@@ -127,7 +124,7 @@ du -sh /tmp 2>/dev/null | awk '{print "  /tmp: " $1}' || true
 log_info "Committing ostree container..."
 if command_exists ostree; then
   ostree container commit
-  log_info "Ostree container committed"
+  log_info "ostree container committed"
 else
   log_warn "ostree command not found, skipping commit"
 fi

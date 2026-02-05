@@ -1,14 +1,11 @@
 #!/usr/bin/bash
 
-# Load shared functions
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
 set -euox pipefail
-
-# Trap errors
 trap 'log_error "Script failed at line $LINENO"' ERR
 
 log_info "Configuring Universal Blue packages and services..."

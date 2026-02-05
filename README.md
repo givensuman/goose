@@ -110,19 +110,3 @@ sudo mokutil --import public_key.der
 ## Issues
 
 For issues with the images, feel free to submit an issue in this repository. For COSMIC related issues, please see [cosmic-epoch/issues](https://github.com/pop-os/cosmic-epoch/issues).
-
-## Acknowledgments
-
-Default wallpaper designed by [Milad Fakurian](https://unsplash.com/@fakurian).
-
-## See Also
-
-Intitial interest and some `systemd` patches:
-
-- [ublue-os/bluefin](github.com/ublue-os/bluefin)
-
-Interesting projects I stole bits and pieces from:
-
-- [astrovm/amyos](https://github.com/astrovm/amyos)
-
-- [m2Giles/m2os](https://github.com/m2Giles/m2os)

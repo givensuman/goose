@@ -1,16 +1,11 @@
 #!/usr/bin/bash
-# Post-build verification script
-# Verifies the build completed successfully and the system is in a good state
 
-# Load shared functions
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
 set -euox pipefail
-
-# Trap errors
 trap 'log_error "Verification failed at line $LINENO"' ERR
 
 log_info "Starting post-build verification..."

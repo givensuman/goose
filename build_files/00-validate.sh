@@ -1,16 +1,11 @@
 #!/usr/bin/bash
-# Pre-build validation script
-# Checks system state and requirements before starting the build
 
-# Load shared functions
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
 set -euox pipefail
-
-# Trap errors
 trap 'log_error "Validation failed at line $LINENO"' ERR
 
 log_info "Starting pre-build validation..."

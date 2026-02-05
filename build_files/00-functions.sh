@@ -1,6 +1,4 @@
 #!/usr/bin/bash
-# Shared functions for goose-linux build scripts
-# Source this file at the beginning of each build script
 
 log_info() {
   echo "INFO: $*"

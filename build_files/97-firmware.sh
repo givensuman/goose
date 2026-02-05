@@ -1,14 +1,11 @@
 #!/usr/bin/bash
 
-# Load shared functions
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
 set -euox pipefail
-
-# Trap errors
 trap 'log_error "Script failed at line $LINENO"' ERR
 
 log_info "Installing MediaTek firmware for Framework laptops..."
@@ -18,7 +15,6 @@ firmware_tmp="/tmp/mediatek-firmware"
 safe_mkdir "${firmware_tmp}"
 
 # MediaTek MT7922 WiFi firmware files
-# These are required for WiFi on Framework 13 laptops with MediaTek cards
 firmware_base_url="https://gitlab.com/kernel-firmware/linux-firmware/-/raw/8f08053b2a7474e210b03dbc2b4ba59afbe98802/mediatek"
 
 log_info "Downloading MediaTek WiFi firmware patch..."
