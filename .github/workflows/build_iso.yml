@@ -8,7 +8,7 @@ on:
   workflow_call:
 
 env:
-  IMAGE_NAME: "goose"
+  IMAGE_NAME: "goose-linux"
   IMAGE_TAG: "stable"
   MAJOR_VERSION: "43"
 

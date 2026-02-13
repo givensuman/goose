@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/banner.png" />
+  <img src="../assets/goose.png" width="250" />
 </div>
 
 # Toolboxes
@@ -8,7 +8,7 @@ We leverage [Distrobox](https://distrobox.it/) to provide containerized developm
 
 ## Default Toolbox
 
-The default toolbox for `goose` is `dune-toolbox`, which is based on a custom image designed specifically for this distribution. It includes essential development tools and is configured to share certain directories with the host for seamless integration.
+The default toolbox for `goose` is `goose-toolbox`, which is based on a custom image designed specifically for this distribution. It includes essential development tools and is configured to share certain directories with the host for seamless integration.
 
 Using it is simple:
 
@@ -17,10 +17,14 @@ distrobox create # to, y'know, create
 distrobox enter  # to, y'know, enter
 ```
 
-The default configuration uses the image `ghcr.io/givensuman/dune-toolbox` and mounts the following volumes read-only:
+The default configuration uses the image `ghcr.io/givensuman/goose-toolbox` and mounts the following volumes read-only:
 
 - `/usr:/usr/local:ro`
 - `/home/linuxbrew/.linuxbrew:/home/linuxbrew/.linuxbrew:ro`
+
+<div align="center">
+  <img src="../assets/horizontalrule.png" />
+</div>
 
 ## Pre-configured Toolboxes
 
@@ -46,6 +50,10 @@ distrobox create arch-toolbox
 distrobox enter arch-toolbox
 ```
 
+<div align="center">
+  <img src="../assets/horizontalrule.png" />
+</div>
+
 ## Usage Tips
 
 - Use `distrobox list` to see all your created containers.
@@ -61,8 +69,5 @@ distrobox enter arch-toolbox
 | goose-build-toolboxes | Builds all pre-configured toolboxes (arch, debian, fedora, ubuntu) | `ujust goose-build-toolboxes`      |
 | goose-enter-toolbox   | Enters a specified toolbox (defaults to fedora-toolbox)            | `ujust goose-enter-toolbox <name>` |
 
-For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).
 
-<div align="center">
-  <img src="../assets/banner.png" />
-</div>
+For more advanced usage and troubleshooting, consult the [Distrobox documentation](https://distrobox.it/).

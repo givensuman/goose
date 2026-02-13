@@ -1,5 +1,0 @@
-[Context]
-sockets=inherit-wayland-socket;cups;pulseaudio;fallback-x11;wayland;x11
-devices=all;usb;kvm;input
-features=bluetooth
-filesystems=host-etc

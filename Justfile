@@ -1,4 +1,4 @@
-export image_name := env("IMAGE_NAME", "goose")
+export image_name := env("IMAGE_NAME", "goose-linux")
 export default_tag := env("DEFAULT_TAG", "latest")
 export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest")
 
@@ -67,6 +67,30 @@ sudoif command *args:
         fi
     }
     sudoif {{ command }} {{ args }}
+
+# Runs shell check on all Bash scripts
+lint:
+    #!/usr/bin/env bash
+    set -eoux pipefail
+    # Check if shellcheck is installed
+    if ! command -v shellcheck &> /dev/null; then
+        echo "shellcheck could not be found. Please install it."
+        exit 1
+    fi
+    # Run shellcheck on all Bash scripts
+    /usr/bin/find . -iname "*.sh" -type f -exec shellcheck "{}" ';'
+
+# Runs shfmt on all Bash scripts
+format:
+    #!/usr/bin/env bash
+    set -eoux pipefail
+    # Check if shfmt is installed
+    if ! command -v shfmt &> /dev/null; then
+        echo "shellcheck could not be found. Please install it."
+        exit 1
+    fi
+    # Run shfmt on all Bash scripts
+    /usr/bin/find . -iname "*.sh" -type f -exec shfmt --write "{}" ';'
 
 # This Justfile recipe builds a container image using Podman.
 #
@@ -292,27 +316,3 @@ spawn-vm rebuild="0" type="qcow2" ram="6G":
       --network-user-mode \
       --vsock=false --pass-ssh-key=false \
       -i ./output/**/*.{{ type }}
-
-# Runs shell check on all Bash scripts
-lint:
-    #!/usr/bin/env bash
-    set -eoux pipefail
-    # Check if shellcheck is installed
-    if ! command -v shellcheck &> /dev/null; then
-        echo "shellcheck could not be found. Please install it."
-        exit 1
-    fi
-    # Run shellcheck on all Bash scripts
-    /usr/bin/find . -iname "*.sh" -type f -exec shellcheck "{}" ';'
-
-# Runs shfmt on all Bash scripts
-format:
-    #!/usr/bin/env bash
-    set -eoux pipefail
-    # Check if shfmt is installed
-    if ! command -v shfmt &> /dev/null; then
-        echo "shellcheck could not be found. Please install it."
-        exit 1
-    fi
-    # Run shfmt on all Bash scripts
-    /usr/bin/find . -iname "*.sh" -type f -exec shfmt --write "{}" ';'

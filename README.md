@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="./assets/goose.png" />
+  <img src="./assets/goose.png" width="250" />
 </div>
 
-## `goose`: given's own operating system experiment
+## `goose`: given's open-source operating system environment
 <div align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/givensuman/goose-linux/build.yml?labelColor=purple" />
   <img src="https://img.shields.io/github/actions/workflow/status/givensuman/goose-linux/build_iso.yml?label=build%20iso&labelColor=blue" />
@@ -18,7 +18,7 @@ This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC des
 If you'd like to use this yourself, please feel free! If you'd like to build your own, consult the [DIY](./docs/DIY.md) document.
 
 <div align="center">
-  <img src="./assets/banner.png" />
+  <img src="./assets/horizontalrule.png" />
 </div>
 
 ## Installation
@@ -44,7 +44,11 @@ A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/downl
 `goose` is developed on and builds two branches: `main` and `dev`. `ghcr.io/givensuman/goose-linux:stable` points to `main` builds, whereas the `dev` branch is the one I'm working off of and maybe partially broken at any given time.
 
 ![goose-linux screenshot](./assets/screenshot.png)
-_Default configuration with some additional apps and the Fish shell (see: github.com/givensuman/dune-configs)_
+_Default configuration with some additional apps and the Fish shell (see: [givensuman/goose-configs](github.com/givensuman/goose-configs))_
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
 
 ## Usage
 
@@ -75,10 +79,10 @@ zoxide
 
 Additional system utilities are run through Just, and can be seen by running `ujust`.
 
-For development, use `distrobox create` to create a mutable, containerized OS, and `distrobox enter` to enter into it. See [givensuman/dune-toolbox](https://github.com/givensuman/dune-toolbox) for specifics, and [TOOLBOXES](./docs/TOOLBOXES.md) for broader containerized development instructions.
+For development, use `distrobox create` to create a mutable, containerized OS, and `distrobox enter` to enter into it. See [givensuman/goose-toolbox](https://github.com/givensuman/goose-toolbox) for specifics, and [TOOLBOXES](./docs/TOOLBOXES.md) for broader containerized development instructions.
 
 <div align="center">
-  <img src="./assets/banner.png" />
+  <img src="./assets/horizontalrule.png" />
 </div>
 
 ## Secure Boot
@@ -99,22 +103,10 @@ sudo mokutil --timeout -1
 sudo mokutil --import public_key.der
 ```
 
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
 ## Issues
 
 For issues with the images, feel free to submit an issue in this repository. For COSMIC related issues, please see [cosmic-epoch/issues](https://github.com/pop-os/cosmic-epoch/issues).
-
-## Acknowledgments
-
-Default wallpaper designed by [Milad Fakurian](https://unsplash.com/@fakurian).
-
-## See Also
-
-Intitial interest and some `systemd` patches:
-
-- [ublue-os/bluefin](github.com/ublue-os/bluefin)
-
-Interesting projects I stole bits and pieces from:
-
-- [astrovm/amyos](https://github.com/astrovm/amyos)
-
-- [m2Giles/m2os](https://github.com/m2Giles/m2os)

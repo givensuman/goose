@@ -1,24 +1,33 @@
 #!/usr/bin/bash
 
+# shellcheck disable=SC1091
+source "$(dirname "$0")/00-functions.sh"
+
 echo "::group:: ===$(basename "$0")==="
 
 set -eoux pipefail
+trap 'log_error "Script failed at line $LINENO"' ERR
 
-mkdir -p /etc/yum.repos.d
-dnf5 -y install dnf-plugins-core
+log_info "Installing packages..."
+
+# Ensure required directories exist
+safe_mkdir /etc/yum.repos.d
+
+# Install dnf plugins
+install_packages dnf-plugins-core
 
 # Setup additional repos temporarily
-dnf5 config-manager addrepo --from-repofile=https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-dnf5 config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
+log_info "Adding temporary repositories..."
+add_repo terra https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+add_repo docker-ce https://download.docker.com/linux/fedora/docker-ce.repo
 
-dnf5 config-manager setopt terra.enabled=1 || true
-dnf5 config-manager setopt docker-ce.enabled=1 || true
+enable_repo terra || true
+enable_repo docker-ce || true
 
-dnf5 -y install @development-tools
-
-packages=(
-  # System packages
+# Core system utilities
+core_packages=(
   git
+  fastfetch
   p7zip
   p7zip-plugins
   vlc
@@ -27,40 +36,58 @@ packages=(
   vlc-plugin-pause-click
   wl-clipboard
   util-linux
-  wayland-protocols-devel
-
-  # Container/Atomic utilities
-  docker-buildx-plugin
-  docker-ce
-  docker-ce-cli
-  docker-compose-plugin
-  containerd.io
-  podlet
-  podman-compose
-  podman-remote
-  qemu-kvm
-  libvirt
-  virt-manager
-  virt-viewer
-  virt-install
 )
 
-dnf5 -y install "${packages[@]}" || {
-  echo "Failed to install packages"
-  exit 1
-}
+# Development tools and libraries
+dev_packages=(
+  "@development-tools"    # GCC, make, autoconf, etc.
+  wayland-protocols-devel # Wayland development headers
+)
 
-if rpm -q docker-ce >/dev/null; then
-  systemctl enable containerd.service || true
-  systemctl enable docker.service || true
+# Container and virtualization
+container_packages=(
+  docker-buildx-plugin  # Docker build extensions
+  docker-ce             # Docker Community Edition engine
+  docker-ce-cli         # Docker command-line interface
+  docker-compose-plugin # Docker Compose V2
+  containerd.io         # Container runtime
+  podlet                # Generate Podman quadlets from existing containers
+  podman-compose        # Docker Compose for Podman
+  podman-remote         # Remote Podman client
+  qemu-kvm              # KVM virtualization
+  libvirt               # Virtualization management
+  virt-manager          # Virtual machine manager GUI
+  virt-viewer           # Virtual machine display viewer
+  virt-install          # CLI tool for VM provisioning
+)
+
+# Install all package categories
+log_info "Installing core system utilities..."
+install_packages "${core_packages[@]}"
+
+log_info "Installing development tools..."
+install_packages "${dev_packages[@]}"
+
+log_info "Installing container and virtualization packages..."
+install_packages "${container_packages[@]}"
+
+# Enable container services
+log_info "Configuring container services..."
+if package_installed docker-ce; then
+  enable_service containerd.service
+  enable_service docker.service
 else
-  echo "[DEBUG] docker-ce package missing"
+  log_warn "docker-ce package not installed, skipping service enablement"
 fi
 
-if rpm -q libvirt >/dev/null; then
-  systemctl enable libvirtd.service || true
+# Enable virtualization services
+log_info "Configuring virtualization services..."
+if package_installed libvirt; then
+  enable_service libvirtd.service
 else
-  echo "[DEBUG] libvirtd package missing"
+  log_warn "libvirt package not installed, skipping service enablement"
 fi
+
+log_info "Package installation completed successfully"
 
 echo "::endgroup::"

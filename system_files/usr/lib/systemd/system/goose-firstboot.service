@@ -1,0 +1,14 @@
+[Unit]
+Description=goose-linux First Boot Welcome
+Documentation=https://github.com/givensuman/goose-linux
+After=graphical.target
+ConditionPathExists=!/var/lib/goose/.firstboot-complete
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/goose-firstboot-welcome
+RemainAfterExit=yes
+User=root
+
+[Install]
+WantedBy=graphical.target
