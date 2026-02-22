@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: goose-linux
+description: givens own operating system experiment
+
+base-image: ghcr.io/ublue-os/base-main
+image-version: 43
+
+modules:
+  - type: files
+    no-cache: true
+    files:
+      - source: system
+        destination: /
+
+  # - type: akmods
+  #   no-cache: true
+  #   base: bazzite
+  #   install:
+  #     - framework-laptop
+
+  # - type: initramfs
+  #   no-cache: true
+
+  - from-file: 01-system.yml
+  - from-file: 02-desktop.yml
+  - from-file: 03-ublue.yml
+
+  # - type: chezmoi
+  #   repository: github.com/givensuman/goose-linux
+
+  # Bootstrap image
+  - type: copy
+    no-cache: true
+    src: ../
+    dest: /etc/goose-linux
+
+  - type: signing
+    # no-cache: true

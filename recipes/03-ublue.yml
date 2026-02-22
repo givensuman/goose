@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+modules:
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - ublue-os/packages
+        - ublue-os/staging
+    install:
+      packages:
+        - ublue-os-media-automount-udev
+        - ublue-os-update-services
+    remove:
+      packages:
+        - toolbox
+
+  - type: systemd
+    system:
+      enabled:
+        - podman.service
+        - podman-auto-update.timer
+        - rpm-ostreed-automatic.timer
+        - flatpak-system-update.timer
+
+  - type: justfiles
+    no-cache: true
+    install: true
+    validate: true
+
+  - type: script
+    snippets:
+      - | # Download Universal Blue bash-preexec
+        set -euo pipefail
+        curl -Lo /usr/share/bash-prexec \
+          https://raw.githubusercontent.com/ublue-os/bash-preexec/master/bash-preexec.sh || {
+          echo "Failed to download bash-prexec"
+          exit 1
+        }
+      - | # Override some directory defaults
+        set -euo pipefail
+        for dir in /var/opt/*/; do
+          [ -d "$dir" ] || continue
+          dirname=$(basename "$dir")
+          mv "$dir" "/usr/lib/opt/$dirname"
+        done
+
+        if [ -f "/sysctl.conf" ]; then
+          mkdir -p /etc/default
+          mkdir -p /etc/systemd
+          mkdir -p /etc/udev
+          mv /default/* /etc/default
+          mv /systemd/* /etc/systemd
+          mv /udev/* /etc/udev
+          mv sysctl.conf /etc
+        fi

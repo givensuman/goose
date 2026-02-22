@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix hostname
+After=local-fs.target
+ConditionPathExists=!/var/lib/hostname-fix.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hostnamectl hostname "goose"
+ExecStartPost=/usr/bin/touch /var/lib/hostname-fix.done
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
