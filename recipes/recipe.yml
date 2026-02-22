@@ -12,21 +12,22 @@ modules:
       - source: system
         destination: /
 
-  # - type: akmods
-  #   no-cache: true
-  #   base: bazzite
-  #   install:
-  #     - framework-laptop
+  - type: akmods
+    no-cache: true
+    base: bazzite
+    install:
+      - framework-laptop
 
-  # - type: initramfs
-  #   no-cache: true
+  - type: initramfs
+    no-cache: true
 
   - from-file: 01-system.yml
   - from-file: 02-desktop.yml
   - from-file: 03-ublue.yml
 
-  # - type: chezmoi
-  #   repository: github.com/givensuman/goose-linux
+  - type: chezmoi
+    repository: github.com/givensuman/goose-linux
+    branch: dev # TODO: Change later
 
   # Bootstrap image
   - type: copy
@@ -35,4 +36,4 @@ modules:
     dest: /etc/goose-linux
 
   - type: signing
-    # no-cache: true
+    no-cache: true

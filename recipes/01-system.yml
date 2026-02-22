@@ -10,6 +10,7 @@ modules:
         - fish
         - git
         # System utilities
+        - bluez
         - p7zip
         - p7zip-plugins
         - vlc
@@ -50,6 +51,7 @@ modules:
         - containerd.service
         - docker.service
         - libvirtd.service
+        - bluetooth.service
         # Services in usr/lib/systemd
         - dconf-update.service
         - hostname-fix.service
