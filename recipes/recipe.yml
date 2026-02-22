@@ -41,4 +41,4 @@ modules:
     dest: /etc/goose-linux
 
   - type: signing
-    no-cache: true
+    # no-cache: true
