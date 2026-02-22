@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+modules:
+  - type: dnf
+    repos:
+      files:
+        - https://download.docker.com/linux/fedora/docker-ce.repo
+    install:
+      packages:
+        # System packages
+        - fish
+        - git
+        # System utilities
+        - p7zip
+        - p7zip-plugins
+        - vlc
+        - vlc-plugin-bittorrent
+        - vlc-plugin-ffmpeg
+        - vlc-plugin-pause-click
+        - wl-clipboard
+        - util-linux
+        - wayland-protocols-devel
+        - gdisk
+        - gnome-disk-utility
+        # Container utilities
+        - docker-buildx-plugin
+        - docker-ce
+        - docker-ce-cli
+        - docker-compose-plugin
+        - containerd.io
+        - podlet
+        - podman-compose
+        - podman-remote
+        - qemu-kvm
+        - libvirt
+        - virt-manager
+        - virt-viewer
+        - virt-install
+
+  - type: script
+    snippets:
+      # Changes root's shell to fish
+      - sed -i 's|^root:x:0:0:root:/root:/bin/bash|root:x:0:0:root:/root:/bin/fish|' /etc/passwd
+      # Set the default for future users
+      - sed -i 's|^SHELL=.*|SHELL=/bin/fish|' /etc/default/useradd
+
+  - type: systemd
+    system:
+      enabled:
+        # Services installed above
+        - containerd.service
+        - docker.service
+        - libvirtd.service
+        # Services in usr/lib/systemd
+        - dconf-update.service
+        - hostname-fix.service
+        - libvirtd-setup.service

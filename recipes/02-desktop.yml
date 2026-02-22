@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+modules:
+  - type: dnf
+    repos:
+      cleanup: false
+      nonfree: rpmfusion
+      files:
+        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+    group-install:
+      packages:
+        - cosmic-desktop
+      # exclude:
+      #   - cosmic-edit
+      #   - cosmic-player
+      #   - cosmic-store
+      #   - cosmic-term
+    group-remove:
+      packages:
+        - gnome-desktop
+    install:
+      packages:
+        - ghostty
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+      google-fonts:
+        - Roboto
+        - Open Sans
+        - Inter
+
+  - type: default-flatpaks
+    configurations:
+      - notify: false
+        scope: system
+        install:
+          - org.mozilla.firefox
+          - io.github.kolunmi.Bazaar
+          - net.nokyan.Resources
+          # Containerized desktop utilities
+          - com.github.tchx84.Flatseal
+          - io.github.flattool.Warehouse
+          - io.github.flattool.Ignition
+          - io.podman_desktop.PodmanDesktop
+          - org.virt_manager.virt-manager
+          # GNOME junk
+          - org.gnome.baobab
+          - org.gnome.Calculator
+          - org.gnome.Calendar
+          - org.gnome.Characters
+          - org.gnome.clocks
+          - org.gnome.Contacts
+          - org.gnome.DejaDup
+          - org.gnome.Dictionary
+          - org.gnome.FileRoller
+          - org.gnome.Firmware
+          - org.gnome.font-viewer
+          - org.gnome.Logs
+          - org.gnome.Loupe
+          - org.gnome.Maps
+          - org.gnome.Notes
+          - org.gnome.Papers
+          - org.gnome.Photos
+          - org.gnome.Showtime
+          - org.gnome.SimpleScan
+          - org.gnome.SoundRecorder
+          - org.gnome.TextEditor
+          - org.gnome.Weather
+          - org.gtk.Gtk3theme.adw-gtk3
+          - org.gtk.Gtk3theme.adw-gtk3-dark
+      - scope: user
+
+  - type: systemd
+    system:
+      enabled:
+        - cosmic-greeter.service
+      disabled:
+        - gdm.service
