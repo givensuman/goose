@@ -1,9 +1,0 @@
-[Context]
-filesystems=xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;
-
-[Environment]
-GDK_SCALE=1
-QT_SCALE_FACTOR=1
-GDK_BACKEND=wayland
-QT_QPA_PLATFORM=wayland
-ELECTRON_OZONE_PLATFORM_HINT=auto
