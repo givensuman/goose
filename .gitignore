@@ -9,3 +9,4 @@ tmp/
 _build_*
 output
 _build-*/**
+/.bluebuild-scripts_*

@@ -22,6 +22,23 @@ modules:
       packages:
         - ghostty
         - fish
+        # CLI programs
+        - act
+        - bat
+        - bottom
+        - delve
+        - eza
+        - fd
+        - fzf
+        - gh
+        - lazygit
+        - mise
+        - neovim
+        - shellcheck
+        - shfmt
+        - tree-sitter
+        - yazi
+        - zoxide
     group-install:
       packages:
         - cosmic-desktop
