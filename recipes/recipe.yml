@@ -12,6 +12,11 @@ modules:
       - source: system
         destination: /
 
+  - type: script
+    snippets:
+      - "dnf5 -y update"
+      - "dnf5 -y upgrade"
+
   - type: dnf
     repos:
       cleanup: false
@@ -46,6 +51,18 @@ modules:
       packages:
         - gnome-desktop
 
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - Hack
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+      google-fonts:
+        - Roboto
+        - Open Sans
+        - Inter
+        - Ubuntu
+
   - type: akmods
     base: main
     install:
@@ -64,5 +81,10 @@ modules:
         - cosmic-greeter.service
       masked:
         - gdm.service
+
+  - type: script
+    snippets:
+      - "dnf5 -y autoremove"
+      - "dnf5 -y clean all"
 
   - type: signing
