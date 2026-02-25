@@ -1,0 +1,9 @@
+#!/bin/bash
+# .mise.toml hash: {{ include "dot_mise.toml" | sha256sum }}
+
+set -euox pipefail
+
+# Upgrade tools defined in .mise.toml or .tool-versions
+if command -v mise &> /dev/null; then
+    mise upgrade -y
+fi

@@ -25,8 +25,31 @@ modules:
       nonfree: rpmfusion
     install:
       packages:
+        # System packages
         - ghostty
         - fish
+        # Misc
+        - p7zip
+        - p7zip-plugins
+        - vlc
+        - vlc-plugin-bittorrent
+        - vlc-plugin-ffmpeg
+        - vlc-plugin-pause-click
+        - wl-clipboard
+        # Containerization
+        - docker-buildx-plugin
+        - docker-ce
+        - docker-ce-cli
+        - docker-compose-plugin
+        - containerd.io
+        - podlet
+        - podman-compose
+        - podman-remote
+        - qemu-kvm
+        - libvirt
+        - virt-manager
+        - virt-viewer
+        - virt-install
         # CLI programs
         - act
         - bat
@@ -37,6 +60,7 @@ modules:
         - fzf
         - gh
         - lazygit
+        - ripgrep
         - mise
         - neovim
         - shellcheck
@@ -44,6 +68,10 @@ modules:
         - tree-sitter
         - yazi
         - zoxide
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
     group-install:
       packages:
         - cosmic-desktop
@@ -79,6 +107,8 @@ modules:
     system:
       enabled:
         - cosmic-greeter.service
+        - flatpak-preinstall.service
+        - libvirtd-setup.service
       masked:
         - gdm.service
 

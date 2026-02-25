@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euox pipefail
+
+# Install tools defined in .mise.toml or .tool-versions
+if command -v mise &> /dev/null; then
+    mise install -y
+fi
