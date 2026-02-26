@@ -8,14 +8,11 @@ Documentation=man:flatpak-preinstall(1)
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/flatpak preinstall -y
+ExecStart=/usr/bin/flatpak preinstall -y --noninteractive --ostree-verbose
 ExecStartPost=/usr/bin/touch /var/lib/flatpak-preinstall.done
 RemainAfterExit=true
 Restart=on-failure
 RestartSec=30
-
-StartLimitIntervalSec=600
-StartLimitBurst=3
 
 [Install]
 WantedBy=multi-user.target
