@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+# Here we set up the desktop environment and packages.
+modules:
+  - type: dnf
+    group-install:
+      packages:
+        - cosmic-desktop
+    group-remove:
+      packages:
+        - gnome-desktop
+    install:
+      packages:
+        - ghostty
+    remove:
+      packages:
+        # Prefer Flatpak version of Firefox
+        - firefox
+        - firefox-langpacks
+
+  - type: script
+    snippets:
+      - "flatpak remote-add --if-not-exists --system flathub \
+        https://dl.flathub.org/repo/flathub.flatpakrepo"
+
+  - type: systemd
+    system:
+      enabled:
+        # Services installed above
+        - cosmic-greeter.service
+        # Services in /usr/lib/systemd/system
+        - flatpak-preinstall.service
+      masked:
+        - gdm.service
+
+  - type: chezmoi
+    repository: https://github.com/givensuman/goose
+
+  - type: justfiles
+
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - Hack
+        - JetBrainsMono
+        - NerdFontsSymbolsOnly
+      google-fonts:
+        - Roboto
+        - Open Sans
+        - Inter
+        - Ubuntu

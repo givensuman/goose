@@ -31,6 +31,9 @@ Branch=stable
 [Flatpak Preinstall org.gnome.Logs]
 Branch=stable
 
+[Flatpak Preinstall org.gnome.Lollypop]
+Branch=stable
+
 [Flatpak Preinstall org.gnome.Loupe]
 Branch=stable
 

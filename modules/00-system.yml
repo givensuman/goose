@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+# This modules establishes the base of our image by running the Ultramarine
+# migration script and include Universal Blue build steps.
+modules:
+  - type: script
+    scripts:
+      - ultramarine.sh
+
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - ublue-os/akmods
+        - ublue-os/bazzite
+        - ublue-os/packages
+        - ublue-os/staging
+    group-install:
+      packages:
+        - development-tools
+    install:
+      packages:
+        # Universal Blue
+        - uupd
+        - ublue-os-media-automount-udev
+        - ublue-os-just
+        # Miscellaneous
+        - dnf-plugins-core
+        - firewall-config
+        - gdisk
+        - gparted
+        - git
+        - p7zip
+        - p7zip-plugins
+        - util-linux
+        - wl-clipboard
+
+  - type: systemd
+    system:
+      enabled:
+        # Services installed above
+        - uupd.timer
+        # Services in /usr/lib/systemd/system
+        - ublue-hostname.service

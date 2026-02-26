@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix hostname
+After=local-fs.target
+ConditionPathExists=!/var/lib/ublue-hostname.done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hostnamectl hostname "gandalf"
+ExecStartPost=/usr/bin/touch /var/lib/ublue-hostname.done
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+# This modules installs various bits of software useful for containerized
+# systems like SilverBlue.
+modules:
+  - type: script
+    scripts:
+      - docker.sh # Handle steps commented out below
+                  # due to bug in BlueBuild `repos` key
+
+  - type: dnf
+    # repos:
+    #   cleanup: true
+    #   keys:
+    #     - https://download.docker.com/linux/fedora/docker-ce.repo
+    install:
+      packages:
+        # - containerd.io
+        # - distrobox
+        # - docker-buildx-plugin
+        # - docker-ce
+        # - docker-ce-cli
+        # - docker-compose-plugin
+        - podlet
+        - podman-compose
+        - podman-remote
+        - qemu-kvm
+        - libvirt
+        - virt-manager
+        - virt-viewer
+        - virt-install
+    remove:
+      packages:
+        - toolbox # Prefer distrobox
+
+  - type: systemd
+    system:
+      enabled:
+        # Services installed above
+        - containerd.service
+        - docker.service
+        - podman.service
+        # Services in /usr/lib/systemd/system
+        - libvirtd-setup.service

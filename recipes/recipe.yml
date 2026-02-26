@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: goose
 description: given's own operating system experiment
@@ -13,108 +12,26 @@ modules:
         destination: /
 
   - type: script
-    snippets:
-      - "dnf5 -y update"
-      - "dnf5 -y upgrade"
+    scripts:
+      - dnf.sh
 
-  - type: dnf
-    repos:
-      cleanup: false
-      files:
-        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-      nonfree: rpmfusion
-    install:
-      packages:
-        # System packages
-        - ghostty
-        - fish
-        # Misc
-        - p7zip
-        - p7zip-plugins
-        - vlc
-        - vlc-plugin-bittorrent
-        - vlc-plugin-ffmpeg
-        - vlc-plugin-pause-click
-        - wl-clipboard
-        # Containerization
-        - docker-buildx-plugin
-        - docker-ce
-        - docker-ce-cli
-        - docker-compose-plugin
-        - containerd.io
-        - podlet
-        - podman-compose
-        - podman-remote
-        - qemu-kvm
-        - libvirt
-        - virt-manager
-        - virt-viewer
-        - virt-install
-        # CLI programs
-        - act
-        - bat
-        - bottom
-        - delve
-        - eza
-        - fd
-        - fzf
-        - gh
-        - lazygit
-        - ripgrep
-        - mise
-        - neovim
-        - shellcheck
-        - shfmt
-        - tree-sitter
-        - yazi
-        - zoxide
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-    group-install:
-      packages:
-        - cosmic-desktop
-    group-remove:
-      packages:
-        - gnome-desktop
+  - from-file: ../modules/00-system.yml
+  - from-file: ../modules/01-atomic.yml
+  - from-file: ../modules/02-desktop.yml
+  - from-file: ../modules/03-cli.yml
 
-  - type: fonts
-    fonts:
-      nerd-fonts:
-        - Hack
-        - JetBrainsMono
-        - NerdFontsSymbolsOnly
-      google-fonts:
-        - Roboto
-        - Open Sans
-        - Inter
-        - Ubuntu
-
-  - type: akmods
-    base: main
-    install:
-      - framework-laptop
-
-  - type: initramfs
-
-  - type: chezmoi
-    repository: https://github.com/givensuman/goose
-
-  - type: justfiles
-
-  - type: systemd
-    system:
-      enabled:
-        - cosmic-greeter.service
-        - flatpak-preinstall.service
-        - libvirtd-setup.service
-      masked:
-        - gdm.service
+  # - type: akmods
+  #   base: main
+  #   install:
+  #     - framework-laptop
+  #
+  # # Regenerate initramfs; must follow akmods
+  # - type: initramfs
+  #   no-cache: true
 
   - type: script
-    snippets:
-      - "dnf5 -y autoremove"
-      - "dnf5 -y clean all"
+    scripts:
+      - dnf.sh
 
   - type: signing
+    no-cache: true

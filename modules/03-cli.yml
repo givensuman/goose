@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
+# Here we install programs to build out our CLI environment.
+modules:
+  - type: dnf
+    # repos:
+    #   cleanup: true
+    #   nonfree: "rpmfusion"
+    install:
+      packages:
+        - act
+        - bat
+        - bottom
+        - delve
+        - eza
+        - fd
+        - fish
+        - fzf
+        - gh
+        - lazygit
+        - ripgrep
+        - mise
+        - neovim
+        - shellcheck
+        - shfmt
+        - tree-sitter
+        - yazi
+        - zoxide
+    remove:
+      packages:
+        - htop # Prefer bottom
