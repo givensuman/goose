@@ -1,84 +1,85 @@
-# Goose &nbsp; [![bluebuild build badge](https://github.com/givensuman/goose/actions/workflows/build.yml/badge.svg)](https://github.com/givensuman/goose/actions/workflows/build.yml)
+<div align="center">
+  <img src="./assets/goose.png" width="250" />
+</div>
 
-A highly stable custom atomic OS image built with [BlueBuild](https://blue-build.org/).
+## `goose`: given's open-source operating system environment
 
-## Overview
+<div align="center">
+  <img src="https://img.shields.io/github/actions/workflow/status/givensuman/goose/build.yml?labelColor=purple" />
 
-| Feature | Choice |
-|---|---|
-| Base | `ghcr.io/ublue-os/base-main:42` |
-| Desktop | [COSMIC](https://system76.com/cosmic) |
-| Kernel | [Bazzite](https://github.com/bazzite-org/kernel-bazzite) |
-| Terminal | [Ghostty](https://ghostty.org/) |
-| App store | [Bazaar](https://github.com/ublue-os/bazaar) |
-| Shell | [Fish](https://fishshell.com/) (system-wide default) |
-| Dotfiles | [Chezmoi](https://www.chezmoi.io/) (sourced from this repo) |
-| Extras | Terra repo, RPM Fusion free+nonfree, Framework Laptop akmods |
+  <img src="https://github.com/givensuman/goose/actions/workflows/build.yml/badge.svg" />
+
+  <img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/goose" />
+</div>
+
+## About
+
+This is a custom Linux build designed around Fedora's [Atomic Desktops](https://fedoraproject.org/atomic-desktops/), as a community-driven adaptation of the [Universal Blue](https://universal-blue.org/) project. These systems are immutable by nature, which means users are actually gated from directly modifying the system, providing an incredibly secure form of interacting with the Linux platform.
+
+This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC desktop environment](https://system76.com/cosmic/) and anything you could want for containerized development. It's unopinionated by design, other than preferring [Ghostty](https://ghostty.org/) for the terminal, and [Catppuccin](https://catppuccin.com/) for the system theme.
+
+This was previously handcrafted using all kinds of build scripts and `systemd` hacks, but has since switched to a declarative [BlueBuild](https://blue-build.org) structure. Alongside being easier to maintain, I've also gotten it to replicate the functionality of an operating system like Nix. The image bootstraps itself into the filesystem and `bootc` can actually rebase to it locally, meaning we can document desired packages or system-level changes and rebuild our system in one go.
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
 
 ## Installation
 
-> [!WARNING]
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
-
-### Rebase from an existing Fedora Atomic installation
-
-1. Rebase to the unsigned image first, to install the signing keys:
-   ```bash
-   rpm-ostree rebase ostree-unverified-registry:ghcr.io/givensuman/goose:latest
-   systemctl reboot
-   ```
-
-2. Then rebase to the signed image:
-   ```bash
-   rpm-ostree rebase ostree-image-signed:docker://ghcr.io/givensuman/goose:latest
-   systemctl reboot
-   ```
-
-## Local management with `ujust`
-
-After installation, a set of `ujust` commands is available for managing the OS:
-
-| Command | Description |
-|---|---|
-| `ujust bootstrap-goose` | Clone this repository to `/etc/goose` for local rebuilds |
-| `ujust rebuild` | Rebuild the image locally from `/etc/goose` using the BlueBuild CLI |
-| `ujust rebase` | Rebase to the latest published image from GHCR |
-| `ujust update` | Apply pending rpm-ostree + Flatpak updates |
-
-### Local development workflow
+Verify the image signature with `cosign`:
 
 ```bash
-# 1. Bootstrap the source into /etc/goose
-ujust bootstrap-goose
-
-# 2. Edit the recipe or files in /etc/goose, then rebuild locally
-ujust rebuild
-
-# 3. Push your changes and let CI/CD build a new image
-cd /etc/goose
-git add .
-git commit -m "my change"
-git push   # triggers the GitHub Actions build
+cosign verify --key \
+https://github.com/givensuman/goose/raw/main/cosign.pub \
+ghcr.io/givensuman/goose
 ```
 
-## Dotfiles with Chezmoi
-
-Dotfiles are managed via [chezmoi](https://www.chezmoi.io/) and are sourced from the `home/` directory of this repository (configured via `.chezmoiroot`).
-
-On first login, chezmoi will automatically initialise from `https://github.com/givensuman/goose` and apply your dotfiles.
-
-To add a dotfile:
+Then rebase from any Fedora Atomic image by running the following:
 
 ```bash
-chezmoi add ~/.config/fish/config.fish
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/givensuman/goose
 ```
 
-The file will be tracked in `home/` within this repository.
+A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/download) will have a smaller ISO size and give you a more reasonable point to rollback to in the future.
 
-## Verification
+![desktop screenshot](./assets/screenshot.png)
 
-Images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). Verify with:
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
+### Usage
+
+Additional system utilities are run through Just, and can be seen by running `ujust`.
+
+For development, use `distrobox create` to create a mutable, containerized OS, and `distrobox enter` to enter into it.
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
+## Secure Boot
+
+Secure Boot is enabled by default on Universal Blue builds, adding an extra layer of security. During the initial installation, you will be prompted to enroll the secure boot key in the BIOS. To do so, enter the password `universalblue` when asked.
+
+If this step is skipped during setup, you can manually enroll the key by running the following command in the terminal:
+
+```
+ujust enroll-secure-boot-key
+```
+
+Secure Boot works with Universal Blue's custom key, which can be found in the root of the akmods repository [here](https://github.com/ublue-os/akmods/raw/main/certs/public_key.der).
+To enroll the key before installation or rebase, download the key and run:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/givensuman/goose
+sudo mokutil --timeout -1
+sudo mokutil --import public_key.der
 ```
+
+<div align="center">
+  <img src="./assets/horizontalrule.png" />
+</div>
+
+## Issues
+
+For issues with the images, feel free to submit an issue in this repository. For COSMIC related issues, please see [cosmic-epoch/issues](https://github.com/pop-os/cosmic-epoch/issues).
