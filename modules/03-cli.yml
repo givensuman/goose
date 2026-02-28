@@ -2,9 +2,6 @@
 # Here we install programs to build out our CLI environment.
 modules:
   - type: dnf
-    # repos:
-    #   cleanup: true
-    #   nonfree: "rpmfusion"
     install:
       packages:
         - act

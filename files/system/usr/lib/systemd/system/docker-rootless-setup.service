@@ -1,0 +1,12 @@
+[Unit]
+Description=Configure rootless Docker
+After=local-fs.target
+Documentation=https://docs.docker.com/engine/security/rootless/
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dockerd-rootless-setuptool.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

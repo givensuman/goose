@@ -2,9 +2,22 @@
 # This modules establishes the base of our image by running the Ultramarine
 # migration script and include Universal Blue build steps.
 modules:
+  - type: dnf
+    repos:
+      cleanup: false
+      nonfree: rpmfusion
+    install:
+      packages:
+        - dnf-plugins-core
+
   - type: script
-    scripts:
-      - ultramarine.sh
+    snippets:
+      - |
+        dnf5 config-manager addrepo --from-repofile \
+        https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+      - |
+        dnf5 config-manager addrepo --from-repofile \
+        https://download.docker.com/linux/fedora/docker-ce.repo
 
   - type: dnf
     repos:
@@ -24,7 +37,6 @@ modules:
         - ublue-os-media-automount-udev
         - ublue-os-just
         # Miscellaneous
-        - dnf-plugins-core
         - firewall-config
         - gdisk
         - gparted

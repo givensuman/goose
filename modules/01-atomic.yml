@@ -2,24 +2,20 @@
 # This modules installs various bits of software useful for containerized
 # systems like SilverBlue.
 modules:
-  - type: script
-    scripts:
-      - docker.sh # Handle steps commented out below
-                  # due to bug in BlueBuild `repos` key
-
+  # - type: script
+  #   scripts:
+  #     - docker.sh # Handle steps commented out below
+  #                 # due to bug in BlueBuild `repos` key
+  #
   - type: dnf
-    # repos:
-    #   cleanup: true
-    #   keys:
-    #     - https://download.docker.com/linux/fedora/docker-ce.repo
     install:
       packages:
-        # - containerd.io
-        # - distrobox
-        # - docker-buildx-plugin
-        # - docker-ce
-        # - docker-ce-cli
-        # - docker-compose-plugin
+        - containerd.io
+        - distrobox
+        - docker-buildx-plugin
+        - docker-ce
+        - docker-ce-cli
+        - docker-compose-plugin
         - podlet
         - podman-compose
         - podman-remote
@@ -37,7 +33,7 @@ modules:
       enabled:
         # Services installed above
         - containerd.service
-        - docker.service
         - podman.service
         # Services in /usr/lib/systemd/system
+        - docker-rootless-setup.service
         - libvirtd-setup.service
