@@ -34,6 +34,8 @@ modules:
         # Services installed above
         - containerd.service
         - podman.service
+        - docker.service
         # Services in /usr/lib/systemd/system
+        - podman-init.service
         - docker-rootless-setup.service
         - libvirtd-setup.service

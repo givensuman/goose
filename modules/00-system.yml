@@ -12,9 +12,11 @@ modules:
 
   - type: script
     snippets:
+      # Add Terra package repository
       - |
         dnf5 config-manager addrepo --from-repofile \
         https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+      # Add Docker CE repository
       - |
         dnf5 config-manager addrepo --from-repofile \
         https://download.docker.com/linux/fedora/docker-ce.repo

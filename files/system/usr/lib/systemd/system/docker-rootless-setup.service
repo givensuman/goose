@@ -2,11 +2,16 @@
 Description=Configure rootless Docker
 After=local-fs.target
 Documentation=https://docs.docker.com/engine/security/rootless/
+ConditionPathExists=/usr/bin/dockerd-rootless-setuptool.sh
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/dockerd-rootless-setuptool.sh
 RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=docker-rootless-setup
+# Only run the setup if rootless docker is not already initialized
+ExecStart=/bin/bash -c 'if ! docker context inspect rootless &>/dev/null 2>&1; then /usr/bin/dockerd-rootless-setuptool.sh install || true; fi'
 
 [Install]
 WantedBy=multi-user.target

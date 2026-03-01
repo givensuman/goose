@@ -1,11 +1,15 @@
 [Unit]
-Description=Enable libvirtd service after reboot
+Description=Enable libvirtd service
 After=local-fs.target
 ConditionPathExists=/usr/lib/systemd/system/libvirtd.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/bash -c "systemctl enable --now libvirtd; restorecon -Rv /var/log/libvirt /var/lib/libvirt; systemctl disable %n"
+ExecStart=/usr/bin/libvirtd-setup.sh
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=libvirtd-setup
 
 [Install]
 WantedBy=multi-user.target
