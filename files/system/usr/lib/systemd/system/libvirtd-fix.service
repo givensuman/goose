@@ -1,11 +1,11 @@
 [Unit]
-Description=Enable libvirtd service
+Description=SELinux context setup for libvirtd.service
 After=local-fs.target
 ConditionPathExists=/usr/lib/systemd/system/libvirtd.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/libvirtd-setup.sh
+ExecStart=/usr/bin/restorecon -R -v /usr/lib/systemd/system/libvirtd.service
 RemainAfterExit=yes
 StandardOutput=journal
 StandardError=journal
