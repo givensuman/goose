@@ -39,6 +39,7 @@ modules:
         - ublue-os-media-automount-udev
         - ublue-os-just
         # Miscellaneous
+        - binutils
         - firewall-config
         - gdisk
         - gparted
