@@ -1,0 +1,34 @@
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "0e56060"
+hash = "ab2e66065a94cca4886b303518e44bd8"
+
+[[plugin.deps]]
+use = "KKV9/command"
+rev = "4762ecc"
+hash = "65fff40a0060fe4b1c42d49d29f770fd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "398796d"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "walldmtd/fs-usage"
+rev = "209128d"
+hash = "acbca63727c01bd5809ac8c2212fe678"
+
+[[plugin.deps]]
+use = "DreamMaoMao/fg"
+rev = "35b2805"
+hash = "c969898aa7d0bea4127c77eb21fa859d"
+
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "7b00863"
+hash = "c538f3766b4b3bafbae3f0b7c3c3d763"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "9276ffa"
+hash = "8d7799e4598ff079fa5ee5c770d9bc08"

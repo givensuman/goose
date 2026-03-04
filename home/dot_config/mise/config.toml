@@ -1,0 +1,16 @@
+[tools]
+bun = "latest"
+deno = "latest"
+go = "latest"
+golangci-lint = "latest"
+golangci-lint-langserver = "latest"
+lua = "latest"
+node = "latest"
+npm = "latest"
+python = "latest"
+rust = "latest"
+usage = "latest"
+uv = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = []

@@ -1,0 +1,266 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export EZA_LAAD_OPTIONS:\x2d\x2dall\x1e\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LAAID_OPTIONS:\x2d\x2dall\x1e\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2dicons\x1e\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LAAI_OPTIONS:\x2d\x2dall\x1e\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2dicons
+SETUVAR --export EZA_LAA_OPTIONS:\x2d\x2dall\x1e\x2d\x2dall\x1e\x2d\x2dbinary
+SETUVAR --export EZA_LAD_OPTIONS:\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LAID_OPTIONS:\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2dicons\x1e\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LAI_OPTIONS:\x2d\x2dall\x1e\x2d\x2dbinary\x1e\x2d\x2dicons
+SETUVAR --export EZA_LA_OPTIONS:\x2d\x2dall\x1e\x2d\x2dbinary
+SETUVAR --export EZA_LC_OPTIONS:\x2d\x2dacross
+SETUVAR --export EZA_LD_OPTIONS:\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LE_OPTIONS:\x2d\x2dextended\x1e\x2d\x2dlong
+SETUVAR --export EZA_LG_OPTIONS:\x2d\x2dgit\x1e\x2d\x2dgit\x2dignore\x1e\x2d\x2dlong
+SETUVAR --export EZA_LID_OPTIONS:\x2d\x2dicons\x1e\x2d\x2donly\x2ddirs
+SETUVAR --export EZA_LI_OPTIONS:\x2d\x2dicons
+SETUVAR --export EZA_LL_OPTIONS:\x2d\x2dlong
+SETUVAR --export EZA_LO_OPTIONS:\x2d\x2doneline
+SETUVAR --export EZA_LT_OPTIONS:\x2d\x2dtree\x1e\x2d\x2dlevel
+SETUVAR --export EZA_L_OPTIONS:\x1d
+SETUVAR --export EZA_STANDARD_OPTIONS:\x2d\x2dgroup\x1e\x2d\x2dheader\x1e\x2d\x2dgroup\x2ddirectories\x2dfirst
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcolor\x3dbg\x2b\x3a\x23313244\x2cbg\x3a\x231e1e2e\x2cspinner\x3a\x23f5e0dc\x2chl\x3a\x23f38ba8\x20\x2d\x2dcolor\x3dfg\x3a\x23cdd6f4\x2cheader\x3a\x23f38ba8\x2cinfo\x3a\x23cba6f7\x2cpointer\x3a\x23f5e0dc\x20\x2d\x2dcolor\x3dmarker\x3a\x23b4befe\x2cfg\x2b\x3a\x23cdd6f4\x2cprompt\x3a\x23cba6f7\x2chl\x2b\x3a\x23f38ba8\x20\x2d\x2dcolor\x3dselected\x2dbg\x3a\x2345475a\x20\x2d\x2dmulti
+SETUVAR ZO_CMD:zo
+SETUVAR Z_CMD:z
+SETUVAR Z_DATA:/home/given/\x2elocal/share/z/data
+SETUVAR Z_DATA_DIR:/home/given/\x2elocal/share/z
+SETUVAR Z_EXCLUDE:\x5e/home/given\x24
+SETUVAR --export __FISH_EZA_ALIASES:l\x1ela\x1eld\x1eli\x1elid\x1elaa\x1elad\x1elai\x1elaid\x1elaad\x1elaai\x1elaaid\x1ell\x1ella\x1elld\x1elli\x1ellid\x1ellaa\x1ellad\x1ellai\x1ellaid\x1ellaad\x1ellaai\x1ellaaid\x1elg\x1elga\x1elgd\x1elgi\x1elgid\x1elgaa\x1elgad\x1elgai\x1elgaid\x1elgaad\x1elgaai\x1elgaaid\x1ele\x1elea\x1eled\x1elei\x1eleid\x1eleaa\x1elead\x1eleai\x1eleaid\x1eleaad\x1eleaai\x1eleaaid\x1elt\x1elta\x1eltd\x1elti\x1eltid\x1eltad\x1eltai\x1eltaid\x1eltaad\x1eltaai\x1eltaaid\x1elc\x1elca\x1elcd\x1elci\x1elcid\x1elcaa\x1elcad\x1elcai\x1elcaid\x1elcaad\x1elcaai\x1elcaaid\x1elo\x1eloa\x1elod\x1eloi\x1eloid\x1eloaa\x1eload\x1eloai\x1eloaid\x1eloaad\x1eloaai\x1eloaaid
+SETUVAR --export __FISH_EZA_BASE_ALIASES:l\x1ell\x1elg\x1ele\x1elt\x1elc\x1elo
+SETUVAR --export __FISH_EZA_EXPANDED:a\x1ed\x1ei\x1eid\x1eaa\x1ead\x1eai\x1eaid\x1eaad\x1eaai\x1eaaid
+SETUVAR --export __FISH_EZA_EXPANDED_OPT_NAME:LA\x1eLD\x1eLI\x1eLID\x1eLAA\x1eLAD\x1eLAI\x1eLAID\x1eLAAD\x1eLAAI\x1eLAAID
+SETUVAR --export __FISH_EZA_OPT_NAMES:EZA_L_OPTIONS\x1eEZA_LA_OPTIONS\x1eEZA_LD_OPTIONS\x1eEZA_LI_OPTIONS\x1eEZA_LID_OPTIONS\x1eEZA_LAA_OPTIONS\x1eEZA_LAD_OPTIONS\x1eEZA_LAI_OPTIONS\x1eEZA_LAID_OPTIONS\x1eEZA_LAAD_OPTIONS\x1eEZA_LAAI_OPTIONS\x1eEZA_LAAID_OPTIONS\x1eEZA_LL_OPTIONS\x1eEZA_LG_OPTIONS\x1eEZA_LE_OPTIONS\x1eEZA_LT_OPTIONS\x1eEZA_LC_OPTIONS\x1eEZA_LO_OPTIONS
+SETUVAR --export __FISH_EZA_SORT_OPTIONS:name\x1e\x2ename\x1esize\x1eext\x1emod\x1eold\x1eacc\x1ecr\x1einode
+SETUVAR __fish_initialized:3800
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
+SETUVAR _fisher_fishingline_2F_safe_2D_rm_files:\x7e/\x2econfig/fish/functions/__safe\x2drm\x2epl\x1e\x7e/\x2econfig/fish/functions/__shell\x2dsafe\x2drm\x2ebash\x1e\x7e/\x2econfig/fish/functions/del\x2efish\x1e\x7e/\x2econfig/fish/functions/rm\x2efish\x1e\x7e/\x2econfig/fish/functions/safe\x2drm\x2efish
+SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_archive_files:\x7e/\x2econfig/fish/functions/_fish_archive_compress\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_archive_extract\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fish\x2darchive\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_archive_compress\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_archive_extract\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_autovenv_files:\x7e/\x2econfig/fish/conf\x2ed/fish\x2dautovenv\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_bat_files:\x7e/\x2econfig/fish/conf\x2ed/fish\x2dbat\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_copyutils_files:\x7e/\x2econfig/fish/functions/_fish_copyutils_copybuffer\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_copyutils_copyfile\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_copyutils_copypath\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fish\x2dcopyutils\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_copyutils_copyfile\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_copyutils_copypath\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_eza_files:\x7e/\x2econfig/fish/functions/_fish_eza_l\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_eza_ll\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_eza_llm\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_eza_lt\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_eza_tree\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fish\x2deza\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_ripgrep_files:\x7e/\x2econfig/fish/functions/_fish_ripgrep_rga\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_ripgrep_rgc\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_ripgrep_rgf\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_ripgrep_rgi\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_ripgrep_rgl\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fish\x2dripgrep\x2efish
+SETUVAR _fisher_givensuman_2F_fish_2D_zoxide_files:\x7e/\x2econfig/fish/conf\x2ed/fish\x2dzoxide\x2efish
+SETUVAR _fisher_halostatue_2F_fish_2D_mise_files:\x7e/\x2econfig/fish/conf\x2ed/halostatue_fish_mise\x2efish
+SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_jorgebucaran_2F_hydro_files:\x7e/\x2econfig/fish/functions/fish_mode_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/fish_prompt\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/hydro\x2efish
+SETUVAR _fisher_joseluisq_2F_gitnow_files:\x7e/\x2econfig/fish/functions/__gitnow_check_create_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_check_if_branch_exist\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_clone_msg\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_clone_params\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_clone_repo\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_current_branch_list\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_current_branch_name\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_current_remote\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_clip_program\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_latest_semver_release_tag\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_latest_tag\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_tags_ordered\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_valid_semver_prerelease_value\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_get_valid_semver_release_value\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_gitflow_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_has_uncommited_changes\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_increment_number\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_is_git_repository\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_is_number\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_load_config\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_load_git_functions\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_manual\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_msg_not_valid_repository\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_new_branch_switch\x2efish\x1e\x7e/\x2econfig/fish/functions/__gitnow_slugify\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/gitnow\x2efish\x1e\x7e/\x2econfig/fish/completions/branch\x2efish\x1e\x7e/\x2econfig/fish/completions/merge\x2efish\x1e\x7e/\x2econfig/fish/completions/move\x2efish\x1e\x7e/\x2econfig/fish/completions/tag\x2efish
+SETUVAR _fisher_kenji_2D_miyake_2F_reload_2E_fish_files:\x7e/\x2econfig/fish/functions/bash\x2efish\x1e\x7e/\x2econfig/fish/functions/reload\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/reload\x2efish
+SETUVAR _fisher_meaningful_2D_ooo_2F_sponge_files:\x7e/\x2econfig/fish/functions/_sponge_clear_state\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_exit\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_postexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_preexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_remove_from_history\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_failed\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_matched\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sponge\x2efish
+SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig/fish/functions/_puffer_fish_expand_bang\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_buck\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_dot\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_star\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/puffer_fish_key_bindings\x2efish
+SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1emeaningful\x2dooo/sponge\x1enickeb96/puffer\x2dfish\x1efranciscolourenco/done\x1ehalostatue/fish\x2dmise\x1ejorgebucaran/hydro\x1ejorgebucaran/autopair\x2efish\x1ekenji\x2dmiyake/reload\x2efish\x1ejoseluisq/gitnow\x1egivensuman/fish\x2dzoxide\x1egivensuman/fish\x2dautovenv\x1epatrickf1/fzf\x2efish\x1efishingline/safe\x2drm\x1egivensuman/fish\x2dbat\x1egivensuman/fish\x2darchive\x1egivensuman/fish\x2dcopyutils\x1ecatppuccin/fish\x1egivensuman/fish\x2deza\x1egivensuman/fish\x2dripgrep
+SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR _hydro_git_10127:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10138:main\x20\x20\uf148\x209\x20
+SETUVAR _hydro_git_10162:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10246:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_1037037:dev\x20\uf148\x201\x20\uf149\x201\x20
+SETUVAR _hydro_git_10534:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10550:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10584:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10785:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_10978:add\x2dcpu\x2dgraph\x20
+SETUVAR _hydro_git_11086:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_11130:main\x20\uf47f\x20\x20\x20\uf148\x201\x20\x20\uf149\x201\x20
+SETUVAR _hydro_git_11402:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_11462:main\x20\uf47f\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_11529:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_11716:dev\x20\x20\uf148\x201\x20\x20\uf149\x201\x20
+SETUVAR _hydro_git_11805:main\x20
+SETUVAR _hydro_git_11845:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_11902:main\x20\uf47f\x20\x20\uf148\x202\x20
+SETUVAR _hydro_git_12240:popup\x20\uf47f\x20\x20
+SETUVAR _hydro_git_12414:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_12608:\x1d
+SETUVAR _hydro_git_13191:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_13312:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14080:dev\x20
+SETUVAR _hydro_git_14151:impl\x2dnotifications\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14229:main\x20
+SETUVAR _hydro_git_143396:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14556:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14790:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14828:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14852:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_14857:main\x20
+SETUVAR _hydro_git_15014:main\x20\uf47f\x20\x20\x20\uf148\x202\x20
+SETUVAR _hydro_git_15502:fix\x2dcve\x2dbanner\x20\uf47f\x20\x20
+SETUVAR _hydro_git_15632:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_167905:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_17029:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_17132:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_17335:dev\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_17427:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_18226:\x1d
+SETUVAR _hydro_git_18945:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_19066:main\x20\x20\uf148\x204\x20
+SETUVAR _hydro_git_20224:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_20272:dev\x20\uf47f\x20\x20\uf148\x202\x20
+SETUVAR _hydro_git_20387:\x1d
+SETUVAR _hydro_git_20656:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_21133:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_21141:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_21698:impl\x2dnotifications\x20\uf47f\x20\x20
+SETUVAR _hydro_git_22123:main\x20\x20\uf148\x207\x20
+SETUVAR _hydro_git_22148:testing\x20\uf47f\x20\x20
+SETUVAR _hydro_git_24051:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_24890:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_25313:\x1d
+SETUVAR _hydro_git_27277:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_27738:impl\x2dnotifications\x20\uf47f\x20\x20
+SETUVAR _hydro_git_28491:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadlets\x20\uf47f\x20\x20
+SETUVAR _hydro_git_29143:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_29265:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadlets\x20
+SETUVAR _hydro_git_2956:main\x20
+SETUVAR _hydro_git_30381:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3063:main\x20
+SETUVAR _hydro_git_31322:impl\x2dnotifications\x20\uf148\x201\x20\uf149\x201\x20
+SETUVAR _hydro_git_32234:add\x2dansi\x2dcolor\x2dconstants\x20
+SETUVAR _hydro_git_32530:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_33064:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3324:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3330:main\x20
+SETUVAR _hydro_git_33545:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_347720:T\x2d27065\x2dadd\x2dquadlet\x2dbuild\x2dargs\x2dsupport\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3646:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3656:main\x20\uf47f\x20\x20\x20\uf149\x201\x20
+SETUVAR _hydro_git_3785:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3805:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_3857:main\x20
+SETUVAR _hydro_git_3881:dev\x20
+SETUVAR _hydro_git_3887:main\x20
+SETUVAR _hydro_git_3954:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_39956:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4018:impl\x2dlogs\x2dand\x2dexec\x20
+SETUVAR _hydro_git_4026:main\x20
+SETUVAR _hydro_git_40462:main\x20
+SETUVAR _hydro_git_41583:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4236:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4309:main\x20\uf148\x201\x20
+SETUVAR _hydro_git_4428:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4577:main\x20
+SETUVAR _hydro_git_4611:\x40cb9736e\x20\uf47f\x20\x20
+SETUVAR _hydro_git_46672:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4669:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_47330:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadlets\x20
+SETUVAR _hydro_git_4766:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4821:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4855:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_4956:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5013:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5040:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5042:\x1d
+SETUVAR _hydro_git_5064:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_50727:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_51681:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_51768:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5234:main\x20\uf47f\x20\x20\x20\uf148\x204\x20
+SETUVAR _hydro_git_5290:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadlets\x20
+SETUVAR _hydro_git_5367:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_53778:T\x2d27095\x2dadd\x2dapparmor\x2dquadlet\x2dkey\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_53806:dev\x20\uf47f\x20\x20\uf148\x208\x20
+SETUVAR _hydro_git_5386:impl\x2dnotifications\x20\uf47f\x20\x20
+SETUVAR _hydro_git_54952:main\x20
+SETUVAR _hydro_git_5540:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5558:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_5726:dev\x20\uf47f\x20\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_5867:change\x2dtitles\x20\uf47f\x20\x20
+SETUVAR _hydro_git_59503:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6059:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6064:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6068:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadlets\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6127:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6133:main\x20\uf47f\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_6155:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_62890:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6366:testing\x20
+SETUVAR _hydro_git_63812:main\x20
+SETUVAR _hydro_git_6500:T\x2d27095\x2dadd\x2dapparmor\x2dquadlet\x2dkey\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6537:main\x20
+SETUVAR _hydro_git_66459:dev\x20\x20\uf149\x202\x20
+SETUVAR _hydro_git_6783:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6834:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_6882:browse\x2dtab\x20
+SETUVAR _hydro_git_7183:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_7287:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_7562:main\x20\uf47f\x20\x20\x20\uf148\x201\x20
+SETUVAR _hydro_git_78587:impl\x2dnotifications\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8015:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8029:main\x20
+SETUVAR _hydro_git_8039:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8076:T\x2d1885\x2dfix\x2dyoutube\x2dvolume\x2dslider\x20
+SETUVAR _hydro_git_8094:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8171:\x1d
+SETUVAR _hydro_git_8232:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_83710:main\x20
+SETUVAR _hydro_git_8537:main\x20
+SETUVAR _hydro_git_8761:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8874:T\x2d1940\x2dfix\x2dassemble\x2dinclude\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8877:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8917:T\x2d27065\x2dadd\x2dquadlet\x2dbuild\x2dargs\x2dsupport\x20\uf47f\x20\x20
+SETUVAR _hydro_git_8936:\x1d
+SETUVAR _hydro_git_9058:main\x20\uf47f\x20\x20\x20\uf148\x202\x20
+SETUVAR _hydro_git_91039:T\x2d27536\x2dport\x2dmoby\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9199:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9209:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9281:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9328:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9332:dev\x20
+SETUVAR _hydro_git_9342:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_9684:dev\x20
+SETUVAR _hydro_git_9773:add\x2dcpu\x2dgraph\x20
+SETUVAR fish_color_autosuggestion:6c7086
+SETUVAR fish_color_cancel:f38ba8
+SETUVAR fish_color_command:89b4fa
+SETUVAR fish_color_comment:7f849c
+SETUVAR fish_color_cwd:f9e2af
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:fab387
+SETUVAR fish_color_error:f38ba8
+SETUVAR fish_color_escape:eba0ac
+SETUVAR fish_color_gray:6c7086
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:89b4fa
+SETUVAR fish_color_host_remote:a6e3a1
+SETUVAR fish_color_keyword:f38ba8
+SETUVAR fish_color_normal:cdd6f4
+SETUVAR fish_color_operator:f5c2e7
+SETUVAR fish_color_option:a6e3a1
+SETUVAR fish_color_param:f2cdcd
+SETUVAR fish_color_quote:a6e3a1
+SETUVAR fish_color_redirection:f5c2e7
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d313244
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d313244
+SETUVAR fish_color_status:f38ba8
+SETUVAR fish_color_user:94e2d5
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR --export fish_greeting:
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_background:\x1d
+SETUVAR fish_pager_color_completion:cdd6f4
+SETUVAR fish_pager_color_description:6c7086
+SETUVAR fish_pager_color_prefix:f5c2e7
+SETUVAR fish_pager_color_progress:6c7086
+SETUVAR fish_pager_color_secondary_background:\x1d
+SETUVAR fish_pager_color_secondary_completion:\x1d
+SETUVAR fish_pager_color_secondary_description:\x1d
+SETUVAR fish_pager_color_secondary_prefix:\x1d
+SETUVAR fish_pager_color_selected_background:\x1d
+SETUVAR fish_pager_color_selected_completion:\x1d
+SETUVAR fish_pager_color_selected_description:\x1d
+SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR --export fish_prompt_pwd_dir_length:999
+SETUVAR fish_user_paths:/home/linuxbrew/\x2elinuxbrew\x1e/home/linuxbrew/\x2elinuxbrew/bin\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue44031/main\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue44031/b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue44031/a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue44031\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue39777/b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue39777/a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue39777\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue30768/issue30768lib\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue30768\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/issue25065\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/implicitcmd\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/implicit\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/iface_i\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/iface_b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/iface_a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/iface\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/globallib\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/global\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/gcdata/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/gcdata/main\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/gcdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/explicit\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/execgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/exe3\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/exe2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/exe\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/division\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/depBaseInternal\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/depBase\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/dep3\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata/dep2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testshared\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testsanitizers/testdata/asan_linkerx/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testsanitizers/testdata/asan_linkerx\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testsanitizers/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testsanitizers\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/unnamed2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/unnamed1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/sub/plugin1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/sub\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/plugin2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/plugin1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/method3/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/method3\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/method2/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/method2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/method\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/mangle\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue67976\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue62430\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue53989/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue53989\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue52937\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue44956/base\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue44956\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue25756/plugin\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue25756\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue24351\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue22295\x2epkg\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue22175\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue19534\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue19529\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue19418\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue18676/dynamodbstreamsevt\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue18676\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/issue18584\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/iface_i\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/iface_b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/iface_a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/iface\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/host\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/forkexec\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/common\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata/checkdwarf\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/altpath/testdata/plugin\x2dmismatch\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/altpath/testdata/common\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/altpath/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin/altpath\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testplugin\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testnocgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testlife/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testlife\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testgodefs/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testgodefs\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testfortran/testdata/testprog\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testfortran/testdata/helloworld\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testfortran/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testfortran\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testerrors/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testerrors\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/libgo5\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/libgo4\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/libgo2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/libgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/issue36233\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/go2c2go/m2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/go2c2go/m1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/go2c2go/go\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata/go2c2go\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcshared\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo9\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo8\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo7\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo6\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo4\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo3\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata/libgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/testcarchive\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue52611b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue52611a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue43639\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue41761a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue30527\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue29563\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue27340\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue27054\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue26743\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue26430\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue26213\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue24161res\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue24161e2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue24161e1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue24161e0\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue24161arg\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue23555b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue23555a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue20266\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue9510b\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue9510a\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue9400\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue9026\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue8828\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/issue8756\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test/gcc68255\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/test\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/swig/testdata/stdio\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/swig/testdata/callback\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/swig/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/swig\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal/cgotest\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo/internal\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/cgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/buildid\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/lex\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/flags\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/asm/testdata/avx512enc\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/asm/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/asm\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal/arch\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm/internal\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/asm\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/pkg/p4\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/pkg/p3\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/pkg/p2\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/pkg/p1\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/pkg\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue64958/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue64958\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue29837/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue29837\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue21181/p\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue21181/indirect\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue21181/dep\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src/issue21181\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata/src\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/api\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd/addr2line\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/cmd\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/bytes\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/builtin\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/bufio\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/arena\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/archive/zip/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/archive/zip\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/archive/tar/testdata\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/archive/tar\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src/archive\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/src\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/pkg/tool/linux_amd64\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/pkg/tool\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/pkg/include\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/pkg\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/wasm\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/linkcheck\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/ios\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/go_android_exec\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/chrome/gophertool\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/chrome\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/cgo/gmp\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc/cgo\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/misc\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/lib/time\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/lib\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/doc/initial/6\x2dstdlib/99\x2dminor\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/doc/initial/6\x2dstdlib\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/doc/initial\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/doc\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/bin\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go/api\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4/go\x1e/home/given/\x2easdf/installs/golang/1\x2e23\x2e4\x1e/home/given/\x2easdf/installs/golang\x1e/home/given/\x2easdf/installs/gleam/1\x2e6\x2e3/bin\x1e/home/given/\x2easdf/installs/gleam/1\x2e6\x2e3\x1e/home/given/\x2easdf/installs/gleam\x1e/home/given/\x2easdf/installs/deno/2\x2e1\x2e4/bin\x1e/home/given/\x2easdf/installs/deno/2\x2e1\x2e4\x1e/home/given/\x2easdf/installs/deno\x1e/usr/bin
+SETUVAR --export hydro_color_prompt:b4befe
+SETUVAR last_distrobox_container:main
+SETUVAR mise_activate_mode:shims
+SETUVAR mise_activate_node:status
+SETUVAR sponge_allow_previously_successful:true
+SETUVAR sponge_delay:2
+SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
+SETUVAR sponge_purge_only_on_exit:false
+SETUVAR sponge_regex_patterns:\x1d
+SETUVAR sponge_successful_exit_codes:0

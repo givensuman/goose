@@ -1,0 +1,24 @@
+theme = catppuccin-mocha.conf
+
+window-padding-x = 15
+window-padding-y = 5
+
+mouse-hide-while-typing = true
+
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+background-opacity = 0.9
+
+font-size = 12
+font-family = "JetBrainsMono Nerd Font"
+font-family-bold = "JetBrainsMono Nerd Font Bold"
+font-family-italic = "JetBrainsMono Font Italic"
+font-family-bold-italic = "JetBrainsMono Nerd Font Bold Italic"
+
+keybind = ctrl+t=new_tab
+keybind = ctrl+w=close_tab
+keybind = ctrl+[=previous_tab
+keybind = ctrl+]=next_tab
+
+command = fish --login --interactive
