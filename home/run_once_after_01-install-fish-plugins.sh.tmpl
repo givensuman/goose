@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -euox pipefail
+
+readonly SCRIPT_NAME="install-fish-plugins"
+readonly LOG_PREFIX="[chezmoi/${SCRIPT_NAME}]"
+
+log_info() {
+  echo "${LOG_PREFIX} INFO: $*" >&2
+}
+
+log_warn() {
+  echo "${LOG_PREFIX} WARN: $*" >&2
+}
+
+# Check if fish is installed
+if ! command -v fish &> /dev/null; then
+  log_info "fish not found in PATH, skipping fish plugin setup"
+  exit 0
+fi
+
+log_info "Setting up Fish shell plugins..."
+
+# Update fish completions database
+# This ensures new functions and completions are available
+if command -v fish_update_completions &> /dev/null; then
+  log_info "Rebuilding Fish completions database..."
+  if fish_update_completions 2>/dev/null; then
+    log_info "Fish completions database updated"
+  else
+    log_warn "Failed to update Fish completions (non-fatal)"
+  fi
+else
+  log_info "fish_update_completions not available, skipping"
+fi
+
+log_info "Fish shell setup complete"
