@@ -16,13 +16,7 @@
 
 This is a custom Linux build designed around Fedora's [Atomic Desktops](https://fedoraproject.org/atomic-desktops/), as a community-driven adaptation of the [Universal Blue](https://universal-blue.org/) project. These systems are immutable by nature, which means users are actually gated from directly modifying the system, providing an incredibly secure form of interacting with the Linux platform.
 
-This is the OS I use daily on a Framework 13 laptop. It features the [COSMIC desktop environment](https://system76.com/cosmic/), [Homebrew](https://brew.sh/) for package management, and anything you could want for containerized development. It's unopinionated by design, other than preferring [Ghostty](https://ghostty.org/) for the terminal, and [Catppuccin](https://catppuccin.com/) for the system theme.
-
-This was previously handcrafted using all kinds of build scripts and `systemd` hacks, but has since switched to a declarative [BlueBuild](https://blue-build.org) structure. Alongside being easier to maintain, I've also gotten it to replicate the functionality of an operating system like Nix. The image bootstraps itself into the filesystem and `bootc` can actually rebase to it locally, meaning we can document desired packages or system-level changes and rebuild our system in one go.
-
-<div align="center">
-  <img src="./assets/horizontalrule.png" />
-</div>
+This is the OS I use daily on a Framework 13 laptop. It was previously handcrafted using all kinds of build scripts and `systemd` hacks, but has since switched to a declarative [BlueBuild](https://blue-build.org) structure. Alongside being easier to maintain, I've also gotten it to replicate the functionality of an operating system like Nix. The image bootstraps itself into the filesystem and `bootc` can actually rebase to it locally, meaning we can document desired packages or system-level changes and rebuild our system in one go.
 
 ## Installation
 
@@ -41,51 +35,6 @@ sudo bootc switch --enforce-container-sigpolicy ghcr.io/givensuman/goose
 ```
 
 A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/download) will have a smaller ISO size and give you a more reasonable point to rollback to in the future.
-
-![desktop screenshot](./assets/screenshot.png)
-
-<div align="center">
-  <img src="./assets/horizontalrule.png" />
-</div>
-
-<div align="center">
-  <img src="./assets/horizontalrule.png" />
-</div>
-
-## Usage
-
-You can layer whatever core packages you like on top of this build. I recommend installing your favorite shell:
-
-```bash
-rpm-ostree install --apply-live fish
-sudo usermod -s $(which fish) $USER
-```
-
-This is also a good time to set up rootless Docker, if you're into that sort of thing:
-
-```bash
-sudo groupadd docker
-sudo usermod -aG docker $USER
-```
-
-And then get the rest of your software through the included app store or with `brew`:
-
-```bash
-brew install \
-bat \
-eza \
-fd \
-ripgrep \
-zoxide
-```
-
-Additional system utilities are run through Just, and can be seen by running `ujust`.
-
-For development, use `distrobox create` to create a mutable, containerized OS, and `distrobox enter` to enter into it.
-
-<div align="center">
-  <img src="./assets/horizontalrule.png" />
-</div>
 
 ## Secure Boot
 
