@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
-# This modules installs various bits of software useful for containerized
-# systems like SilverBlue.
 modules:
-  # - type: script
-  #   scripts:
-  #     - docker.sh # Handle steps commented out below
-  #                 # due to bug in BlueBuild `repos` key
-  #
+  - type: script
+    snippets:
+      # Add Docker CE repository
+      - |
+        dnf5 config-manager addrepo --from-repofile \
+        https://download.docker.com/linux/fedora/docker-ce.repo
+
   - type: dnf
     install:
       packages:
@@ -39,3 +39,7 @@ modules:
         # Services in /usr/lib/systemd/system
         - docker-rootless-setup.service
         - libvirtd-fix.service
+
+  - type: script
+    snippets:
+      - rm -rf /etc/yum.repos.d/docker-ce.repo

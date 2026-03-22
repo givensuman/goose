@@ -5,7 +5,7 @@ ConditionPathExists=!/var/lib/ublue-hostname.done
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/hostnamectl hostname "gandalf"
+ExecStart=/usr/bin/hostnamectl hostname "goose"
 ExecStartPost=/usr/bin/touch /var/lib/ublue-hostname.done
 RemainAfterExit=yes
 

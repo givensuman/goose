@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
-# Here we install programs to build out our CLI environment.
 modules:
   - type: dnf
     install:
@@ -25,3 +24,10 @@ modules:
     remove:
       packages:
         - htop # Prefer bottom
+
+  - type: script
+    snippets:
+      # Changes root's shell to fish
+      - sed -i 's|^root:x:0:0:root:/root:/bin/bash|root:x:0:0:root:/root:/bin/fish|' /etc/passwd
+      # Set the default for future users
+      - sed -i 's|^SHELL=.*|SHELL=/bin/fish|' /etc/default/useradd

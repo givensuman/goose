@@ -1,4 +1,4 @@
-image_name := "localhost/my-atomic-pc"
+image_name := "localhost/goose"
 recipe_file := "recipe.yml"
 
 default:

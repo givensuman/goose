@@ -1,6 +1,12 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
-# Here we set up the desktop environment and packages.
 modules:
+  - type: script
+    snippets:
+      # Add Terra package repository
+      - |
+        dnf5 config-manager addrepo --from-repofile \
+        https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+
   - type: dnf
     group-install:
       packages:
