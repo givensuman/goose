@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -euox pipefail
+
+readonly SCRIPT_NAME="verify-mise-tools"
+readonly LOG_PREFIX="[chezmoi/${SCRIPT_NAME}]"
+
+log_info() {
+  echo "${LOG_PREFIX} INFO: $*" >&2
+}
+
+log_warn() {
+  echo "${LOG_PREFIX} WARN: $*" >&2
+}
+
+# Check if mise is installed
+if ! command -v mise &> /dev/null; then
+  log_info "mise not installed, skipping tool verification"
+  exit 0
+fi
+
+log_info "Verifying mise-installed tools..."
+
+# Get list of tools from mise
+if ! TOOLS=$(mise ls 2>/dev/null | grep -oP '^\s*\K\w+(?=\s)' | sort -u); then
+  log_warn "Could not retrieve mise tool list"
+  exit 0
+fi
+
+TOOLS_FOUND=0
+TOOLS_MISSING=0
+
+while IFS= read -r tool; do
+  [[ -z "$tool" ]] && continue
+  
+  if command -v "$tool" &> /dev/null; then
+    log_info "✓ $tool is available"
+    ((TOOLS_FOUND++))
+  else
+    log_warn "✗ $tool not in PATH (might need shell reload)"
+    ((TOOLS_MISSING++))
+  fi
+done <<< "$TOOLS"
+
+log_info "Mise tools verification: $TOOLS_FOUND found, $TOOLS_MISSING missing"

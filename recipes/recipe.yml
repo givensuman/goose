@@ -1,39 +1,44 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: goose
-description: given's own operating system experiment
+description: givens own operating system experiment
 
 base-image: ghcr.io/ublue-os/base-main
-image-version: 42
+image-version: 43
 
 modules:
-  - type: akmods
-    base: main
-    install:
-      - framework-laptop
-
-  # Regenerate initramfs; must follow akmods
-  - type: initramfs
-    no-cache: true
-
-  - type: script
-    snippets:
-      - dnf5 -y update
-      - dnf5 -y upgrade
-
   - type: files
+    no-cache: true
     files:
       - source: system
         destination: /
+
+  # - type: akmods
+  #   no-cache: true
+  #   base: bazzite
+  #   install:
+  #     - framework-laptop
+
+  - type: initramfs
+    no-cache: true
 
   - from-file: ../modules/00-system.yml
   - from-file: ../modules/01-atomic.yml
   - from-file: ../modules/02-desktop.yml
   - from-file: ../modules/03-cli.yml
 
-  - type: script
-    snippets:
-      - dnf5 -y autoremove
-      - dnf5 -y clean all
+  - type: chezmoi
+    repository: github.com/givensuman/goose
+
+  - type: justfiles
+    no-cache: true
+    install: true
+    validate: true
+
+  # Bootstrap image
+  - type: copy
+    no-cache: true
+    src: ../
+    dest: /etc/goose-linux
 
   - type: signing
     no-cache: true

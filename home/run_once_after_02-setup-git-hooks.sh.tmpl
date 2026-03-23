@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -euox pipefail
+
+readonly SCRIPT_NAME="setup-git-hooks"
+readonly LOG_PREFIX="[chezmoi/${SCRIPT_NAME}]"
+
+log_info() {
+  echo "${LOG_PREFIX} INFO: $*" >&2
+}
+
+# Check if git is installed
+if ! command -v git &> /dev/null; then
+  log_info "git not found in PATH, skipping git hooks setup"
+  exit 0
+fi
+
+log_info "Setting up git hooks infrastructure..."
+
+# Create standard git hook directories if they don't exist
+readonly HOOKS_DIR="${HOME}/.config/git/hooks"
+mkdir -p "${HOOKS_DIR}"
+
+log_info "git hooks directory ready at ${HOOKS_DIR}"
+
+# Set global git config to use custom hooks directory
+if git config --global core.hooksPath "${HOOKS_DIR}" 2>/dev/null; then
+  log_info "Configured global git hooks path"
+else
+  log_info "git config might be read-only or unavailable"
+fi
+
+log_info "git hooks setup complete"

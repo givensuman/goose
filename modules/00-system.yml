@@ -1,6 +1,4 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-stage-list-v1.json
-# This modules establishes the base of our image by running the Ultramarine
-# migration script and include Universal Blue build steps.
 modules:
   - type: dnf
     repos:
@@ -9,17 +7,6 @@ modules:
     install:
       packages:
         - dnf-plugins-core
-
-  - type: script
-    snippets:
-      # Add Terra package repository
-      - |
-        dnf5 config-manager addrepo --from-repofile \
-        https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-      # Add Docker CE repository
-      - |
-        dnf5 config-manager addrepo --from-repofile \
-        https://download.docker.com/linux/fedora/docker-ce.repo
 
   - type: dnf
     repos:
@@ -40,6 +27,7 @@ modules:
         - ublue-os-just
         # Miscellaneous
         - binutils
+        - bluez
         - firewall-config
         - gdisk
         - gparted
@@ -48,11 +36,39 @@ modules:
         - p7zip-plugins
         - util-linux
         - wl-clipboard
+        # Library dependencies
+        - glibc-devel
+        - libstdc++-devel
+        - ncurses-devel
+        - readline-devel
+        - openssl-devel
+        - libffi-devel
+        - zlib-devel
+        - libcurl-devel
+        - expat-devel
+        - "@development-tools"
+        - "@development-libs"
+        - gcc
+        - gcc-c++
+        - clang
+        - make
+        - cmake
+        - autoconf
+        - automake
+        - libtool
+        - pkg-config
+        - git-core
+        - curl
+        - wget
 
   - type: systemd
     system:
       enabled:
         # Services installed above
         - uupd.timer
+        - podman-auto-update.timer
+        - rpm-ostreed-automatic.timer
+        - flatpak-system-update.timer
+        - bluetooth.service
         # Services in /usr/lib/systemd/system
         - ublue-hostname.service

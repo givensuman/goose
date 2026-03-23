@@ -3,7 +3,29 @@
 
 set -euox pipefail
 
-# Upgrade tools defined in .mise.toml or .tool-versions
-if command -v mise &> /dev/null; then
-    mise upgrade -y
+readonly SCRIPT_NAME="upgrade-mise"
+readonly LOG_PREFIX="[chezmoi/${SCRIPT_NAME}]"
+
+log_info() {
+  echo "${LOG_PREFIX} INFO: $*" >&2
+}
+
+log_error() {
+  echo "${LOG_PREFIX} ERROR: $*" >&2
+}
+
+# Check if mise is installed
+if ! command -v mise &> /dev/null; then
+  log_info "mise not found in PATH, skipping mise tool upgrade"
+  exit 0
+fi
+
+log_info "Upgrading tools from mise configuration..."
+
+# Upgrade tools
+if mise upgrade -y; then
+  log_info "Tools upgraded successfully"
+else
+  log_error "Failed to upgrade mise tools"
+  exit 1
 fi

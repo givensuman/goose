@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -euox pipefail
+
+readonly SCRIPT_NAME="sync-neovim"
+readonly LOG_PREFIX="[chezmoi/${SCRIPT_NAME}]"
+
+log_info() {
+  echo "${LOG_PREFIX} INFO: $*" >&2
+}
+
+log_warn() {
+  echo "${LOG_PREFIX} WARN: $*" >&2
+}
+
+# Check if nvim is installed
+if ! command -v nvim &> /dev/null; then
+  log_info "Neovim not found in PATH, skipping plugin sync"
+  exit 0
+fi
+
+log_info "Syncing Neovim plugins..."
+
+readonly NVIM_CONFIG="${HOME}/.config/nvim"
+
+# Verify Neovim config exists
+if [[ ! -d "$NVIM_CONFIG" ]]; then
+  log_warn "Neovim config directory not found at $NVIM_CONFIG"
+  exit 0
+fi
+
+# Run lazy plugin sync in headless mode with timeout
+# This uses lazy.nvim's built-in sync command
+if timeout 60 nvim --noplugin --headless "+Lazy! sync" "+qall" 2>/dev/null; then
+  log_info "Neovim plugins synced successfully"
+else
+  log_warn "Neovim plugin sync completed with issues (non-fatal)"
+fi
+
+log_info "Neovim sync complete"
