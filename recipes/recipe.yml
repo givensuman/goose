@@ -2,8 +2,8 @@
 name: goose
 description: givens own operating system experiment
 
-base-image: ghcr.io/ublue-os/base-main
-image-version: 43
+base-image: ghcr.io/ublue-os/silverblue-main
+image-version: latest
 
 modules:
   - type: files
@@ -12,11 +12,11 @@ modules:
       - source: system
         destination: /
 
-  # - type: akmods
-  #   no-cache: true
-  #   base: bazzite
-  #   install:
-  #     - framework-laptop
+  - type: akmods
+    no-cache: true
+    base: main
+    install:
+      - framework-laptop
 
   - type: initramfs
     no-cache: true
@@ -25,9 +25,6 @@ modules:
   - from-file: ../modules/01-atomic.yml
   - from-file: ../modules/02-desktop.yml
   - from-file: ../modules/03-cli.yml
-
-  - type: chezmoi
-    repository: github.com/givensuman/goose
 
   - type: justfiles
     no-cache: true
@@ -38,7 +35,7 @@ modules:
   - type: copy
     no-cache: true
     src: ../
-    dest: /etc/goose-linux
+    dest: /opt/goose
 
   - type: signing
     no-cache: true

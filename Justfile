@@ -1,13 +1,5 @@
 default:
-  @just --list
-
-# Build the image
-build:
-  bluebuild build ./recipes/recipe.yml -B podman
-
-# Build the image and rebase to it
-switch:
-  bluebuild switch ./recipes/recipe.yml -B podman
+    @just --list
 
 # sudoif bash function
 [group('Utility')]
@@ -54,24 +46,24 @@ format:
 # Validate main recipe file
 [group('Utility')]
 validate:
-  bluebuild validate --all-errors ./recipes/recipe.yml
+    bluebuild validate --all-errors ./recipes/recipe.yml
 
 # Remove build artifacts
 [group('Utility')]
 clean:
-  @sudo rm -rf Containerfile .bluebuild-scripts_*
+    @sudo rm -rf Containerfile .bluebuild-scripts_*
 
 # Build image
 [group('BlueBuild')]
 build flags="": clean
-  sudo bluebuild build ./recipes/recipe.yml {{ flags }}
+    sudo bluebuild build ./recipes/recipe.yml {{ flags }}
 
 # Generate Containerfile output
 [group('BlueBuild')]
 generate flags="": clean
-  bluebuild generate -o Containerfile ./recipes/recipe.yml {{ flags }}
+    bluebuild generate -o Containerfile ./recipes/recipe.yml {{ flags }}
 
 # Attempt to build and rebase into image
 [group('BlueBuild')]
 switch flags="": clean
-  sudo bluebuild switch -r ./recipes/recipe.yml {{ flags }}
+    sudo bluebuild switch -r ./recipes/recipe.yml {{ flags }}

@@ -10,17 +10,19 @@ modules:
   - type: dnf
     install:
       packages:
+        - buildah
         - containerd.io
         - distrobox
         - docker-buildx-plugin
         - docker-ce
         - docker-ce-cli
         - docker-compose-plugin
+        - libvirt
         - podlet
         - podman-compose
         - podman-remote
         - qemu-kvm
-        - libvirt
+        - skopeo
         - virt-manager
         - virt-viewer
         - virt-install

@@ -1,0 +1,2 @@
+# Prevents keyboard/touchpad from waking system when lid is closed
+ACTION=="add", SUBSYSTEM=="serio", DRIVERS=="atkbd", ATTR{power/wakeup}="disabled"
