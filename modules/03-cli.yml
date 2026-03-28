@@ -24,10 +24,3 @@ modules:
     remove:
       packages:
         - htop # Prefer bottom
-
-  - type: script
-    snippets:
-      # Changes root's shell to fish
-      - sed -i 's|^root:x:0:0:root:/root:/bin/bash|root:x:0:0:root:/root:/bin/fish|' /etc/passwd
-      # Set the default for future users
-      - sed -i 's|^SHELL=.*|SHELL=/bin/fish|' /etc/default/useradd

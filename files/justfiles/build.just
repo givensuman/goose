@@ -1,18 +1,16 @@
-image_name := "localhost/goose"
-recipe_file := "recipe.yml"
+set image-name := "localhost/goose"
+set recipe-file := "recipe.yml"
 
 default:
     @just --list
 
 # Build the image locally without applying it
 build:
-    bluebuild build --locally --recipe {{ recipe_file }}
+    bluebuild build --locally --recipe {{ recipe-file }}
 
 # Build and rebase
 rebuild: build
-    @echo "--- Applying new image to system ---"
-    sudo rpm-ostree rebase ostree-unverified-image:container-storage:{{ image_name }}
-    @echo "--- Done! Reboot to enter your new generation ---"
+    sudo rpm-ostree rebase ostree-unverified-image:container-storage:{{ image-name }}
 
 # Check the current status of your deployments
 status:
@@ -22,11 +20,11 @@ status:
 diff:
     rpm-ostree db diff
 
-# Clean up local podman images to save disk space
+# Clean up locally saved system images
 clean:
-    podman rmi {{ image_name }}
+    podman rmi {{ image-name }}
     podman image prune -f
 
-# View logs of the last build
+# View logs of the last system build
 logs:
     journalctl -u bluebuild --since "1 hour ago"

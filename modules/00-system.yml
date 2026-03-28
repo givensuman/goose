@@ -25,10 +25,14 @@ modules:
         - uupd
         - ublue-os-media-automount-udev
         - ublue-os-just
+        # Framework
+        - framwork-docs
+        - fwupd
+        - linux-firmware
+        - amdgpu-firmware
         # Miscellaneous
         - binutils
         - bluez
-        - firewall-config
         - gdisk
         - gparted
         - git
@@ -36,6 +40,11 @@ modules:
         - p7zip-plugins
         - util-linux
         - wl-clipboard
+        - pulseaudio
+        - pulseaudio-module-bluetooth
+        - alsa-utils
+        - alsa-plugins
+        - wireplumber
         # Library dependencies
         - glibc-devel
         - libstdc++-devel
@@ -60,6 +69,21 @@ modules:
         - git-core
         - curl
         - wget
+        # Graphics
+        - mesa
+        - mesa-dri-drivers
+        - mesa-libGL
+        - libva-mesa-driver
+        - vulkan-tools
+        - vulkan-radeon
+        - lib32-mesa
+        - lib32-vulkan-radeon
+        - libdrm
+        - libxcb
+
+  - type: script
+    snippets:
+      - "echo 'amd_pstate=passive' >>/etc/kernel/cmdline || true"
 
   - type: systemd
     system:
@@ -70,5 +94,4 @@ modules:
         - rpm-ostreed-automatic.timer
         - flatpak-system-update.timer
         - bluetooth.service
-        # Services in /usr/lib/systemd/system
-        - ublue-hostname.service
+        - fwupd.service
