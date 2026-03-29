@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://schemastore.org/github-workflow.json
+name: Create Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            README.md
+            recipe.yml
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

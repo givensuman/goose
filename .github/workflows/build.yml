@@ -41,28 +41,12 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           maximize_build_space: true
 
-      - name: Create Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            README.md
-            recipe.yml
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   test:
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:

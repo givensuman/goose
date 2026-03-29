@@ -56,7 +56,7 @@ clean:
 # Build image
 [group('BlueBuild')]
 build flags="": clean
-    sudo bluebuild build ./recipes/recipe.yml {{ flags }}
+    bluebuild build ./recipes/recipe.yml {{ flags }}
 
 # Generate Containerfile output
 [group('BlueBuild')]
@@ -66,4 +66,4 @@ generate flags="": clean
 # Attempt to build and rebase into image
 [group('BlueBuild')]
 switch flags="": clean
-    sudo bluebuild switch -r ./recipes/recipe.yml {{ flags }}
+    @sudo bluebuild switch -r ./recipes/recipe.yml {{ flags }}
