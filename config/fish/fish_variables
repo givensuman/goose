@@ -32,7 +32,7 @@ SETUVAR --export __FISH_EZA_EXPANDED_OPT_NAME:LA\x1eLD\x1eLI\x1eLID\x1eLAA\x1eLA
 SETUVAR --export __FISH_EZA_OPT_NAMES:EZA_L_OPTIONS\x1eEZA_LA_OPTIONS\x1eEZA_LD_OPTIONS\x1eEZA_LI_OPTIONS\x1eEZA_LID_OPTIONS\x1eEZA_LAA_OPTIONS\x1eEZA_LAD_OPTIONS\x1eEZA_LAI_OPTIONS\x1eEZA_LAID_OPTIONS\x1eEZA_LAAD_OPTIONS\x1eEZA_LAAI_OPTIONS\x1eEZA_LAAID_OPTIONS\x1eEZA_LL_OPTIONS\x1eEZA_LG_OPTIONS\x1eEZA_LE_OPTIONS\x1eEZA_LT_OPTIONS\x1eEZA_LC_OPTIONS\x1eEZA_LO_OPTIONS
 SETUVAR --export __FISH_EZA_SORT_OPTIONS:name\x1e\x2ename\x1esize\x1eext\x1emod\x1eold\x1eacc\x1ecr\x1einode
 SETUVAR __fish_initialized:4300
-SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/catppuccin\x2dfrappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmacchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/catppuccin\x2dmocha\x2etheme\x1e\x7e/\x2econfig/fish/themes/static
 SETUVAR _fisher_fishingline_2F_safe_2D_rm_files:\x7e/\x2econfig/fish/functions/__safe\x2drm\x2epl\x1e\x7e/\x2econfig/fish/functions/__shell\x2dsafe\x2drm\x2ebash\x1e\x7e/\x2econfig/fish/functions/del\x2efish\x1e\x7e/\x2econfig/fish/functions/rm\x2efish\x1e\x7e/\x2econfig/fish/functions/safe\x2drm\x2efish
 SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
 SETUVAR _fisher_givensuman_2F_fish_2D_archive_files:\x7e/\x2econfig/fish/functions/_fish_archive_compress\x2efish\x1e\x7e/\x2econfig/fish/functions/_fish_archive_extract\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fish\x2darchive\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_archive_compress\x2efish\x1e\x7e/\x2econfig/fish/completions/_fish_archive_extract\x2efish
@@ -96,6 +96,7 @@ SETUVAR _hydro_git_17132:dev\x20\uf47f\x20\x20
 SETUVAR _hydro_git_17335:dev\x20\x20\uf148\x201\x20
 SETUVAR _hydro_git_17427:dev\x20\uf47f\x20\x20
 SETUVAR _hydro_git_18226:\x1d
+SETUVAR _hydro_git_18434:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_18945:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
 SETUVAR _hydro_git_19066:main\x20\x20\uf148\x204\x20
 SETUVAR _hydro_git_20224:main\x20\uf47f\x20\x20
@@ -137,8 +138,10 @@ SETUVAR _hydro_git_39956:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4018:impl\x2dlogs\x2dand\x2dexec\x20
 SETUVAR _hydro_git_4026:main\x20
 SETUVAR _hydro_git_40462:main\x20
+SETUVAR _hydro_git_41297:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_41583:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4179:dev\x20\uf47f\x20\x20
+SETUVAR _hydro_git_41899:main\x20\uf47f\x20\x20\uf149\x201\x20
 SETUVAR _hydro_git_4236:dev\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4309:main\x20\uf148\x201\x20
 SETUVAR _hydro_git_4428:main\x20\uf47f\x20\x20
@@ -150,7 +153,6 @@ SETUVAR _hydro_git_47330:T\x2d27065\x2dsupport\x2dbuild\x2dargs\x2dfor\x2dquadle
 SETUVAR _hydro_git_4766:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4821:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4855:main\x20\uf47f\x20\x20
-SETUVAR _hydro_git_49010:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_4956:dev\x20\uf47f\x20\x20
 SETUVAR _hydro_git_5013:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_5040:main\x20\uf47f\x20\x20
@@ -213,6 +215,7 @@ SETUVAR _hydro_git_9328:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9332:dev\x20
 SETUVAR _hydro_git_9342:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9684:dev\x20
+SETUVAR _hydro_git_9725:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9773:add\x2dcpu\x2dgraph\x20
 SETUVAR --export fish_greeting:
 SETUVAR --export fish_prompt_pwd_dir_length:999

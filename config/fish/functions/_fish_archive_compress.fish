@@ -88,7 +88,7 @@ function _fish_archive_compress
             $tar -cf $output $files
 
         case '*.7z'
-            7zz a $output $files
+            7z a $output $files
 
         case '*.zip' '*.xpi' '*.jar'
             zip $output $files

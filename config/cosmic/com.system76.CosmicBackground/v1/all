@@ -1,6 +1,6 @@
 (
     output: "all",
-    source: Path("/home/given/.config/wallpapers/nix.jpg"),
+    source: Path("/home/given/.config/wallpapers/newyork.jpg"),
     filter_by_theme: true,
     rotation_frequency: 300,
     filter_method: Lanczos,

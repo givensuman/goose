@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   programs.fish.enable = true;
   programs.git.enable = true;
 
@@ -30,6 +30,7 @@
     strace
     lsof
     util-linux
+    wl-clipboard
     less
   ];
 }

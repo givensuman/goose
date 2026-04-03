@@ -66,7 +66,7 @@ function _fish_archive_extract
                 $tar --lzop -xvf "$file"
 
             case '*.7z' '*.iso'
-                7zz x "$file"
+                7z x "$file"
 
             case '*.gz'
                 gunzip --keep "$file"

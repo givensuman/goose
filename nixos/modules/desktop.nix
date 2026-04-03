@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     inputs.flatpaks.nixosModules.nix-flatpak
   ];
@@ -27,11 +27,10 @@
       };
     };
   };
-
   environment.systemPackages = with pkgs; [
     # Apps
-    bazaar
     ghostty
+    bazaar
 
     # Fonts
     nerd-fonts.hack

@@ -1,10 +1,12 @@
 set --global eza_run_on_cd true
 set --global zoxide_cmd_override cd
+set --global bat_ignore_man true
 
 set --global EDITOR nvim
 function edit
     $EDITOR $argv
 end
+set --global MANPAGER "nvim +Man!"
 
 alias box distrobox
 alias gg lazygit
