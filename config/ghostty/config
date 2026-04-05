@@ -20,5 +20,3 @@ keybind = ctrl+t=new_tab
 keybind = ctrl+w=close_tab
 keybind = ctrl+[=previous_tab
 keybind = ctrl+]=next_tab
-
-command = fish --login --interactive
