@@ -7,7 +7,13 @@ default:
     @just --list
 
 # Build, activate, and symlink configuration files
+[group('util')]
 rebuild: switch symlink-configs
+
+# Move to world directory
+[group('util')]
+cd:
+  cd $HOME/world
 
 # Build and activate new system configuration
 [group('nix-wrapper')]
