@@ -1,10 +1,9 @@
 { pkgs, inputs, config, ... }: {
   imports = [
     inputs.stylix.nixosModules.stylix
-    # inputs.spicetify.nixosModules.default
+    inputs.catppuccin.nixosModules.catppuccin
   ];
 
-  # https://github.com/nix-community/stylix
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
   stylix.fonts = {
@@ -32,28 +31,14 @@
     roboto
   ];
 
-  # https://wiki.nixos.org/wiki/Spicetify-Nix
-  # programs.spicetify =
-  # let
-  #   spicePkgs = inputs.spicetify.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  # in
-  # {
-  #   enable = true;
-  #
-  #   enabledExtensions = with spicePkgs.extensions; [
-  #     adblock
-  #     shuffle # shuffle+ (special characters are sanitized out of extension names)
-  #   ];
-  #   enabledCustomApps = with spicePkgs.apps; [
-  #     newReleases
-  #     ncsVisualizer
-  #   ];
-  #   enabledSnippets = with spicePkgs.snippets; [
-  #     rotatingCoverart
-  #     pointer
-  #   ];
-  #
-  #   theme = spicePkgs.themes.catppuccin;
-  #   colorScheme = "mocha";
-  # };
+  catppuccin = {
+    enable = true;
+    accent = "lavender";
+    flavor = "mocha";
+
+    cursors.enable = true;
+    gtk.icon.enable = true;
+    grub.enable = true;
+    tty.enable = true;
+  };
 }

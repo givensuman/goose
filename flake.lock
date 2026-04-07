@@ -68,6 +68,24 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1775213373,
+        "narHash": "sha256-wJHsijC2l/E+ovmlpPGha8pXA6RHSwHWmBV97gvkmyI=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "ba73719e673e7c2d89ac2f8df0bc0d48983e4907",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -155,6 +173,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1774709303,
         "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
         "owner": "nixos",
@@ -167,19 +201,6 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1775036866,
-        "narHash": "sha256-ByAX1LkhCwZ94+KnFAmnJSMAvui7kgCxjHgUHsWAbfI=",
-        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre972949.6201e203d095/nixexprs.tar.xz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
     "nixpkgs_3": {
@@ -225,29 +246,10 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "flatpaks": "flatpaks",
-        "nixpkgs": "nixpkgs",
-        "spicetify": "spicetify",
-        "stylix": "stylix"
-      }
-    },
-    "spicetify": {
-      "inputs": {
         "nixpkgs": "nixpkgs_2",
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1775421933,
-        "narHash": "sha256-JkEbzFDFTsUlVtHEzA8Y4r3O9LInhb96eOCbtGjGnbM=",
-        "owner": "Gerg-L",
-        "repo": "spicetify-nix",
-        "rev": "ec8d73085fdf807d55765335dc8126e14e7b2096",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Gerg-L",
-        "repo": "spicetify-nix",
-        "type": "github"
+        "stylix": "stylix"
       }
     },
     "stylix": {
@@ -261,7 +263,7 @@
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
-        "systems": "systems_2",
+        "systems": "systems",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -282,21 +284,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

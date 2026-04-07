@@ -89,7 +89,9 @@ SETUVAR _hydro_git_14852:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_14857:main\x20
 SETUVAR _hydro_git_15014:main\x20\uf47f\x20\x20\x20\uf148\x202\x20
 SETUVAR _hydro_git_15502:fix\x2dcve\x2dbanner\x20\uf47f\x20\x20
+SETUVAR _hydro_git_15619:main\x20\uf47f\x20\x20\uf148\x201\x20
 SETUVAR _hydro_git_15632:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_16617:main\x20\uf47f\x20\x20\uf148\x201\x20
 SETUVAR _hydro_git_167905:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_17029:dev\x20\uf47f\x20\x20
 SETUVAR _hydro_git_17132:dev\x20\uf47f\x20\x20
@@ -189,7 +191,7 @@ SETUVAR _hydro_git_6834:add\x2dcpu\x2dgraph\x20\uf47f\x20\x20
 SETUVAR _hydro_git_6882:browse\x2dtab\x20
 SETUVAR _hydro_git_7183:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_7287:main\x20\uf47f\x20\x20
-SETUVAR _hydro_git_7370:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_7370:main\x20\uf47f\x20\x20\uf148\x201\x20
 SETUVAR _hydro_git_7562:main\x20\uf47f\x20\x20\x20\uf148\x201\x20
 SETUVAR _hydro_git_78587:impl\x2dnotifications\x20\uf47f\x20\x20
 SETUVAR _hydro_git_8015:main\x20\uf47f\x20\x20
@@ -214,7 +216,6 @@ SETUVAR _hydro_git_9281:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9328:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9332:dev\x20
 SETUVAR _hydro_git_9342:main\x20\uf47f\x20\x20
-SETUVAR _hydro_git_9488:main\x20\uf47f\x20\x20
 SETUVAR _hydro_git_9684:dev\x20
 SETUVAR _hydro_git_9773:add\x2dcpu\x2dgraph\x20
 SETUVAR --export fish_greeting:

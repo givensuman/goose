@@ -13,7 +13,7 @@ rebuild: switch symlink-configs
 # Move to world directory
 [group('util')]
 cd:
-  cd $HOME/world
+  cd "$HOME/world"
 
 # Build and activate new system configuration
 [group('nix-wrapper')]
