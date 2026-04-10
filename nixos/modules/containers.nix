@@ -24,15 +24,9 @@
 
   environment.systemPackages = with pkgs; [
     distrobox
-    distrobox-tui
     dive
     skopeo
     docker-compose
     podman-compose
   ];
-
-  environment.etc."distrobox/distrobox.conf".text = ''
-    container_image_default="registry.fedoraproject.org/fedora-toolbox:42"
-    container_name_default="box"
-  '';
 }
