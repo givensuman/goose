@@ -22,6 +22,8 @@
   ];
 
   services.flatpak.packages = [
+    # Runtimes
+    "org.freedesktop.Platform/x86_64/25.08"
     # Desktop applications
     "org.mozilla.firefox"
     # Flatpak utilities
@@ -42,9 +44,9 @@
     "org.gnome.Maps"
     "org.gnome.Papers" # Document Viewer
     "org.gnome.Showtime" # Video Player
-    "org.gnome.Snapshot" # Camera
+    # "org.gnome.Snapshot" # Camera
     "org.gnome.TextEditor"
-    "org.gnome.Weather"
+    # "org.gnome.Weather"
     "org.gtk.Gtk3theme.adw-gtk3"
     "org.gtk.Gtk3theme.adw-gtk3-dark"
   ];
@@ -72,7 +74,7 @@
   environment.systemPackages = with pkgs; [
     # Apps
     ghostty
-    bazaar
+    # bazaar
   ];
 
   # Use COSMIC desktop.
@@ -83,7 +85,7 @@
     cosmic-edit # Prefer GTK
     cosmic-player
     cosmic-reader
-    cosmic-store # Prefer Bazaar
+    # cosmic-store # Prefer Bazaar
     cosmic-term # Prefer Ghostty
   ];
 }
