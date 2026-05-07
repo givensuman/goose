@@ -16,7 +16,8 @@
     "org.nickvision.tubeconverter" # Media downloader
     "io.github.kriptolix.Poliedros" # Dice roller
     "de.til7701.Puzzled" # Lil' puzzles
-    "com.mojang.Minecraft"
+    "com.obsproject.Studio"
+    "org.kde.kdenlive"
   ];
 
   environment.systemPackages = with pkgs; [

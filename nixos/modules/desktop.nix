@@ -15,10 +15,10 @@
       name = "gnome-nightly";
       location = "https://nightly.gnome.org/gnome-nightly.flatpakrepo";
     }
-    {
-      name = "cosmic";
-      location = "https://apt.pop-os.org/cosmic/cosmic.flatpakrepo";
-    }
+    # {
+    #   name = "cosmic";
+    #   location = "https://apt.pop-os.org/cosmic/cosmic.flatpakrepo";
+    # }
   ];
 
   services.flatpak.packages = [
@@ -74,7 +74,7 @@
   environment.systemPackages = with pkgs; [
     # Apps
     ghostty
-    # bazaar
+    bazaar
   ];
 
   # Use COSMIC desktop.
@@ -85,7 +85,7 @@
     cosmic-edit # Prefer GTK
     cosmic-player
     cosmic-reader
-    # cosmic-store # Prefer Bazaar
+    cosmic-store # Prefer Bazaar
     cosmic-term # Prefer Ghostty
   ];
 }

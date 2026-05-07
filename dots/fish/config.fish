@@ -8,6 +8,16 @@ function edit
 end
 
 alias box distrobox
+
+function box-backup --description "Backup the current toolbox container to a tarball"
+  podman container commit -p toolbox toolbox-backup
+  podman save toolbox-backup:latest | bzip2 > ~/.config/distrobox/toolbox-backup.tar.bz
+end
+
+function box-restore --description "Restore the toolbox container from a tarball"
+  podman load < ~/.config/distrobox/toolbox-backup.tar.bz
+end
+
 alias gg lazygit
 alias dd lazydocker
 # fzf over files and open result in nvim

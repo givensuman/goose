@@ -26,7 +26,6 @@
 
   environment.systemPackages = with pkgs; [
     devbox
-    distrobox
     dive
     skopeo
     docker-compose

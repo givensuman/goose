@@ -1,6 +1,6 @@
 [
     "com.system76.CosmicFiles",
-    "com.system76.CosmicStore",
+    "io.github.kolunmi.Bazaar",
     "org.mozilla.firefox",
     "com.mitchellh.ghostty",
     "Podman Desktop",
