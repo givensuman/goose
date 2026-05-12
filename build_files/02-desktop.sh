@@ -17,11 +17,17 @@ dnf5 -y swap \
   @cosmic-desktop \
   --exclude cosmic-edit,cosmic-player,cosmic-reader,cosmic-store,cosmic-term
 
+# Replacements
+#   cosmic-edit   -> org.gnome.TextEditor
+#   cosmic-player -> org.gnome.Showtime
+#   cosmic-reader -> org.gnome.Papers
+#   cosmic-store  -> bazaar
+#   cosmic-term   -> ghostty
+
 # Desktop environment packages
 desktop_packages=(
-  ghostty            # Terminal emulator
-  rsms-inter-fonts   # Inter font family
-  hack-nerd-fonts    # Hack Nerd Font for terminal
+  ghostty
+  bazaar
   gdisk              # GPT disk partitioning tool
   gnome-disk-utility # Disk management utility
 )
