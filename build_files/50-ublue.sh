@@ -82,6 +82,19 @@ if [ -f "/sysctl.conf" ]; then
   log_info "Configuration overrides applied"
 fi
 
+# Import Justfile
+log_info "Importing goose Justfile..."
+if [ -f /usr/share/ublue-os/justfile ]; then
+  if ! grep -q "goose/just/goose.just" /usr/share/ublue-os/justfile; then
+    echo "import \"/usr/share/goose/just/goose.just\"" >>/usr/share/ublue-os/justfile
+    log_info "Justfile import added"
+  else
+    log_info "Justfile import already present"
+  fi
+else
+  log_warn "ublue-os justfile not found"
+fi
+
 log_info "Universal Blue configuration completed successfully"
 
 echo "::endgroup::"
