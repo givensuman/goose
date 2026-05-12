@@ -44,11 +44,11 @@ jobs:
 
       - name: Build Container
         run: |
-          podman build --tag localhost/goose-linux:pr-test .
+          podman build --tag localhost/goose:pr-test .
 
       - name: Inspect Image
         run: |
-          podman inspect localhost/goose-linux:pr-test
+          podman inspect localhost/goose:pr-test
 
   summary:
     name: Summary

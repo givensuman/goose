@@ -64,7 +64,7 @@ for dir in /var/opt/*/; do
   mv "$dir" "/usr/lib/opt/$dirname"
 
   # Create tmpfiles.d entry for symlink
-  echo "L+ /var/opt/$dirname - - - - /usr/lib/opt/$dirname" >>/usr/lib/tmpfiles.d/goose-opt-fix.conf
+  echo "L+ /var/opt/$dirname - - - - /usr/lib/opt/$dirname" >>/usr/lib/tmpfiles.d/opt-fix.conf
 done
 
 # Move configuration overrides if they exist
@@ -80,19 +80,6 @@ if [ -f "/sysctl.conf" ]; then
   ([ -f /sysctl.conf ] && mv /sysctl.conf /etc/) 2>/dev/null || true
 
   log_info "Configuration overrides applied"
-fi
-
-# Import goose-linux Justfile
-log_info "Importing goose-linux Justfile..."
-if [ -f /usr/share/ublue-os/justfile ]; then
-  if ! grep -q "goose-linux/just/goose.just" /usr/share/ublue-os/justfile; then
-    echo "import \"/usr/share/goose-linux/just/goose.just\"" >>/usr/share/ublue-os/justfile
-    log_info "Justfile import added"
-  else
-    log_info "Justfile import already present"
-  fi
-else
-  log_warn "ublue-os justfile not found"
 fi
 
 log_info "Universal Blue configuration completed successfully"

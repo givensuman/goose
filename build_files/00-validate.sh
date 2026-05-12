@@ -12,7 +12,7 @@ log_info "Starting pre-build validation..."
 
 # Check we're running in a container
 if ! in_container; then
-  log_warn "Not running in a container - this is unexpected for image builds"
+  log_warn "Not running in a container"
 fi
 
 # Check required commands are available

@@ -31,7 +31,7 @@ disable_repo docker-ce || true
 disable_repo rpmfusion-nonfree-nvidia-driver || true
 disable_repo rpmfusion-nonfree-steam || true
 
-# Disable RPM Fusion repos via file editing (fallback)
+# Disable RPM Fusion repos via file editing as fallback
 log_info "Disabling RPM Fusion repositories..."
 for repo in /etc/yum.repos.d/rpmfusion-*; do
   if [ -f "$repo" ]; then
@@ -88,10 +88,10 @@ log_info "Running dnf5 clean all..."
 dnf5 clean all
 
 # Clean /var directory while preserving essential files
-log_info "Cleaning /var directory (preserving cache directories)..."
+log_info "Cleaning /var directory..."
 find /var/* -maxdepth 0 -type d \! -name cache -exec rm -rf {} \; 2>/dev/null || true
 
-log_info "Cleaning /var/cache (preserving libdnf5 and rpm-ostree)..."
+log_info "Cleaning /var/cache..."
 find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 \! -name rpm-ostree -exec rm -rf {} \; 2>/dev/null || true
 
 # Cleanup extra kernel modules directories

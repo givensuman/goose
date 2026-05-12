@@ -27,13 +27,6 @@ enable_repo docker-ce || true
 # Core system utilities
 core_packages=(
   git
-  fastfetch
-  p7zip
-  p7zip-plugins
-  vlc
-  vlc-plugin-bittorrent
-  vlc-plugin-ffmpeg
-  vlc-plugin-pause-click
   wl-clipboard
   util-linux
 )

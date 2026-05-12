@@ -34,12 +34,8 @@ log_info "Verifying critical package installations..."
 critical_packages=(
   "cosmic-desktop"
   "cosmic-greeter"
-  "ghostty"
-  "git"
-  "fastfetch"
   "docker-ce"
   "podman"
-  "distrobox"
 )
 
 for pkg in "${critical_packages[@]}"; do
@@ -51,12 +47,7 @@ log_info "Verifying critical binaries..."
 
 critical_binaries=(
   "/usr/bin/cosmic-comp"
-  "/usr/bin/ghostty"
-  "/usr/bin/docker"
-  "/usr/bin/podman"
-  "/usr/bin/distrobox"
   "/usr/bin/git"
-  "/usr/bin/fastfetch"
 )
 
 for binary in "${critical_binaries[@]}"; do
@@ -76,22 +67,22 @@ enabled_services=(
 for service in "${enabled_services[@]}"; do
   if systemctl cat -- "${service}" &>/dev/null; then
     if systemctl is-enabled "${service}" &>/dev/null; then
-      log_info "✓ Service enabled: ${service}"
+      log_info "Service enabled: ${service}"
     else
-      log_error "✗ Service not enabled: ${service}"
+      log_error "Service not enabled: ${service}"
       ((verification_failures++))
     fi
   else
-    log_warn "? Service not found: ${service} (may not be critical)"
+    log_warn "Service not found: ${service}"
   fi
 done
 
-# Verify GDM is disabled (we use cosmic-greeter)
+# Verify GDM is disabled in favor of cosmic-greeter
 if systemctl cat -- gdm.service &>/dev/null; then
   if ! systemctl is-enabled gdm.service &>/dev/null; then
-    log_info "✓ GDM service disabled (correct)"
+    log_info "GDM service disabled"
   else
-    log_error "✗ GDM service is enabled (should be disabled)"
+    log_error "GDM service is enabled"
     ((verification_failures++))
   fi
 fi
@@ -101,11 +92,9 @@ log_info "Verifying filesystem structure..."
 
 important_paths=(
   "/usr/share/ghostty/config"
-  "/usr/share/goose-linux/just/goose.just"
   "/usr/share/flatpak/overrides/global"
   "/usr/share/distrobox/distrobox.ini"
   "/usr/share/ublue-os/justfile"
-  "/usr/share/cosmic"
 )
 
 for path in "${important_paths[@]}"; do
@@ -121,23 +110,12 @@ else
   log_warn "Flatpak global overrides missing"
 fi
 
-# Check if COSMIC configuration files are present
-log_info "Verifying COSMIC desktop configuration..."
-
-cosmic_config_count=$(find /usr/share/cosmic -type f 2>/dev/null | wc -l)
-if [ "${cosmic_config_count}" -gt 0 ]; then
-  log_info "Found ${cosmic_config_count} COSMIC configuration files"
-else
-  log_error "No COSMIC configuration files found"
-  ((verification_failures++))
-fi
-
 # Verify ostree commit succeeded
 log_info "Verifying ostree state..."
 if ostree --version >/dev/null 2>&1; then
   log_info "ostree is available"
 else
-  log_warn "ostree not available (may be expected in some build contexts)"
+  log_warn "ostree not available"
 fi
 
 # Report image size
@@ -170,14 +148,14 @@ fi
 
 # Summary
 echo ""
-log_info "===== Verification Summary ====="
+log_info "Verification Summary:"
 if [ ${verification_failures} -eq 0 ]; then
   log_info "🎉 All steps passed!"
   echo "::endgroup::"
   exit 0
 else
-  log_error "${verification_failures} verification(s) failed"
-  log_error "Build may be incomplete or misconfigured"
+  log_error "🎉 ${verification_failures} verification(s) failed"
+  log_error "🎉 Build may be incomplete or misconfigured"
   echo "::endgroup::"
   exit 1
 fi

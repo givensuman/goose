@@ -1,9 +1,0 @@
-{
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "Return",
-        description: Some("ghostty toolbox"),
-    ): Spawn("/usr/libexec/toolbox-launch"),
-}

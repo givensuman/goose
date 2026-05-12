@@ -8,11 +8,14 @@ echo "::group:: ===$(basename "$0")==="
 set -euox pipefail
 trap 'log_error "Script failed at line $LINENO"' ERR
 
-log_info "Setting up COSMIC desktop environment..."
+log_info "Setting up desktop environment..."
 
 # Replace GNOME with COSMIC desktop
 log_info "Swapping GNOME desktop for COSMIC desktop..."
-dnf5 -y swap @gnome-desktop @cosmic-desktop
+dnf5 -y swap \
+  @gnome-desktop \
+  @cosmic-desktop \
+  --exclude cosmic-edit,cosmic-player,cosmic-reader,cosmic-store,cosmic-term
 
 # Desktop environment packages
 desktop_packages=(
@@ -33,6 +36,6 @@ disable_service gdm.service
 # Enable COSMIC greeter
 enable_service cosmic-greeter.service
 
-log_info "COSMIC desktop setup completed successfully"
+log_info "Desktop setup completed successfully"
 
 echo "::endgroup::"
