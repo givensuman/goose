@@ -10,24 +10,19 @@ trap 'log_error "Script failed at line $LINENO"' ERR
 
 log_info "Setting up desktop environment..."
 
-# Replace GNOME with COSMIC desktop
-log_info "Swapping GNOME desktop for COSMIC desktop..."
-dnf5 -y swap \
-  @gnome-desktop \
+dnf5 -y install \
   @cosmic-desktop \
-  --exclude cosmic-edit,cosmic-player,cosmic-reader,cosmic-store,cosmic-term
+  --exclude cosmic-edit,cosmic-player,cosmic-reader,cosmic-store
 
 # Replacements
 #   cosmic-edit   -> org.gnome.TextEditor
 #   cosmic-player -> org.gnome.Showtime
 #   cosmic-reader -> org.gnome.Papers
-#   cosmic-store  -> bazaar
-#   cosmic-term   -> ghostty
+#   cosmic-store  -> io.github.kolunmi.Bazaar
 
 # Desktop environment packages
 desktop_packages=(
   ghostty
-  bazaar
   gdisk              # GPT disk partitioning tool
   gnome-disk-utility # Disk management utility
 )
