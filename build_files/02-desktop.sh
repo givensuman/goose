@@ -30,10 +30,6 @@ desktop_packages=(
 log_info "Installing desktop packages..."
 install_packages "${desktop_packages[@]}"
 
-# Disable GDM
-log_info "Configuring display manager..."
-disable_service gdm.service
-
 # Enable COSMIC greeter
 enable_service cosmic-greeter.service
 

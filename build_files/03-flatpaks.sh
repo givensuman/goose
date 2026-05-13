@@ -22,10 +22,6 @@ flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/fla
 log_info "Adding COSMIC repository..."
 flatpak remote-add --system --if-not-exists cosmic https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
 
-# Install Universal Blue flatpak management
-log_info "Installing ublue-os-flatpak..."
-install_packages ublue-os-flatpak
-
 # Remove Firefox RPM in favor of Flatpak version
 log_info "Removing Firefox RPM packages..."
 if package_installed firefox; then

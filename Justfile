@@ -92,6 +92,17 @@ format:
     # Run shfmt on all Bash scripts
     /usr/bin/find . -iname "*.sh" -type f -exec shfmt --write "{}" ';'
 
+# Build image locally using buildah, mirroring the CI workflow
+[group('Utility')]
+build-ci $tag="dev":
+    #!/usr/bin/bash
+    set -eoux pipefail
+    buildah build \
+        --build-arg BASE_IMAGE_NAME=base \
+        --build-arg IMAGE_TAG="${tag}" \
+        --tag "{{ image_name }}:${tag}" \
+        .
+
 # This Justfile recipe builds a container image using Podman.
 #
 # Arguments:

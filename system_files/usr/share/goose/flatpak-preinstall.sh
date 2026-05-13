@@ -26,7 +26,12 @@ for file in "$PREINSTALL_DIR"/*.preinstall; do
 
       echo "Installing $ref..."
 
-      if flatpak install --system --noninteractive -y "$ref"; then
+      if flatpak install \
+          --system \
+          --ostree-verbose \
+          --noninteractive \
+          --assumeyes \
+        flathub "$ref"; then
         echo "Successfully processed $ref"
       else
         echo "Failed to process $ref"

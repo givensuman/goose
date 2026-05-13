@@ -1,4 +1,14 @@
-#!/bin/bash
+#!/usr/bin/bash
+
+# shellcheck disable=SC1091
+source "$(dirname "$0")/00-functions.sh"
+
+echo "::group:: ===$(basename "$0")==="
+
+set -euox pipefail
+trap 'log_error "Script failed at line $LINENO"' ERR
+
+log_info "Seting up nix..."
 
 tee /etc/ostree/prepare-root.conf <<'EOF'
 [composefs]
@@ -7,17 +17,22 @@ enabled = yes
 transient = true
 EOF
 
-rpm-ostree initramfs-etc --reboot --track=/etc/ostree/prepare-root.conf
+# rpm-ostree initramfs-etc --reboot --track=/etc/ostree/prepare-root.conf
 
-curl -sSfL https://artifacts.nixos.org/nix-installer | \
-    sh -s -- install ostree --explain --add-channel --persistence=/var/lib/nix
+curl -sSfL https://artifacts.nixos.org/nix-installer |
+  sh -s -- install ostree \
+    --explain \
+    --add-channel \
+    --persistence=/var/lib/nix \
+    --no-confirm \
+    --no-start-daemon
 
 nix-channel --add \
-	https://nixos.org/channels/nixpkgs-unstable \
-	nixpkgs
+  https://nixos.org/channels/nixpkgs-unstable \
+  nixpkgs
 nix-channel --add \
-	https://github.com/nix-community/home-manager/archive/master.tar.gz \
-      	home-manager
+  https://github.com/nix-community/home-manager/archive/master.tar.gz \
+  home-manager
 nix-channel --update
 
 nix-shell '<home-manager>' -A install
@@ -25,3 +40,5 @@ nix-shell '<home-manager>' -A install
 nix-collect-garbage -d
 
 echo "Defaults  secure_path = /nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:$(sudo printenv PATH)" | sudo tee /etc/sudoers.d/nix-sudo-env
+
+log_info "Nix setup completed successfully"
