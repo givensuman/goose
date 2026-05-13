@@ -19,6 +19,8 @@ dnf5 -y copr enable ublue-os/staging
 ublue_packages=(
   ublue-os-media-automount-udev # Automatic media mounting
   ublue-os-update-services      # Update management services
+  # TODO: Remove
+  ublue-brew
 )
 
 log_info "Installing Universal Blue packages..."
