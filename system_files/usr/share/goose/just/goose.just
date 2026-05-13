@@ -24,6 +24,8 @@ setup-nix:
         https://install.determinate.systems/nix | \
       sh -s -- install ostree --no-confirm
 
+      . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
       nix --version
 
       sudo systemctl daemon-reload
