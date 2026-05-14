@@ -60,7 +60,7 @@ log_info "Installing core system utilities..."
 install_packages "${core_packages[@]}"
 
 # Prefer sudo-rs
-update-alternatives --set sudo /usr/bin/sudo-rs
+update-alternatives --install /usr/bin/sudo sudo /usr/bin/sudo-rs 100
 
 log_info "Installing development tools..."
 install_packages "${dev_packages[@]}"
