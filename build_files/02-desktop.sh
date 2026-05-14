@@ -30,6 +30,9 @@ desktop_packages=(
 log_info "Installing desktop packages..."
 install_packages "${desktop_packages[@]}"
 
+# Prefer ghostty
+update-alternatives --set x-terminal-emulator /usr/bin/ghostty
+
 # Enable COSMIC greeter
 enable_service cosmic-greeter.service
 
