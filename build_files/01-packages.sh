@@ -27,7 +27,6 @@ enable_repo docker-ce || true
 # Core system utilities
 core_packages=(
   git
-  sudo-rs
   wl-clipboard
   util-linux
 )
@@ -55,12 +54,11 @@ container_packages=(
   virt-install          # CLI tool for VM provisioning
 )
 
+dnf swap -y sudo sudo-rs
+
 # Install all package categories
 log_info "Installing core system utilities..."
 install_packages "${core_packages[@]}"
-
-# Prefer sudo-rs
-update-alternatives --install /usr/bin/sudo sudo /usr/bin/sudo-rs 100
 
 log_info "Installing development tools..."
 install_packages "${dev_packages[@]}"
