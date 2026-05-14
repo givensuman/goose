@@ -54,8 +54,6 @@ container_packages=(
   virt-install          # CLI tool for VM provisioning
 )
 
-dnf swap -y sudo sudo-rs
-
 # Install all package categories
 log_info "Installing core system utilities..."
 install_packages "${core_packages[@]}"
