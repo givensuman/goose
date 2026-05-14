@@ -1,0 +1,11 @@
+[Unit]
+Description=Update dconf database
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dconf update
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
