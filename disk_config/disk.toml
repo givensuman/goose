@@ -1,0 +1,40 @@
+# Disk configuration for QCOW2 and RAW image builds
+# This configuration is used by bootc-image-builder
+# Reference: https://github.com/osbuild/bootc-image-builder
+
+# Filesystem configuration
+[customizations.filesystem]
+# Root filesystem uses btrfs with subvolumes
+root = "btrfs"
+
+# Partition layout
+[[customizations.disk.partitions]]
+type = "esp"
+size = "512MiB"
+mountpoint = "/boot/efi"
+filesystem = "vfat"
+
+[[customizations.disk.partitions]]
+type = "boot"
+size = "1GiB"
+mountpoint = "/boot"
+filesystem = "ext4"
+
+[[customizations.disk.partitions]]
+type = "root"
+# No size specified - uses remaining space
+mountpoint = "/"
+filesystem = "btrfs"
+
+# Btrfs subvolumes for better snapshots and management
+[customizations.filesystem.btrfs]
+subvolumes = [
+    "@",
+    "@home",
+    "@var",
+]
+
+# User configuration
+[customizations.user]
+# Users are created at install/first-boot time
+# This section is optional for bootc images
