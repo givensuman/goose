@@ -13,9 +13,9 @@ alias dd lazydocker
 alias f "fd --type f | fzf | sed 's/\ /\\ /g' | xargs nvim"
 # declarative Homebrew system
 alias world-pkgs "brew update &&\
-	brew bundle install --cleanup --file=~/.config/Brewfile.pkgs"
+	brew bundle install --cleanup --file=~/World.pkgs"
 alias world-apps "brew update &&\
-  brew bundle install --file=~/.config/Brewfile.apps"
+  brew bundle install --file=~/World.apps"
 
 # hydro prompt
 set --global fish_prompt_pwd_dir_length 999
