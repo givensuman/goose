@@ -27,9 +27,13 @@ enable_repo docker-ce || true
 # Core system utilities
 core_packages=(
   git
+  sudo-rs
   wl-clipboard
   util-linux
 )
+
+# Prefer sudo-rs
+update-alternatives --set sudo /usr/bin/sudo-rs
 
 # Development tools and libraries
 dev_packages=(
