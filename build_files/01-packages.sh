@@ -32,9 +32,6 @@ core_packages=(
   util-linux
 )
 
-# Prefer sudo-rs
-update-alternatives --set sudo /usr/bin/sudo-rs
-
 # Development tools and libraries
 dev_packages=(
   "@development-tools"    # GCC, make, autoconf, etc.
@@ -61,6 +58,9 @@ container_packages=(
 # Install all package categories
 log_info "Installing core system utilities..."
 install_packages "${core_packages[@]}"
+
+# Prefer sudo-rs
+update-alternatives --set sudo /usr/bin/sudo-rs
 
 log_info "Installing development tools..."
 install_packages "${dev_packages[@]}"
