@@ -4,7 +4,9 @@
     "org.mozilla.firefox",
     "com.mitchellh.ghostty",
     "Podman Desktop",
+    "com.vscodium.codium",
     "localsend",
     "Spotify",
     "goofcord",
+    "steam",
 ]

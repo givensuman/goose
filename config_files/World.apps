@@ -1,13 +1,15 @@
 # Pinned
+flatpak "io.podman_desktop.PodmanDesktop"
+flatpak "com.vscodium.codium"
+flatpak "org.localsend.localsend_app"
 flatpak "com.spotify.Client"
 flatpak "io.github.milkshiift.GoofCord"
-flatpak "org.localsend.localsend_app"
-flatpak "de.haeckerfelix.Fragments"
-flatpak "io.podman_desktop.PodmanDesktop"
+flatpak "com.valvesoftware.Steam"
+
 # Additional
-# flatppak "dev.edfloreshz.Tasks" # To-Do list
 flatpak "org.nickvision.tubeconverter" # Media downloader
 flatpak "io.github.kriptolix.Poliedros" # Dice roller
 flatpak "de.til7701.Puzzled" # Lil' puzzles
 flatpak "com.obsproject.Studio"
 flatpak "org.kde.kdenlive"
+flatpak "de.haeckerfelix.Fragments"

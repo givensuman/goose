@@ -27,6 +27,5 @@ unset rc
 if grep -qv fish /proc/$PPID/comm &&
   [[ $SHLVL == [12] ]] &&
   [[ $- == *i* ]]; then
-  # set $SHELL for better integration with programs like nix shell, tmux, etc.
-  SHELL=$(which fish) exec fish
+  exec $(which fish)
 fi

@@ -33,10 +33,10 @@ return {
     ---@type snacks.terminal.Config
     terminal = {
       enabled = true,
+      ---@type snacks.win.Config
       win = {
         position = "float",
         backdrop = 60,
-        border = "rounded",
       },
     },
     ---@type snacks.picker.Config

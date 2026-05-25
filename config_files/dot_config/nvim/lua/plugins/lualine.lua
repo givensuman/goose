@@ -1,6 +1,4 @@
--- Bubbles config for lualine
--- Author: lokesh-krishna
--- MIT license, see LICENSE for more details.
+-- https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/bubbles.lua
 
 -- stylua: ignore
 local colors = {
