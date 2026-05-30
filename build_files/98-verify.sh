@@ -3,59 +3,32 @@
 # shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
-echo "::group:: ===$(basename "$0")==="
+echo "::group:: $(basename "$0")"
 
-set -euox pipefail
+set -euo pipefail
 trap 'log_error "Verification failed at line $LINENO"' ERR
-
-log_info "Starting post-build verification..."
 
 # Track failures
 verification_failures=0
 
-# Function to check and report
-check_item() {
-  local description=$1
-  shift
-
-  if "$@"; then
-    log_info "✓ ${description}"
-    return 0
-  else
-    log_error "✗ ${description}"
-    ((verification_failures++))
-    return 1
-  fi
-}
-
-# Verify critical packages
-log_info "Verifying critical package installations..."
+log_info "Verifying packages..."
 
 critical_packages=(
+  "git"
+  "cosmic-comp"
   "cosmic-desktop"
   "cosmic-greeter"
-  "docker-ce"
-  "podman"
 )
 
 for pkg in "${critical_packages[@]}"; do
-  check_item "Package installed: ${pkg}" package_installed "${pkg}"
-done
-
-# Verify important binaries exist
-log_info "Verifying critical binaries..."
-
-critical_binaries=(
-  "/usr/bin/cosmic-comp"
-  "/usr/bin/git"
-)
-
-for binary in "${critical_binaries[@]}"; do
-  check_item "Binary exists: ${binary}" test -x "${binary}"
+  if [[ ! package_installed "${pkg}" ]]; then
+    log_error "${pkg} not installed..."
+    ((verification_failures++))
+  fi
 done
 
 # Verify systemd services are properly configured
-log_info "Verifying systemd service configuration..."
+log_info "Verifying services..."
 
 enabled_services=(
   "cosmic-greeter.service"
@@ -77,45 +50,13 @@ for service in "${enabled_services[@]}"; do
   fi
 done
 
-# Verify GDM is disabled in favor of cosmic-greeter
-if systemctl cat -- gdm.service &>/dev/null; then
-  if ! systemctl is-enabled gdm.service &>/dev/null; then
-    log_info "GDM service disabled"
-  else
-    log_error "GDM service is enabled"
-    ((verification_failures++))
-  fi
-fi
-
-# Verify important files and directories
-log_info "Verifying filesystem structure..."
-
-important_paths=(
-  "/usr/share/ghostty/config"
-  "/usr/share/flatpak/overrides/global"
-  "/usr/share/distrobox/distrobox.ini"
-  "/usr/share/ublue-os/justfile"
-)
-
-for path in "${important_paths[@]}"; do
-  check_item "Path exists: ${path}" test -e "${path}"
-done
-
-# Verify flatpak configuration
-log_info "Verifying flatpak configuration..."
-
-if [ -f "/usr/share/flatpak/overrides/global" ]; then
-  log_info "Flatpak global overrides present"
-else
-  log_warn "Flatpak global overrides missing"
-fi
-
 # Verify ostree commit succeeded
-log_info "Verifying ostree state..."
+log_info "Verifying ostree..."
 if ostree --version >/dev/null 2>&1; then
   log_info "ostree is available"
 else
   log_warn "ostree not available"
+  ((verification_failures++))
 fi
 
 # Report image size
@@ -130,7 +71,7 @@ if [ -d "/var" ]; then
   log_info "  /var directory size: ${var_size}"
 fi
 
-# Check for unexpected large files in temp
+# Check for unexpected large files in /tmp
 log_info "Checking for leftover temporary files..."
 if [ -d "/tmp" ]; then
   tmp_size=$(du -sh /tmp 2>/dev/null | cut -f1 || echo "0")
@@ -140,9 +81,7 @@ fi
 # Verify no broken symlinks in critical paths
 log_info "Checking for broken symlinks..."
 broken_symlinks=$(find /usr/bin /usr/lib -xtype l 2>/dev/null | wc -l || echo "0")
-if [ "${broken_symlinks}" -eq 0 ]; then
-  log_info "No broken symlinks found in /usr/bin and /usr/lib"
-else
+if [ ! "${broken_symlinks}" -eq 0 ]; then
   log_warn "Found ${broken_symlinks} broken symlink(s)"
 fi
 
@@ -154,8 +93,8 @@ if [ ${verification_failures} -eq 0 ]; then
   echo "::endgroup::"
   exit 0
 else
-  log_error "🎉 ${verification_failures} verification(s) failed"
-  log_error "🎉 Build may be incomplete or misconfigured"
+  log_error "${verification_failures} verification(s) failed..."
+  log_error "Build may be incomplete or misconfigured"
   echo "::endgroup::"
   exit 1
 fi

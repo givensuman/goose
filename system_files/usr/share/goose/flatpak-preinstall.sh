@@ -1,6 +1,6 @@
 #!/bin/bash
 # flatpak-preinstall not supported with Flatpak
-# currently shipped with Fedora.
+# binary currently shipped with Fedora.
 
 # Directory containing the preinstall files
 PREINSTALL_DIR="/usr/share/flatpak/preinstall.d"

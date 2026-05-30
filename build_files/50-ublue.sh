@@ -5,7 +5,7 @@ source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: ===$(basename "$0")==="
 
-set -euox pipefail
+set -euo pipefail
 trap 'log_error "Script failed at line $LINENO"' ERR
 
 log_info "Configuring Universal Blue packages and services..."
@@ -15,14 +15,13 @@ log_info "Enabling Universal Blue COPR repositories..."
 dnf5 -y copr enable ublue-os/packages
 dnf5 -y copr enable ublue-os/staging
 
-# Install Universal Blue packages
 ublue_packages=(
   ublue-os-media-automount-udev # Automatic media mounting
   ublue-os-update-services      # Update management services
   ublue-brew                    # Homebrew
 )
 
-log_info "Installing Universal Blue packages..."
+log_info "Installing packages..."
 install_packages "${ublue_packages[@]}"
 
 # Remove default toolbox in favor of distrobox
@@ -31,11 +30,6 @@ if package_installed toolbox; then
   dnf5 -y remove toolbox
   log_info "Removed toolbox package"
 fi
-
-# Enable podman services for user sessions
-log_info "Enabling Podman user services..."
-systemctl --global enable podman.socket || true
-systemctl --global enable podman-auto-update.timer || true
 
 # Download bash-prexec for shell integration
 log_info "Downloading bash-prexec..."
