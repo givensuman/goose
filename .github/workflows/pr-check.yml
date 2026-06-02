@@ -8,24 +8,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint-scripts:
-    name: Lint Shell Scripts
+  lint:
+    name: Lint Shell Scripts and Just Syntax
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Check Just Syntax
-        uses: ublue-os/just-action@v2
-        with:
-          command: lint
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
 
-  check-just-syntax:
-    name: Check Just Syntax
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: Lint shell scripts
+        run: |
+          shellcheck build_files/*.sh || { echo "Shellcheck failed"; exit 1; }
 
       - name: Check Just Syntax
         uses: ublue-os/just-action@v2
@@ -53,15 +49,14 @@ jobs:
   summary:
     name: Summary
     runs-on: ubuntu-latest
-    needs: [lint-scripts, check-just-syntax, build-container]
+    needs: [lint, build-container]
     if: always()
     steps:
       - name: Check Results
         run: |
-          if [ "${{ needs.lint-scripts.result }}" != "success" ] || \
-             [ "${{ needs.check-just-syntax.result }}" != "success" ] || \
+          if [ "${{ needs.lint.result }}" != "success" ] || \
              [ "${{ needs.build-container.result }}" != "success" ]; then
             echo "Some checks failed"
             exit 1
           fi
-          echo "✅ All checks passed!"
+          echo "All checks passed!"

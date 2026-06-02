@@ -57,8 +57,14 @@ fi
 
 # Verify no broken symlinks in critical paths
 log_info "Checking for broken symlinks..."
-broken_symlinks=$(find /usr/bin /usr/lib -xtype l 2>/dev/null | wc -l || echo "0")
-if [ ! "${broken_symlinks}" -eq 0 ]; then
+broken_symlinks=0
+for dir in /usr/bin /usr/lib; do
+  if [ -d "$dir" ]; then
+    count=$(find "$dir" -type l ! -exec test -e {} \; -print 2>/dev/null | wc -l)
+    broken_symlinks=$((broken_symlinks + count))
+  fi
+done
+if [ "${broken_symlinks}" -ne 0 ]; then
   log_warn "Found ${broken_symlinks} broken symlink(s)"
 fi
 

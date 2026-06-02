@@ -60,20 +60,56 @@ done
 # Clean up temporary files and caches
 log_info "Removing temporary files..."
 rm -rf /tmp/* || true
-rm -rf /var/tmp/* || true
-rm -rf /var/log/* || true
 
 log_info "Cleaning dnf cache..."
-rm -rf /var/lib/dnf5/* || true
-rm -rf /var/cache/dnf5/* || true
 dnf5 clean all
 
 # Clean /var directory while preserving essential files
 log_info "Cleaning /var directory..."
-find /var/* -maxdepth 0 -type d \! -name cache -exec rm -rf {} \; 2>/dev/null || true
+keep_dirs=("cache" "lib" "log")
+for dir in /var/*/; do
+  [ -d "$dir" ] || continue
+  dirname=$(basename "$dir")
+  keep=false
+  for keep_dir in "${keep_dirs[@]}"; do
+    if [ "$dirname" = "$keep_dir" ]; then
+      keep=true
+      break
+    fi
+  done
+  if [ "$keep" = false ]; then
+    log_info "Removing /var/${dirname}"
+    rm -rf "$dir"
+  fi
+done
 
+# Keep flatpak remote config in /var/lib
+log_info "Cleaning /var/lib (preserving flatpak)..."
+for libdir in /var/lib/*/; do
+  [ -d "$libdir" ] || continue
+  dirname=$(basename "$libdir")
+  if [ "$dirname" != "flatpak" ]; then
+    rm -rf "$libdir"
+  fi
+done
+
+# Clean /var/log contents but keep the directory
+log_info "Cleaning /var/log..."
+rm -rf /var/log/* 2>/dev/null || true
+
+# Selectively clean /var/cache
 log_info "Cleaning /var/cache..."
-find /var/cache/* -maxdepth 0 -type d \! -name libdnf5 \! -name rpm-ostree -exec rm -rf {} \; 2>/dev/null || true
+for cachedir in /var/cache/*/; do
+  [ -d "$cachedir" ] || continue
+  dirname=$(basename "$cachedir")
+  if [ "$dirname" != "libdnf5" ] && [ "$dirname" != "rpm-ostree" ]; then
+    rm -rf "$cachedir"
+  fi
+done
+
+log_info "Ensuring /var/tmp exists with correct permissions..."
+mkdir -p /var/tmp
+chmod 1777 /var/tmp
 
 # Cleanup extra kernel modules directories
 log_info "Cleaning up old kernel modules..."
@@ -90,11 +126,9 @@ for dir in /usr/lib/modules/*; do
   fi
 done
 
-# Restore and setup directories with proper permissions
-log_info "Restoring system directories..."
+# Restore /tmp
+log_info "Restoring /tmp..."
 mkdir -p /tmp
-mkdir -p /var/tmp
-chmod -R 1777 /var/tmp
 
 # Report final sizes
 log_info "Final disk usage:"

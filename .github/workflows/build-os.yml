@@ -167,8 +167,8 @@ jobs:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PASSWORD: ""
 
-      # Clean up buildah/podman images and containers
       - name: Cleanup
         run: |
+          rm -rf cosign.key
           podman system prune -f
           buildah prune -f
