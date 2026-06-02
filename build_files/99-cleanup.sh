@@ -22,7 +22,6 @@ rm -f /etc/yum.repos.d/_copr_ublue-os-*.repo /etc/yum.repos.d/_copr_*.repo 2>/de
 
 log_info "Removing non-essential repository files..."
 repos_to_remove=(
-  docker-ce
   terra
   fedora-cisco-openh264
   fedora-updates

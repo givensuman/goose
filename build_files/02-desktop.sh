@@ -42,8 +42,18 @@ desktop_packages=(
   gnome-disk-utility # Disk management utility
 )
 
+dnf5 -y copr enable che/nerd-fonts
+
+font_packages=(
+  jetbrains-mono-fonts
+  inter-fonts
+  inter-variable-fonts
+  nerd-fonts
+)
+
 log_info "Installing packages..."
 install_packages "${desktop_packages[@]}"
+install_packages "${font_packages[@]}"
 
 log_info "Enabling services..."
 enable_service cosmic-greeter.service
