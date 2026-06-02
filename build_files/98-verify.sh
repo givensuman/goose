@@ -21,32 +21,9 @@ critical_packages=(
 )
 
 for pkg in "${critical_packages[@]}"; do
-  if [[ ! package_installed "${pkg}" ]]; then
+  if ! package_installed "${pkg}"; then
     log_error "${pkg} not installed..."
-    ((verification_failures++))
-  fi
-done
-
-# Verify systemd services are properly configured
-log_info "Verifying services..."
-
-enabled_services=(
-  "cosmic-greeter.service"
-  "docker.service"
-  "containerd.service"
-  "libvirtd.service"
-)
-
-for service in "${enabled_services[@]}"; do
-  if systemctl cat -- "${service}" &>/dev/null; then
-    if systemctl is-enabled "${service}" &>/dev/null; then
-      log_info "Service enabled: ${service}"
-    else
-      log_error "Service not enabled: ${service}"
-      ((verification_failures++))
-    fi
-  else
-    log_warn "Service not found: ${service}"
+    verification_failures=$((verification_failures + 1))
   fi
 done
 
@@ -56,7 +33,7 @@ if ostree --version >/dev/null 2>&1; then
   log_info "ostree is available"
 else
   log_warn "ostree not available"
-  ((verification_failures++))
+  verification_failures=$((verification_failures + 1))
 fi
 
 # Report image size

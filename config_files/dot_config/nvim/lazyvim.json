@@ -23,6 +23,7 @@
     "lazyvim.plugins.extras.lang.typescript.oxc",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.lang.zig",
+    "lazyvim.plugins.extras.ui.smear-cursor",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "news": {

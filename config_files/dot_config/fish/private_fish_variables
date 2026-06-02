@@ -24,6 +24,13 @@ SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig/fish/functions/
 SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/hydro\x1ejorgebucaran/autopair\x2efish\x1emeaningful\x2dooo/sponge\x1enickeb96/puffer\x2dfish\x1efranciscolourenco/done\x1ehalostatue/fish\x2dmise\x1ekenji\x2dmiyake/reload\x2efish\x1ejoseluisq/gitnow\x1epatrickf1/fzf\x2efish\x1efishingline/safe\x2drm\x1egivensuman/fish\x2dbat\x1egivensuman/fish\x2dbrew\x1egivensuman/fish\x2dzoxide\x1egivensuman/fish\x2dautovenv\x1egivensuman/fish\x2darchive\x1egivensuman/fish\x2dcopyutils\x1ecatppuccin/fish\x1egivensuman/fish\x2deza\x1egivensuman/fish\x2dripgrep\x1egivensuman/fish\x2dpeek
 SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR _hydro_git_116076:main\x20
+SETUVAR _hydro_git_116840:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_117912:main\x20
+SETUVAR _hydro_git_30744:main\x20\uf47f\x20\x20
+SETUVAR _hydro_git_40251:main\x20\uf47f\x20\x20\uf149\x2037\x20
+SETUVAR _hydro_git_51770:main\x20\uf148\x201\x20\uf149\x2037\x20
+SETUVAR _hydro_git_54746:main\x20\uf47f\x20\x20\uf148\x201\x20\uf149\x2037\x20
 SETUVAR fish_user_paths:/home/linuxbrew/\x2elinuxbrew
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2

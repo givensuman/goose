@@ -2,10 +2,6 @@
 Branch=stable
 IsRuntime=false
 
-[Flatpak Preinstall org.gnome.Boxes]
-Branch=stable
-IsRuntime=false
-
 [Flatpak Preinstall org.gnome.Calendar]
 Branch=stable
 IsRuntime=false

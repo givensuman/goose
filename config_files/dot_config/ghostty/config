@@ -8,7 +8,7 @@ mouse-hide-while-typing = true
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-background-opacity = 0.9
+# background-opacity = 0.9
 
 font-size = 12
 font-family = "JetBrainsMono Nerd Font"

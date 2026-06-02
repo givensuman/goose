@@ -34,11 +34,6 @@ utility_packages=(
   podlet
   podman-compose
   podman-remote
-  qemu-kvm     # KVM virtualization
-  libvirt      # Virtualization management
-  virt-manager # Virtual machine manager GUI
-  virt-viewer  # ""
-  virt-install # ""
 )
 
 log_info "Installing packages..."
@@ -50,6 +45,5 @@ enable_service containerd.service
 enable_service docker.service
 enable_service podman.socket
 enable_service podman-auto-update.timer
-enable_service libvirtd.service
 
 echo "::endgroup::"
