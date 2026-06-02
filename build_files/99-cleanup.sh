@@ -15,23 +15,13 @@ log_info "Initial disk usage:"
 du -sh /var 2>/dev/null | awk '{print "  /var: " $1}' || true
 du -sh /tmp 2>/dev/null | awk '{print "  /tmp: " $1}' || true
 
-# Disable COPRs and non-essential repos
-log_info "Disabling COPR repositories..."
-dnf5 -y copr disable ublue-os/staging || true
-dnf5 -y copr disable ublue-os/packages || true
+# Remove non-essential repo files from the image
+# These are not needed at runtime and would just bloat the image
+log_info "Removing COPR repository files..."
+rm -f /etc/yum.repos.d/_copr_ublue-os-*.repo /etc/yum.repos.d/_copr_*.repo 2>/dev/null || true
 
-log_info "Disabling RPM repositories..."
-disable_repo negativo17-fedora-multimedia || true
-disable_repo _copr_ublue-os-akmods || true
-disable_repo fedora-cisco-openh264 || true
-disable_repo terra || true
-disable_repo docker-ce || true
-disable_repo rpmfusion-nonfree-nvidia-driver || true
-disable_repo rpmfusion-nonfree-steam || true
-
-# Disable specific repos by editing repo files
-# directly as a fallback
-repos=(
+log_info "Removing non-essential repository files..."
+repos_to_remove=(
   docker-ce
   terra
   fedora-cisco-openh264
@@ -42,19 +32,12 @@ repos=(
   negativo17-fedora-multimedia
   negativo17-fedora-nvidia
   nvidia-container-toolkit
-  rpm-fusion-nonfree-nvidia-driver
-  rpm-fusion-nonfree-steam
+  rpmfusion-nonfree-nvidia-driver
+  rpmfusion-nonfree-steam
 )
 
-for repo in "${repos[@]}"; do
-  if [ -f "/etc/yum.repos.d/${repo}.repo" ]; then
-    sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/${repo}.repo"
-  fi
-done
-for repo in /etc/yum.repos.d/_copr*.repo; do
-  if [ -f "$repo" ]; then
-    sed -i 's@enabled=1@enabled=0@g' "$repo"
-  fi
+for repo in "${repos_to_remove[@]}"; do
+  rm -f "/etc/yum.repos.d/${repo}.repo" 2>/dev/null || true
 done
 
 # Clean up temporary files and caches
@@ -97,34 +80,38 @@ done
 log_info "Cleaning /var/log..."
 rm -rf /var/log/* 2>/dev/null || true
 
-# Selectively clean /var/cache
-log_info "Cleaning /var/cache..."
-for cachedir in /var/cache/*/; do
-  [ -d "$cachedir" ] || continue
-  dirname=$(basename "$cachedir")
-  if [ "$dirname" != "libdnf5" ] && [ "$dirname" != "rpm-ostree" ]; then
-    rm -rf "$cachedir"
-  fi
-done
+# Remove all /var/cache contents - cache mounts persist across builds
+log_info "Removing /var/cache..."
+rm -rf /var/cache/* 2>/dev/null || true
 
 log_info "Ensuring /var/tmp exists with correct permissions..."
 mkdir -p /var/tmp
 chmod 1777 /var/tmp
 
-# Cleanup extra kernel modules directories
+# Cleanup old kernel modules - keep the 2 most recent
 log_info "Cleaning up old kernel modules..."
-KERNEL_VERSION="$(dnf5 repoquery --installed --queryformat='%{evr}.%{arch}' kernel)"
-log_info "Current kernel version: ${KERNEL_VERSION}"
-
-for dir in /usr/lib/modules/*; do
-  [ ! -d "$dir" ] && continue
-
-  dirname=$(basename "$dir")
-  if [[ "$dirname" != "$KERNEL_VERSION" ]]; then
-    log_info "Removing old kernel modules: ${dirname}"
-    rm -rf "$dir"
-  fi
-done
+kernels=($(ls -1 /usr/lib/modules/ 2>/dev/null | sort -V || true))
+if [ ${#kernels[@]} -le 2 ]; then
+  log_info "Only ${#kernels[@]} kernel(s) found, no cleanup needed"
+else
+  # Keep the 2 newest, remove the rest
+  keep=("${kernels[@]: -2}")
+  for dir in /usr/lib/modules/*/; do
+    [ -d "$dir" ] || continue
+    dirname=$(basename "$dir")
+    keep_it=false
+    for k in "${keep[@]}"; do
+      if [ "$dirname" = "$k" ]; then
+        keep_it=true
+        break
+      fi
+    done
+    if [ "$keep_it" = false ]; then
+      log_info "Removing old kernel modules: ${dirname}"
+      rm -rf "$dir"
+    fi
+  done
+fi
 
 # Restore /tmp
 log_info "Restoring /tmp..."

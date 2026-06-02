@@ -1,7 +1,8 @@
 FROM scratch AS ctx
 COPY /build_files /build_files
 
-FROM ghcr.io/ublue-os/base-main:43 AS goose
+ARG BASE_IMAGE_TAG=43
+FROM ghcr.io/ublue-os/base-main:${BASE_IMAGE_TAG} AS goose
 COPY /system_files /
 
 # Build, cleanup, lint.

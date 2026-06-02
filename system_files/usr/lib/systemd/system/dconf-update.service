@@ -1,10 +1,12 @@
 [Unit]
 Description=Update dconf database
 After=local-fs.target
+ConditionPathExists=!/var/lib/dconf-update.done
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/dconf update
+ExecStartPost=/usr/bin/touch /var/lib/dconf-update.done
 RemainAfterExit=yes
 
 [Install]

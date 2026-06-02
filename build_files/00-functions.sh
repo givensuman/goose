@@ -254,9 +254,4 @@ in_container() {
   fi
 }
 
-# Export functions for use in subshells
-export -f log_info log_warn log_error
-export -f install_packages enable_service disable_service
-export -f package_installed add_repo enable_repo disable_repo
-export -f command_exists require_commands safe_mkdir download_file
-export -f in_container
+

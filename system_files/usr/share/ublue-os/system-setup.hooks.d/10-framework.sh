@@ -5,6 +5,11 @@ source /usr/lib/ublue/setup-services/libsetup.sh
 
 version-script framework system 2 || exit 0
 
+# Only run once - hardware doesn't change on a running system
+if [ -f /var/lib/framework-setup.done ]; then
+  exit 0
+fi
+
 set -x
 
 CPU_VENDOR=$(grep "vendor_id" "/proc/cpuinfo" | uniq | awk -F": " '{ print $2 }')
@@ -72,3 +77,5 @@ if [[ "$VEN_ID" == "Framework" && "$SYS_ID" == "Laptop 13 ("* ]]; then
     fi
   fi
 fi
+
+touch /var/lib/framework-setup.done

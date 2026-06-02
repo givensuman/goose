@@ -8,12 +8,13 @@ Documentation=man:flatpak-preinstall(1)
 
 [Service]
 Type=oneshot
-# ExecStart=/usr/bin/flatpak preinstall -y --ostree-verbose
 ExecStart=/usr/share/goose/flatpak-preinstall.sh
 ExecStartPost=/usr/bin/touch /var/lib/flatpak-preinstall.done
 RemainAfterExit=true
 Restart=on-failure
 RestartSec=30
+StartLimitBurst=3
+StartLimitIntervalSec=60
 
 [Install]
 WantedBy=multi-user.target

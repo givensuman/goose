@@ -5,7 +5,7 @@ source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: $(basename "$0")"
 
-set -eou pipefail
+set -euo pipefail
 trap 'log_error "Script failed at line $LINENO"' ERR
 
 safe_mkdir /etc/yum.repos.d
@@ -28,9 +28,16 @@ utility_packages=(
   podman-docker
 )
 
+font_packages=(
+  jetbrains-mono-fonts
+  inter-fonts
+  inter-variable-fonts
+)
+
 log_info "Installing packages..."
 install_packages "${core_packages[@]}"
 install_packages "${utility_packages[@]}"
+install_packages "${font_packages[@]}"
 
 log_info "Enabling services..."
 enable_service podman.socket

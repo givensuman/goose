@@ -27,6 +27,7 @@ env:
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
   IMAGE_BASENAME: "base"
   IMAGE_TAG: "${{ github.ref_name }}" # Overriden in generate-tags
+  BASE_IMAGE_TAG: "43"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -111,21 +112,31 @@ jobs:
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
 
-      # Build image using Buildah action
+      # Cache dnf packages across builds to speed up CI
+      - name: Cache dnf and rpm-ostree packages
+        uses: actions/cache@v4
+        with:
+          path: /tmp/buildah-cache
+          key: buildah-${{ runner.os }}-${{ hashFiles('build_files/01-packages.sh', 'build_files/02-desktop.sh', 'build_files/50-ublue.sh') }}
+
+      # Build image using Buildah with cache mounts
       - name: Build Image
         id: build_image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          containerfiles: |
-            ./Containerfile
-          image: ${{ env.IMAGE_NAME }}
-          tags: |
-            ${{ steps.generate-tags.outputs.TAGS }}
-          build-args: |
-            BASE_IMAGE_NAME=${{ env.IMAGE_BASENAME }}
-            IMAGE_TAG=${{ env.IMAGE_TAG }}
-          labels: ${{ steps.meta.outputs.labels }}
-          oci: false
+        shell: bash
+        run: |
+          mkdir -p /tmp/buildah-cache/libdnf5 /tmp/buildah-cache/rpm-ostree
+          TAG_ARGS=()
+          for tag in ${{ steps.generate-tags.outputs.TAGS }}; do
+            TAG_ARGS+=(--tag "${{ env.IMAGE_NAME }}:${tag}")
+          done
+          buildah build \
+            --build-arg BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} \
+            --volume /tmp/buildah-cache/libdnf5:/var/cache/libdnf5 \
+            --volume /tmp/buildah-cache/rpm-ostree:/var/cache/rpm-ostree \
+            "${TAG_ARGS[@]}" \
+            --label ${{ steps.meta.outputs.labels }} \
+            --format docker \
+            .
 
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12

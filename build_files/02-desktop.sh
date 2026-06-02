@@ -10,7 +10,10 @@ trap 'log_error "Script failed at line $LINENO"' ERR
 
 log_info "Enabling 'terra' repository"
 add_repo terra https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-enable_repo terra || log_error "Failed to enable 'terra' repository" && exit 1
+if ! enable_repo terra; then
+  log_error "Failed to enable 'terra' repository"
+  exit 1
+fi
 
 log_info "Installing COSMIC..."
 dnf5 -y install \
