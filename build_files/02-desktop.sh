@@ -46,8 +46,7 @@ dnf5 -y copr enable che/nerd-fonts
 
 font_packages=(
   jetbrains-mono-fonts
-  inter-fonts
-  inter-variable-fonts
+  rsms-inter-fonts
   nerd-fonts
 )
 

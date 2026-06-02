@@ -89,7 +89,7 @@ chmod 1777 /var/tmp
 
 # Cleanup old kernel modules - keep the 2 most recent
 log_info "Cleaning up old kernel modules..."
-kernels=($(ls -1 /usr/lib/modules/ 2>/dev/null | sort -V || true))
+mapfile -t kernels < <(find /usr/lib/modules/ -maxdepth 1 -mindepth 1 -printf '%P\n' 2>/dev/null | sort -V)
 if [ ${#kernels[@]} -le 2 ]; then
   log_info "Only ${#kernels[@]} kernel(s) found, no cleanup needed"
 else

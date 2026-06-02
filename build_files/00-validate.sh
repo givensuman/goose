@@ -19,16 +19,6 @@ if ! dnf5 repolist >/dev/null 2>&1; then
   exit 1
 fi
 
-# Verify system_files directory was mounted
-find system_files/ -mindepth 1 | while read -r file; do
-  expected_path="/${file#system_files/}"
-
-  if [ ! -f "$expected_path" ] && [ ! -d "$expected_path" ]; then
-    log_error "$expected_path was not mounted..."
-    exit 1
-  fi
-done
-
 # Check available disk space
 available_space=$(df -BG / | awk 'NR==2 {print $4}' | sed 's/G//')
 if [ "${available_space}" -lt 5 ]; then

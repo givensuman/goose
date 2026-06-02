@@ -4,31 +4,34 @@ default:
 
 # Check Just Syntax
 [group('Just')]
-check:
+just_check:
     #!/usr/bin/bash
+    set -euo pipefail
+
     find . -type f -name "*.just" | while read -r file; do
-    	echo "Checking syntax: $file"
     	just --unstable --fmt --check -f $file
     done
-    echo "Checking syntax: Justfile"
+
     just --unstable --fmt --check -f Justfile
 
 # Fix Just Syntax
 [group('Just')]
-fix:
+just_fix:
     #!/usr/bin/bash
+    set -euo pipefail
+
     find . -type f -name "*.just" | while read -r file; do
-    	echo "Checking syntax: $file"
     	just --unstable --fmt -f $file
     done
-    echo "Checking syntax: Justfile"
+
     just --unstable --fmt -f Justfile || { exit 1; }
 
 # Clean Repo
-[group('Utility')]
-clean:
+[group('Maintenance')]
+repo_clean:
     #!/usr/bin/bash
-    set -eoux pipefail
+    set -eou pipefail
+
     touch _build
     find *_build* -exec rm -rf {} \;
     rm -f previous.manifest.json
@@ -36,24 +39,12 @@ clean:
     rm -f output.env
     rm -f output/
 
-# Runs shell check on all Bash scripts
-[group('Utility')]
-lint:
-    #!/usr/bin/env bash
-    set -eoux pipefail
-    # Check if shellcheck is installed
-    if ! command -v shellcheck &> /dev/null; then
-        echo "shellcheck could not be found. Please install it."
-        exit 1
-    fi
-    # Run shellcheck on all Bash scripts
-    /usr/bin/find . -iname "*.sh" -type f -exec shellcheck "{}" ';'
-
 # Runs shfmt on all Bash scripts
-[group('Utility')]
-format:
+[group('Maintenance')]
+repo_format:
     #!/usr/bin/env bash
-    set -eoux pipefail
+    set -eou pipefail
+
     # Check if shfmt is installed
     if ! command -v shfmt &> /dev/null; then
         echo "shellcheck could not be found. Please install it."
@@ -62,13 +53,28 @@ format:
     # Run shfmt on all Bash scripts
     /usr/bin/find . -iname "*.sh" -type f -exec shfmt --write "{}" ';'
 
-# Build image locally using buildah, mirroring the CI workflow
+# Runs shell check on all Bash scripts
+[group('Maintenance')]
+repo_lint:
+    #!/usr/bin/env bash
+    set -eou pipefail
+
+    # Check if shellcheck is installed
+    if ! command -v shellcheck &> /dev/null; then
+        echo "shellcheck could not be found. Please install it."
+        exit 1
+    fi
+    # Run shellcheck on all Bash scripts
+    /usr/bin/find . -iname "*.sh" -type f -exec shellcheck "{}" ';'
+
+# Fix maintenance and just scripts, all at once
 [group('Utility')]
-build-ci $tag="dev":
+fix: just_fix repo_clean repo_format repo_lint
+
+# Build image locally
+[group('Utility')]
+build $tag="dev":
     #!/usr/bin/bash
-    set -eoux pipefail
-    buildah build \
-        --build-arg BASE_IMAGE_NAME=base \
-        --build-arg IMAGE_TAG="${tag}" \
-        --tag "goose:${tag}" \
-        .
+    set -eou pipefail
+
+    buildah build --tag "goose:{{ tag }}" .

@@ -253,5 +253,3 @@ in_container() {
     return 1
   fi
 }
-
-

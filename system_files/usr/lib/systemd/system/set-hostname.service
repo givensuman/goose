@@ -1,5 +1,5 @@
 [Unit]
-Description=Fix hostname
+Description=Set hostname
 After=local-fs.target
 ConditionFirstBoot=true
 
