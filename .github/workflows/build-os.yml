@@ -105,11 +105,11 @@ jobs:
           images: |
             ${{ env.IMAGE_NAME }}
 
-          labels: |
-            org.opencontainers.image.title=${{ env.IMAGE_NAME }}
-            org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
-          # io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/main/README.md
-          # io.artifacthub.package.logo-url=https://raw.githubusercontent.com/${{ github.repository }}/main/assets/goose.png
+          # labels: |
+          #  org.opencontainers.image.title=${{ env.IMAGE_NAME }}
+          #  org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
+          #  io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/main/README.md
+          #  io.artifacthub.package.logo-url=https://raw.githubusercontent.com/${{ github.repository }}/main/assets/goose.png
 
       # Cache dnf packages across builds to speed up CI
       - name: Cache dnf and rpm-ostree packages
@@ -132,7 +132,6 @@ jobs:
             --volume /tmp/buildah-cache/libdnf5:/var/cache/libdnf5 \
             --volume /tmp/buildah-cache/rpm-ostree:/var/cache/rpm-ostree \
             "${TAG_ARGS[@]}" \
-            --label ${{ steps.meta.outputs.labels }} \
             --format docker \
             .
 
