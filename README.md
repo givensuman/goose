@@ -38,17 +38,8 @@ A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/downl
 You can layer whatever core packages you like on top of this build. I recommend installing your favorite shell:
 
 ```bash
-ujust setup-fish
-# rpm-ostree install --apply-live fish
-# sudo usermod -s $(which fish) $USER
-```
-
-This is also a good time to set up rootless Docker, if you're into that sort of thing:
-
-```bash
-ujust setup-rootless-docker
-# sudo groupadd docker
-# sudo usermod -aG docker $USER
+rpm-ostree install --apply-live fish
+sudo usermod -s $(which fish) $USER
 ```
 
 And then get the rest of your software through the included app store or with `brew`:
