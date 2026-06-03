@@ -128,11 +128,16 @@ jobs:
           for tag in ${{ steps.generate-tags.outputs.TAGS }}; do
             TAG_ARGS+=(--tag "${{ env.IMAGE_NAME }}:${tag}")
           done
+          # Parse multi-line labels from metadata-action into separate --label args
+          LABEL_ARGS=()
+          while IFS= read -r label; do
+            [ -n "$label" ] && LABEL_ARGS+=(--label "$label")
+          done <<< "${{ steps.meta.outputs.labels }}"
           buildah build \
             --volume /tmp/buildah-cache/libdnf5:/var/cache/libdnf5 \
             --volume /tmp/buildah-cache/rpm-ostree:/var/cache/rpm-ostree \
             "${TAG_ARGS[@]}" \
-            --label ${{ steps.meta.outputs.labels }} \
+            "${LABEL_ARGS[@]}" \
             --format docker \
             .
 
