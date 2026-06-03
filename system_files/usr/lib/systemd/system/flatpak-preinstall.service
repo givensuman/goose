@@ -8,7 +8,7 @@ Documentation=man:flatpak-preinstall(1)
 
 [Service]
 Type=oneshot
-ExecStart=/usr/share/goose/flatpak-preinstall.sh
+ExecStart=/usr/libexec/flatpak-preinstall.sh
 ExecStartPost=/usr/bin/touch /var/lib/flatpak-preinstall.done
 RemainAfterExit=true
 Restart=on-failure
