@@ -42,13 +42,20 @@ desktop_packages=(
   gnome-disk-utility # Disk management utility
 )
 
-dnf5 -y copr enable che/nerd-fonts
-
 font_packages=(
-  jetbrains-mono-fonts
+  cascadia-code-fonts
+  fira-code-fonts
+  last-resort-fonts
   rsms-inter-fonts
-  nerd-fonts
 )
+
+(
+  cd /tmp \
+    && curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
+)
+
+mkdir -p /usr/share/fonts/jetbrains-mono-nerdfonts
+tar -xf /tmp/JetBrainsMono.tar.xz -C /usr/share/fonts/jetbrains-mono-nerdonts/
 
 log_info "Installing packages..."
 install_packages "${desktop_packages[@]}"
