@@ -55,7 +55,7 @@ font_packages=(
 )
 
 mkdir -p /usr/share/fonts/jetbrains-mono-nerdfonts
-tar -xf /tmp/JetBrainsMono.tar.xz -C /usr/share/fonts/jetbrains-mono-nerdonts/
+tar -xf /tmp/JetBrainsMono.tar.xz -C /usr/share/fonts/jetbrains-mono-nerdfonts/
 
 log_info "Installing packages..."
 install_packages "${desktop_packages[@]}"
