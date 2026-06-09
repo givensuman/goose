@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-# shellcheck disable=SC1091
 source "$(dirname "$0")/00-functions.sh"
 
 echo "::group:: $(basename "$0")"
@@ -17,7 +16,6 @@ core_packages=(
   wl-clipboard
   wayland-protocols-devel
   "@development-tools"
-  "@fonts"
   "@hardware-support"
 )
 
@@ -32,7 +30,7 @@ log_info "Installing packages..."
 install_packages "${core_packages[@]}"
 install_packages "${utility_packages[@]}"
 
-log_info "Enabling services..."
+log_info "Enabling podman socket..."
 enable_service podman.socket
 
 echo "::endgroup::"
