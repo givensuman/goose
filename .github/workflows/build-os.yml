@@ -10,7 +10,7 @@ on:
       - "Containerfile"
       - ".github/workflows/build-os.yml"
   schedule:
-    - cron: "05 10 * * *" # 10:05am UTC everyday
+    - cron: "05 10 * * *"
   push:
     branches:
       - main
@@ -25,8 +25,7 @@ on:
 env:
   IMAGE_NAME: "goose"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
-  IMAGE_BASENAME: "base"
-  IMAGE_TAG: "${{ github.ref_name }}" # Overriden in generate-tags
+  IMAGE_TAG: "${{ github.ref_name }}"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
@@ -46,7 +45,6 @@ jobs:
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@v1.3.1
 
-      # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
@@ -58,7 +56,6 @@ jobs:
           sudo apt-get update && sudo apt-get install -y shellcheck
           shellcheck build_files/*.sh || { echo "Shellcheck failed"; exit 1; }
 
-      # Generate additional build tags
       - name: Generate tags
         id: generate-tags
         shell: bash
@@ -86,39 +83,24 @@ jobs:
 
           echo "TAGS=${TAGS[*]}" >> $GITHUB_OUTPUT
 
-      # @echo version
-      - name: Get current version
-        id: labels
-        run: |
-          # Try to get version from base image, fallback to default if access fails
-          if version=$(skopeo inspect docker://ghcr.io/ublue-os/base:stable 2>/dev/null | jq -r '.Labels["org.opencontainers.image.version"]' 2>/dev/null); then
-            echo "VERSION=$version" >> $GITHUB_OUTPUT
-          else
-            echo "VERSION=unknown" >> $GITHUB_OUTPUT
-          fi
-
-      # Write metadata
       - name: Image Metadata
         uses: docker/metadata-action@v5
         id: meta
         with:
           images: |
             ${{ env.IMAGE_NAME }}
-
           labels: |
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
-            org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
+            org.opencontainers.image.description=Reference architecture for bootc-based immutable Linux images
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository }}/main/README.md
             io.artifacthub.package.logo-url=https://raw.githubusercontent.com/${{ github.repository }}/main/assets/goose.png
 
-      # Cache dnf packages across builds to speed up CI
       - name: Cache dnf and rpm-ostree packages
         uses: actions/cache@v4
         with:
           path: /tmp/buildah-cache
-          key: buildah-${{ runner.os }}-${{ hashFiles('build_files/01-packages.sh', 'build_files/02-desktop.sh', 'build_files/50-ublue.sh') }}
+          key: buildah-${{ runner.os }}-${{ hashFiles('build_files/02-packages.sh') }}
 
-      # Build image using Buildah with cache mounts
       - name: Build Image
         id: build_image
         shell: bash
@@ -128,7 +110,6 @@ jobs:
           for tag in ${{ steps.generate-tags.outputs.TAGS }}; do
             TAG_ARGS+=(--tag "${{ env.IMAGE_NAME }}:${tag}")
           done
-          # Parse multi-line labels from metadata-action into separate --label args
           LABEL_ARGS=()
           while IFS= read -r label; do
             [ -n "$label" ] && LABEL_ARGS+=(--label "$label")
@@ -141,8 +122,6 @@ jobs:
             --format docker \
             .
 
-      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
-      # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
         id: registry_case
         uses: ASzc/change-string-case-action@v6
@@ -156,7 +135,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Push the image to GHCR
       - name: Push To GHCR
         id: push
         run: |
@@ -166,7 +144,6 @@ jobs:
             echo "digest=$(podman inspect ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag} --format '{{.Digest}}')" >> $GITHUB_OUTPUT
           done
 
-      # Sign container
       - uses: sigstore/cosign-installer@v3.8.2
 
       - name: Write signing key to disk
