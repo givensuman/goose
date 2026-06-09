@@ -1,103 +1,64 @@
 ![goose logo](./assets/goose.png)
 
-## goose: Reference Architecture for bootc-based Linux Images
+## `goose`: given's open-source operating system environment
 
 ![build-os](https://img.shields.io/github/actions/workflow/status/givensuman/goose/build-os.yml?labelColor=purple)
 ![build-iso](https://img.shields.io/github/actions/workflow/status/givensuman/goose/build_iso.yml?label=build%20iso&labelColor=blue)
 
 ## About
 
-Goose is a reference architecture for building custom, immutable Linux operating system images using [bootc](https://github.com/containers/bootc) (bootable containers). It demonstrates how to assemble a production-quality OS image from raw Fedora components, independent of downstream distributions.
+This is a custom Linux build designed around Fedora's [Atomic Desktops](https://fedoraproject.org/atomic-desktops/) and built for [bootc](https://github.com/bootc-dev/bootc), as a community-driven adaptation of the [Universal Blue](https://universal-blue.org/) project. These systems are immutable by nature, which means users are actually gated from directly modifying the system, providing an incredibly secure form of interacting with the Linux platform.
 
-Built on [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/) technology, Goose is a container-native OS that is immutable by design — system updates are atomic container image pulls, not mutable package manager operations.
+## Installation
 
-## Architecture
-
-```
-fedora-bootc:stable
-  -> CachyOS kernel (performance-tuned)
-  -> Minimal core packages (git, podman, dev tooling)
-  -> Nix package manager (Determinate Systems)
-  -> Flatpak runtime
-  -> System services (auto-update, media mount, dconf)
-  -> Cosign-signed container image
-  -> GHCR distribution
-```
-
-### Key Components
-
-| Layer | Technology | Purpose |
-|---|---|---|
-| Base OS | fedora-bootc:stable | Immutable, atomic OS from upstream Fedora |
-| Kernel | CachyOS | Performance-tuned Linux kernel with scheduler optimizations |
-| Package Manager | Nix | Declarative, atomic user-space package management |
-| Containers | Podman | OCI-compatible container runtime with Docker compatibility |
-| Desktop Apps | Flatpak | Sandboxed, distribution-agnostic application runtime |
-| Image Security | Cosign | Container image signing and verification |
-| Updates | bootc + systemd timers | Atomic upgrades with rollback support |
-| Auto-mount | udev + udisks2 | Automatic removable media mounting |
-
-## Quick Start
-
-### Prerequisites
-
-- A Fedora Atomic Desktop installation (Silverblue, Kinoite, etc.)
-- `bootc` CLI
-- Root access
-
-### Build Locally
+Verify the image signature with `cosign`:
 
 ```bash
-just build
+cosign verify --key \
+https://github.com/givensuman/goose/raw/main/cosign.pub \
+ghcr.io/givensuman/goose:stable
 ```
 
-### Deploy
+You can download an ISO from the latest [GitHub Action Build Artifact](https://github.com/givensuman/goose-linux/actions/workflows/build_iso.yml). GitHub requires you be logged in to download.
+
+Alternatively, and preferably for most users, you can rebase from any Fedora
+Atomic image by running the following:
 
 ```bash
 sudo bootc switch --enforce-container-sigpolicy ghcr.io/givensuman/goose:stable
 ```
 
-### Customize
+A [base Fedora image](https://fedoraproject.org/atomic-desktops/silverblue/download)
+will have a smaller ISO size and give you a more reasonable point to rollback to
+in the future.
 
-Each build script in `build_files/` is independently includable. To customize:
+## Usage
 
-1. Fork the repository
-2. Modify or remove scripts in `build_files/` (see dependency graph in `docs/building.md`)
-3. Update your CI/CD registry in `.github/workflows/`
-4. Build and push
+You can layer whatever core packages you like on top of this build. I recommend
+installing your favorite shell:
 
-## Build Pipeline
-
-```
-Containerfile
-  -> build_files/00-validate.sh       # Validate build environment
-  -> build_files/01-kernel.sh         # Swap to CachyOS kernel
-  -> build_files/02-packages.sh       # Install core packages
-  -> build_files/03-nix.sh            # Install Nix
-  -> build_files/04-flatpaks.sh       # Register Flatpak remotes
-  -> build_files/05-systemd.sh        # Enable system services
-  -> build_files/06-automount.sh      # Configure udev auto-mount
-  -> build_files/07-update-services.sh # Setup update timers
-  -> build_files/08-opt-relocate.sh   # Immutable OS path fixes
-  -> build_files/98-verify.sh         # Verify build integrity
-  -> build_files/99-cleanup.sh        # Optimize image size
-  -> CI: cosign sign + push to GHCR
+```bash
+rpm-ostree install --apply-live fish
+sudo usermod -s $(which fish) $USER
 ```
 
-## Security
+And then get the rest of your software through `flatpak` or with `nix`:
 
-- **Image Signing**: All images are signed with cosign. Verify with:
-  ```bash
-  cosign verify --key https://github.com/givensuman/goose/raw/main/cosign.pub ghcr.io/givensuman/goose:stable
-  ```
-- **Secure Boot**: Supported via enrolled MOK key
-- **Supply Chain**: Builds are reproducible from source; all dependencies pinned
+```bash
+flatpak install flathub org.mozilla.firefox
+```
 
-## Documentation
+```bash
+nix-shell -p \
+  bat \
+  eza \
+  fd \
+  ripgrep \
+  zoxide
+```
 
-- [Architecture](docs/architecture.md) — Design decisions and rationale
-- [Building](docs/building.md) — Build and customization guide
-- [ADRs](docs/decisions/) — Architecture Decision Records
+![screnshot](./assets/screenshot.png)
+*goose running the COSMIC desktop*
 
 ## License
 

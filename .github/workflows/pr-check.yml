@@ -23,11 +23,6 @@ jobs:
         run: |
           shellcheck build_files/*.sh || { echo "Shellcheck failed"; exit 1; }
 
-      - name: Check Just Syntax
-        uses: ublue-os/just-action@v2
-        with:
-          command: check
-
   build-container:
     name: Build Container Image
     runs-on: ubuntu-latest

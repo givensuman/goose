@@ -1,19 +1,23 @@
-#!/usr/bin/bash
+#!//usr/bin/env bash
 set -euo pipefail
 
 echo "::group::01-kernel"
 
 echo "INFO: Adding CachyOS repository..."
-dnf5 -y install --nogpgcheck dnf-plugins-core
-dnf5 config-manager addrepo --from-repofile="https://mirror.cachyos.org/cachyos-fedora.repo"
+sudo dnf copr enable bieszczaders/kernel-cachyos
 rpm --import https://mirror.cachyos.org/cachyos-gpg.asc
 
 echo "INFO: Swapping stock kernel for CachyOS..."
-dnf5 -y swap kernel kernel-cachyos
+dnf5 -y install kernel-cachyos kernel-cachyos-devel-matched
 
-echo "INFO: Installing matching devel headers..."
-dnf5 -y install kernel-cachyos-devel-matched
+cat >/etc/kernel/postinst.d/99-default <<'EOF'
+#!/bin/sh
 
-grubby --default-kernel | grep -q cachyos && echo "INFO: CachyOS kernel is default"
+set -e
+
+grubby --set-default=/boot/$(ls /boot | grep vmlinuz.*cachy | sort -V | tail -1)
+EOF
+chown root:root /etc/kernel/postinst.d/99-default
+chmod u+rx /etc/kernel/postinst.d/99-default
 
 echo "::endgroup::"

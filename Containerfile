@@ -2,7 +2,7 @@ FROM scratch AS ctx
 COPY /build_files /build_files
 COPY /system_files /system_files
 
-FROM quay.io/fedora/fedora-bootc:stable AS goose
+FROM quay.io/fedora/fedora-bootc:45 AS goose
 
 COPY --from=ctx /build_files /build_files
 COPY --from=ctx /system_files /
