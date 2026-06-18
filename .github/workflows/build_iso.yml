@@ -9,6 +9,7 @@ on:
 
 env:
   IMAGE_NAME: "goose"
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
   IMAGE_TAG: "stable"
   MAJOR_VERSION: "43"
 
@@ -23,6 +24,7 @@ jobs:
       contents: read
       packages: write
       id-token: write
+      attestations: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -33,7 +35,7 @@ jobs:
         with:
           arch: x86_64
           image_name: ${{ env.IMAGE_NAME }}
-          image_repo: ghcr.io/givensuman
+          image_repo: ${{ env.IMAGE_REGISTRY }}
           variant: "base"
           version: ${{ env.MAJOR_VERSION }}
           image_tag: ${{ env.IMAGE_TAG }}
@@ -48,13 +50,28 @@ jobs:
         id: upload-directory
         shell: bash
         run: |
-          ISO_UPLOAD_DIR=${{ github.workspace }}/upload
-          mkdir ${ISO_UPLOAD_DIR}
-          mv ${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }} ${ISO_UPLOAD_DIR}
-          mv ${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }}-CHECKSUM ${ISO_UPLOAD_DIR}
-          echo "iso-upload-dir=${ISO_UPLOAD_DIR}" >> $GITHUB_OUTPUT
+          ISO_UPLOAD_DIR="${{ github.workspace }}/upload"
+          mkdir -p "${ISO_UPLOAD_DIR}"
+          mv "${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }}" "${ISO_UPLOAD_DIR}"
+          mv "${{ steps.build.outputs.iso_path }}/${{ steps.build.outputs.iso_name }}-CHECKSUM" "${ISO_UPLOAD_DIR}"
+          echo "iso-upload-dir=${ISO_UPLOAD_DIR}" >> "$GITHUB_OUTPUT"
 
-      - name: Upload ISOs and Checksum to Job Artifacts
+      - uses: sigstore/cosign-installer@v3.8.2
+
+      - name: Sign ISO (keyless)
+        shell: bash
+        run: |
+          cosign sign-blob --yes \
+            --output-signature ${{ steps.upload-directory.outputs.iso-upload-dir }}/${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}.iso.sig \
+            --output-certificate ${{ steps.upload-directory.outputs.iso-upload-dir }}/${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}.iso.cert \
+            ${{ steps.upload-directory.outputs.iso-upload-dir }}/${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}.iso
+
+      - name: Attest ISO build provenance
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: ${{ steps.upload-directory.outputs.iso-upload-dir }}/${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}.iso
+
+      - name: Upload ISOs, Checksum, and Signatures to Job Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.IMAGE_NAME }}-${{ env.IMAGE_TAG }}-${{ env.MAJOR_VERSION }}

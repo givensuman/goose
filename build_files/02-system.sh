@@ -23,6 +23,12 @@ systemctl enable podman.socket
 echo "INFO: Enabling udisks2..."
 systemctl enable udisks2.service
 
+echo "INFO: Enabling goose rollback-on-failure service..."
+systemctl enable goose-rollback-on-failure.service
+
+echo "INFO: Enabling goose boot-ok timer..."
+systemctl enable goose-boot-ok.timer
+
 echo "INFO: Setting up udev media automount..."
 mkdir -p /etc/udev/rules.d
 cat >/etc/udev/rules.d/99-media-automount.rules <<'EOF'

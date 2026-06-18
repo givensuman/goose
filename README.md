@@ -11,15 +11,27 @@ This is a custom Linux build designed around Fedora's [Atomic Desktops](https://
 
 ## Installation
 
-Verify the image signature with `cosign`:
+Verify the image signature with `cosign` (keyless):
 
 ```bash
-cosign verify --key \
-https://github.com/givensuman/goose/raw/main/cosign.pub \
-ghcr.io/givensuman/goose:stable
+cosign verify \
+  --certificate-identity-regexp '^https://github.com/givensuman/goose/.github/workflows/build-os.yml@refs/heads/main$' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  ghcr.io/givensuman/goose:stable
 ```
 
 You can download an ISO from the latest [GitHub Action Build Artifact](https://github.com/givensuman/goose-linux/actions/workflows/build_iso.yml). GitHub requires you be logged in to download.
+
+ISOs are signed with keyless Sigstore signatures. Download the matching `.sig` and `.cert` artifacts and verify with:
+
+```bash
+cosign verify-blob \
+  --certificate-identity-regexp '^https://github.com/givensuman/goose/.github/workflows/build_iso.yml@refs/heads/main$' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  --signature goose-stable.iso.sig \
+  --certificate goose-stable.iso.cert \
+  goose-stable.iso
+```
 
 Alternatively, and preferably for most users, you can rebase from any Fedora
 Atomic image by running the following:

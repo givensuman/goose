@@ -1,6 +1,11 @@
 # Artifact Hub repository metadata file
 # Used to become verified publisher and more - https://artifacthub.io/docs/topics/repositories/#verified-publisher
+
 repositoryID: ba7089b4-3f4e-4839-a43b-0556c1308db6
+name: goose
+displayName: goose
+description: given's own operating system experiment
+
 owners:
   - name: Given Suman
     email: givensuman@duck.com

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BOOT_FAILED="/var/lib/goose-boot-failed"
+
+if [[ "${EUID:-$(id -u)}" -ne 0 ]]; then
+  printf 'Error: this helper must be run as root.\n' >&2
+  exit 1
+fi
+
+mkdir -p "$(dirname "$BOOT_FAILED")"
+touch "$BOOT_FAILED"
+printf 'Boot marked as failed. Reboot to trigger rollback.\n'

@@ -33,6 +33,6 @@ fi
 
 echo "INFO: Committing ostree and linting..."
 ostree container commit
-bootc container lint || echo "WARNING: bootc lint reported issues"
+bootc container lint
 
 echo "::endgroup::"

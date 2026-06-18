@@ -1,0 +1,16 @@
+[Unit]
+Description=Rollback bootc deployment after a failed boot or update
+DefaultDependencies=no
+Before=default.target
+After=local-fs.target systemd-journald.service
+ConditionPathIsReadWrite=/var/lib
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/goose-rollback-on-failure.sh
+RemainAfterExit=yes
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

@@ -46,7 +46,7 @@ repo_format:
     set -eou pipefail
 
     if ! command -v shfmt &> /dev/null; then
-        echo "shellcheck could not be found. Please install it."
+        echo "shfmt could not be found. Please install it."
         exit 1
     fi
 
@@ -69,7 +69,37 @@ repo_lint:
 [group('Utility')]
 fix: just_fix repo_clean repo_format repo_lint
 
-# Run CI/CD locally
+# Build container image locally
+[group('CI')]
+build-container:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    podman build --tag localhost/goose:ci .
+
+# Scan local image for vulnerabilities
+[group('CI')]
+scan-image:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    if ! command -v trivy &> /dev/null; then
+        echo "trivy could not be found. Install it from https://github.com/aquasecurity/trivy"
+        exit 1
+    fi
+
+    trivy image --severity HIGH,CRITICAL --exit-code 1 localhost/goose:ci
+
+# Run all CI checks locally
+[group('CI')]
+run-ci:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    just just_check
+    just repo_lint
+    just build-container
+
+# Run CI/CD locally with act
 run:
     #!/usr/bin/env bash
     set -eou pipefail

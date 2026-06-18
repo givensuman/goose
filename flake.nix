@@ -30,6 +30,12 @@
               just
               pre-commit
               act
+              actionlint
+              trivy
+              cosign
+              syft
+              grype
+              git-cliff
             ];
           };
         }
@@ -40,7 +46,7 @@
         let
           pkgs = import nixpkgs { inherit system; };
         in
-        pkgs.nixfmt-rfc-style
+        pkgs.nixfmt
       );
     };
 }

@@ -23,6 +23,11 @@ jobs:
         run: |
           shellcheck build_files/*.sh || { echo "Shellcheck failed"; exit 1; }
 
+      - name: Check Just syntax
+        run: |
+          sudo apt-get install -y just
+          just just_check
+
   build-container:
     name: Build Container Image
     runs-on: ubuntu-latest
@@ -36,10 +41,6 @@ jobs:
       - name: Build Container
         run: |
           podman build --tag localhost/goose:pr-test .
-
-      - name: Inspect Image
-        run: |
-          podman inspect localhost/goose:pr-test
 
   summary:
     name: Summary

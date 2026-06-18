@@ -1,0 +1,9 @@
+[Unit]
+Description=Mark goose boot as successful after boot settles
+Requires=goose-boot-ok.service
+
+[Timer]
+OnBootSec=2m
+
+[Install]
+WantedBy=timers.target

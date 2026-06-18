@@ -1,16 +1,63 @@
 # Artifact Hub package metadata file
 # References:
 # https://github.com/artifacthub/hub/blob/master/docs/metadata/artifacthub-pkg.yml
-# https://artifacthub.io/docs/topics/repositories/keda-scalers/
-# https://github.com/kedacore/external-scalers/blob/main/artifacthub/azure-cosmos-db/0.1.0/artifacthub-pkg.yml
-# https://artifacthub.io/packages/keda-scaler/keda-official-external-scalers/external-scaler-azure-cosmos-db?modal=install
+# https://artifacthub.io/docs/topics/repositories/bootable-containers/
 
+version: 0.1.0
 name: goose
 displayName: goose
+createdAt: "2026-06-17T00:00:00Z"
 description: given's own operating system experiment
 logoURL: https://raw.githubusercontent.com/givensuman/goose/main/assets/goose.png
 license: Apache-2.0
 homeURL: https://github.com/givensuman/goose
+appVersion: "45"
+
+containersImages:
+  - name: bootc
+    image: ghcr.io/givensuman/goose:stable
+
+containsSecurityUpdates: false
+prerelease: false
+deprecated: false
+
+keywords:
+  - bootc
+  - bootable-container
+  - fedora
+  - atomic
+  - immutable
+  - linux
+  - cachyos
+  - nix
+  - cosmic
+
+links:
+  - name: Source
+    url: https://github.com/givensuman/goose
+  - name: Issues
+    url: https://github.com/givensuman/goose/issues
+  - name: Documentation
+    url: https://github.com/givensuman/goose/blob/main/README.md
+
+readme: https://github.com/givensuman/goose/blob/main/README.md.
+
+provider:
+  name: Given Suman
+
+screenshots:
+  - title: goose running the COSMIC desktop
+    url: https://raw.githubusercontent.com/givensuman/goose/main/assets/screenshot.png
+
+annotations:
+  io.artifacthub.package.readme-url: https://raw.githubusercontent.com/givensuman/goose/main/README.md
+  io.artifacthub.package.logo-url: https://raw.githubusercontent.com/givensuman/goose/main/assets/goose.png
+  io.artifacthub.package.keywords: bootc, fedora, atomic, immutable, linux, cachyos, nix, cosmic
+  io.artifacthub.package.license: Apache-2.0
+  io.artifacthub.package.maintainers: '[{"name":"Given Suman","email":"givensuman@duck.com"}]'
+  io.artifacthub.package.contains-security-updates: "false"
+  io.artifacthub.package.prerelease: "false"
+
 maintainers:
   - name: Given Suman
     email: givensuman@duck.com

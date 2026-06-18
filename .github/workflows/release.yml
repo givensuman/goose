@@ -1,0 +1,93 @@
+---
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., v1.2.3). Defaults to the current tag or short SHA."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  packages: read
+
+concurrency:
+  group: release
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install git-cliff
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain stable
+          . "$HOME/.cargo/env"
+          cargo install git-cliff
+
+      - name: Determine version
+        id: version
+        run: |
+          if [[ -n "${{ inputs.version }}" ]]; then
+            version="${{ inputs.version }}"
+          elif [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            version="${GITHUB_REF_NAME}"
+          else
+            version="${GITHUB_SHA::7}"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          . "$HOME/.cargo/env"
+          git cliff --config cliff.toml --latest --strip all > RELEASE_NOTES.md
+          git cliff --config cliff.toml --strip all --output CHANGELOG.md
+
+      - name: Update CHANGELOG.md
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet CHANGELOG.md; then
+            echo "No CHANGELOG.md changes to commit"
+          else
+            git add CHANGELOG.md
+            git commit -m "docs: update CHANGELOG.md for ${{ steps.version.outputs.version }}"
+            git push
+          fi
+
+      - name: Compose release body
+        id: body
+        run: |
+          image="ghcr.io/${{ github.repository_owner }}/goose:${{ steps.version.outputs.version }}"
+          {
+            cat RELEASE_NOTES.md
+            echo ""
+            echo "## Artifacts"
+            echo ""
+            echo "- Container image: \`${image}\`"
+            echo "- Image build workflow: <https://github.com/${{ github.repository }}/actions/workflows/build-os.yml>"
+            echo "- ISO build workflow: <https://github.com/${{ github.repository }}/actions/workflows/build_iso.yml>"
+            echo ""
+            echo "Image digests, ISO checksums, and any SBOMs are produced by the build workflows linked above."
+          } > RELEASE_BODY.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.version.outputs.version }}
+          body_path: RELEASE_BODY.md
+          generate_release_notes: false
+          fail_on_unmatched_files: false
