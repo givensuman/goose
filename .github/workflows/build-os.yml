@@ -143,13 +143,14 @@ jobs:
       - name: Push To GHCR
         id: push
         run: |
-          DIGEST=""
+          DIGEST_FILE=/tmp/manifest-digest.txt
           for tag in ${{ steps.generate-tags.outputs.TAGS }}; do
-            DIGEST=$(buildah manifest push --all \
+            buildah manifest push --all \
+              --digestfile "${DIGEST_FILE}" \
               ${{ env.IMAGE_NAME }}:manifest-${{ github.run_id }} \
-              docker://${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag})
+              docker://${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag}
           done
-          echo "digest=${DIGEST}" >> "$GITHUB_OUTPUT"
+          echo "digest=$(cat "${DIGEST_FILE}")" >> "$GITHUB_OUTPUT"
 
       - uses: sigstore/cosign-installer@v3.8.2
 
@@ -157,20 +158,6 @@ jobs:
         run: |
           cosign sign --yes \
             ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
-      - name: Generate SBOM
-        uses: anchore/sbom-action@v0
-        with:
-          image: ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
-          artifact-name: goose-sbom.spdx.json
-          output-file: /tmp/goose-sbom.spdx.json
-
-      - name: Upload SBOM
-        uses: actions/upload-artifact@v4
-        with:
-          name: goose-sbom
-          path: /tmp/goose-sbom.spdx.json
-          if-no-files-found: error
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@v1

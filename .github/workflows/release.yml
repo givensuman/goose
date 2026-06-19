@@ -81,7 +81,7 @@ jobs:
             echo "- Image build workflow: <https://github.com/${{ github.repository }}/actions/workflows/build-os.yml>"
             echo "- ISO build workflow: <https://github.com/${{ github.repository }}/actions/workflows/build_iso.yml>"
             echo ""
-            echo "Image digests, ISO checksums, and any SBOMs are produced by the build workflows linked above."
+            echo "Image digests are produced by the build workflows linked above."
           } > RELEASE_BODY.md
 
       - name: Create GitHub Release
