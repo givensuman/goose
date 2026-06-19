@@ -1,5 +1,5 @@
 ---
-name: "build goose linux iso file"
+name: "build goose iso file"
 on:
   pull_request:
     branches:

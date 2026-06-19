@@ -11,7 +11,7 @@ This is a custom Linux build designed around Fedora's [Atomic Desktops](https://
 
 ## Installation
 
-Verify the image signature with `cosign` (keyless):
+Verify the image signature with `cosign`:
 
 ```bash
 cosign verify \
@@ -20,7 +20,7 @@ cosign verify \
   ghcr.io/givensuman/goose:stable
 ```
 
-You can download an ISO from the latest [GitHub Action Build Artifact](https://github.com/givensuman/goose-linux/actions/workflows/build_iso.yml). GitHub requires you be logged in to download.
+You can download an ISO from the latest [GitHub Action Build Artifact](https://github.com/givensuman/goose/actions/workflows/build_iso.yml). GitHub requires you be logged in to download.
 
 ISOs are signed with keyless Sigstore signatures. Download the matching `.sig` and `.cert` artifacts and verify with:
 
