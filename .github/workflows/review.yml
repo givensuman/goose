@@ -28,7 +28,28 @@ jobs:
           sudo apt-get install -y just
           just just_check
 
-  build-container:
+  review:
+    name: Run Security and Dependency Review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: TruffleHog Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: "${{ github.event.repository.default_branch }}"
+          head: HEAD
+          extra_args: --only-verified
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          comment-summary-in-pr: true
+
+  build:
     name: Build Container Image
     runs-on: ubuntu-latest
     permissions:
@@ -45,14 +66,14 @@ jobs:
   summary:
     name: Summary
     runs-on: ubuntu-latest
-    needs: [lint, build-container]
+    needs: [lint, review, build]
     if: always()
     steps:
       - name: Check Results
         run: |
           if [ "${{ needs.lint.result }}" != "success" ] || \
-             [ "${{ needs.build-container.result }}" != "success" ]; then
+             [ "${{ needs.build.result }}" != "success" ] || \
+             [ "${{ needs.review.result }}" != "success" ]; then
             echo "Some checks failed"
             exit 1
           fi
-          echo "All checks passed!"

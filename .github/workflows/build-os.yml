@@ -39,6 +39,7 @@ jobs:
     continue-on-error: false
     permissions:
       contents: read
+      security-events: read
       packages: write
       id-token: write
       attestations: write
@@ -175,8 +176,8 @@ jobs:
         uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
-          format: sarif
-          output: trivy-results.sarif
+          format: 'sarif'
+          output: 'trivy-results.sarif'
           severity: HIGH,CRITICAL
           exit-code: 0
 
@@ -184,7 +185,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: trivy-results.sarif
+          sarif_file: 'trivy-results.sarif'
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@v1
