@@ -153,10 +153,10 @@ jobs:
 
       - uses: sigstore/cosign-installer@v3.8.2
 
-      - name: Sign container image (keyless)
+      - name: Sign container image
         run: |
           cosign sign --yes \
-            ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}@${{ steps.push.outputs.digest }}
+            ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
