@@ -76,19 +76,6 @@ build-container:
     set -euo pipefail
     podman build --tag localhost/goose:ci .
 
-# Scan local image for vulnerabilities
-[group('CI')]
-scan-image:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    if ! command -v trivy &> /dev/null; then
-        echo "trivy could not be found. Install it from https://github.com/aquasecurity/trivy"
-        exit 1
-    fi
-
-    trivy image --severity HIGH,CRITICAL --exit-code 1 localhost/goose:ci
-
 # Run all CI checks locally
 [group('CI')]
 run-ci:

@@ -31,7 +31,6 @@
               pre-commit
               act
               actionlint
-              trivy
               cosign
               syft
               grype
