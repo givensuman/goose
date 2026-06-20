@@ -3,7 +3,7 @@
 ## `goose`: given's open-source operating system environment
 
 ![build-os](https://img.shields.io/github/actions/workflow/status/givensuman/goose/build-os.yml?labelColor=purple)
-![build-iso](https://img.shields.io/github/actions/workflow/status/givensuman/goose/build_iso.yml?label=build%20iso&labelColor=blue)
+![build-iso](https://img.shields.io/github/actions/workflow/status/givensuman/goose/build-iso.yml?label=build%20iso&labelColor=blue)
 
 ## About
 
