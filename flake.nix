@@ -14,6 +14,7 @@
     stylix.url = "github:nix-community/stylix";
     catppuccin.url = "github:catppuccin/nix";
     wsl.url = "github:nix-community/NixOS-WSL";
+    fish-plugins.url = "github:givensuman/nix-fish-plugins";
   };
 
   outputs =
