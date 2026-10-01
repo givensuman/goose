@@ -6,6 +6,7 @@
   imports = [
     ./helix.nix
     ./neovim.nix
+    ./vscode.nix
   ];
 
   programs.direnv = {

@@ -15,11 +15,14 @@ _go-sudo:
 [group('util')]
 _validate-hostname HOSTNAME:
     #!/usr/bin/env bash
-    if [[ ! "{{ HOSTNAME }}" =~ ^(laptop|wsl)$ ]]; then
-        echo "Error: Invalid hostname '{{ HOSTNAME }}'"
-        echo "Valid options are:"
-        printf "\tlaptop\n"
-        printf "\twsl\n"
+    HOST_DIR="./hosts/{{ HOSTNAME }}"
+    if [[ ! -d "$HOST_DIR" ]]; then
+        echo "Error: No host configuration found for '{{ HOSTNAME }}'"
+        echo "Available hosts:"
+        for d in hosts/*/; do
+            host=$(basename "$d")
+            [[ -f "$d/stow_targets" ]] && printf "\t%s\n" "$host"
+        done
         exit 1
     fi
 
