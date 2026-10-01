@@ -48,6 +48,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    firefox # WSL supports GUIs :pogchamp:
+    firefox # WSL supports Wayland GUIs :pogchamp:
   ];
 }
