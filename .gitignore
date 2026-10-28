@@ -1,7 +1,6 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
-result
-result-*
-**/.nixos-test-history
-
-stow/fish/.config/fish/fish_variables
-stow/gh/.config/gh/hosts.yml
+cosign.key
+_build_*
+output
+_build-*/**
+*_chunkah_*
+*_rpm-ostree_*

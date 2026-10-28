@@ -1,0 +1,16 @@
+[Unit]
+Description=Install Flatpak applications and global overrides
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=!/var/lib/flatpak/.given-preinstall-done
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+ExecStart=/usr/bin/flatpak preinstall -y --system
+ExecStart=/usr/bin/flatpak override --system --socket=wayland --nosocket=x11 --nosocket=fallback-x11 --filesystem=xdg-config/gtk-3.0:ro --filesystem=xdg-config/gtk-4.0:ro --env=GDK_SCALE=1 --env=QT_SCALE_FACTOR=1 --env=GDK_BACKEND=wayland --env=QT_QPA_PLATFORM=wayland --env=ELECTRON_OZONE_PLATFORM_HINT=auto
+ExecStart=/usr/bin/touch /var/lib/flatpak/.given-preinstall-done
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

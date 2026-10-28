@@ -1,0 +1,13 @@
+gui:
+  theme:
+    activeBorderColor:
+      - '#89b4fa'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    selectedLineBgColor:
+      - '#313244'
+keybinding:
+  universal:
+    scrollUpMain: '<c-b>'
+    scrollDownMain: '<c-f>'
