@@ -1,11 +1,8 @@
-#!/bin/bash
-set -euxo pipefail
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 cp -avf /ctx/system_files/. /
-
-# /root is a symlink to /var/roothome, which does not exist in the base image.
-# Create it so HOME-relative caches (cargo/npm/code) can be created and cleaned.
-mkdir -p /var/roothome
 
 dnf5 install -y \
   "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
