@@ -17,6 +17,11 @@ alias run-vm := run-vm-qcow2
 default:
     @just --list
 
+build_local:
+	#!/usr/bin/env bash
+	podman build -t localhost/goose .
+	bootc switch --transport containers-storage localhost/goose
+
 # Check Just Syntax
 [group('Just')]
 check:

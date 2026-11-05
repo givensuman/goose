@@ -1,0 +1,11 @@
+[Unit]
+Description=Initialize dotfiles
+# This service will not execute for a user with an existing chezmoi directory
+ConditionPathExists=!%h/.local/share/chezmoi/.git/
+
+[Service]
+ExecStart=/usr/bin/chezmoi init --apply github.com/givensuman/goose
+Type=oneshot
+
+[Install]
+WantedBy=default.target

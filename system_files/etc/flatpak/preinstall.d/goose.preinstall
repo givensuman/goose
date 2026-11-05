@@ -1,0 +1,38 @@
+[Flatpak Preinstall org.mozilla.firefox]
+Branch=stable
+
+[Flatpak Preinstall io.podman_desktop.PodmanDesktop]
+Branch=stable
+
+[Flatpak Preinstall com.spotify.Client]
+Branch=stable
+
+[Flatpak Preinstall io.github.milkshiift.GoofCord]
+Branch=stable
+
+[Flatpak Preinstall de.haeckerfelix.Fragments]
+Branch=stable
+
+[Flatpak Preinstall org.nickvision.tubeconverter]
+Branch=stable
+
+[Flatpak Preinstall com.obsproject.Studio]
+Branch=stable
+
+[Flatpak Preinstall org.kde.kdenlive]
+Branch=stable
+
+[Flatpak Preinstall org.blender.Blender]
+Branch=stable
+
+[Flatpak Preinstall org.inkscape.Inkscape]
+Branch=stable
+
+[Flatpak Preinstall org.gimp.GIMP]
+Branch=stable
+
+[Flatpak Preinstall org.localsend.localsend_app]
+Branch=stable
+
+[Flatpak Preinstall org.freecad.FreeCAD]
+Branch=stable

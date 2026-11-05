@@ -1,46 +1,14 @@
-[Flatpak Preinstall io.podman_desktop.PodmanDesktop]
+[Flatpak Preinstall org.freedesktop.Platform/x86_64/25.08]
+Branch=stable
+IsRuntime=true
+
+[Flatpak Preinstall org.gtk.Gtk3theme.adw-gtk3]
 Branch=stable
 
-[Flatpak Preinstall com.spotify.Client]
+[Flatpak Preinstall org.gtk.Gtk3theme.adw-gtk3-dark]
 Branch=stable
 
-[Flatpak Preinstall io.github.milkshiift.GoofCord]
-Branch=stable
-
-[Flatpak Preinstall de.haeckerfelix.Fragments]
-Branch=stable
-
-[Flatpak Preinstall org.nickvision.tubeconverter]
-Branch=stable
-
-[Flatpak Preinstall com.obsproject.Studio]
-Branch=stable
-
-[Flatpak Preinstall org.kde.kdenlive]
-Branch=stable
-
-[Flatpak Preinstall org.blender.Blender]
-Branch=stable
-
-[Flatpak Preinstall org.inkscape.Inkscape]
-Branch=stable
-
-[Flatpak Preinstall org.gimp.GIMP]
-Branch=stable
-
-[Flatpak Preinstall org.localsend.localsend_app]
-Branch=stable
-
-[Flatpak Preinstall org.freecad.FreeCAD]
-Branch=stable
-
-[Flatpak Preinstall com.github.tchx84.Flatseal]
-Branch=stable
-
-[Flatpak Preinstall io.github.flattool.Warehouse]
-Branch=stable
-
-[Flatpak Preinstall io.github.flattool.Ignition]
+[Flatpak Preinstall io.github.kolunmi.Bazaar]
 Branch=stable
 
 [Flatpak Preinstall org.gnome.baobab]
