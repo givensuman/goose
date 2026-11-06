@@ -1,3 +1,10 @@
+#!/usr/bin/env bash
+
+echo "::group:: ===$(basename "$0")==="
+set -euo pipefail
+
+dnf5 -y install dnf-utils dnf-plugins-core
+
 dnf5 install -y \
   "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
   "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
@@ -12,12 +19,17 @@ CLI_PACKAGES=(
     fish
     neovim
     mise
+    chezmoi
     bat
     bat-extras
+    bottom
     eza
     fzf
     fd
+    lazygit
+    opencode
     ripgrep
+    zoxide
 )
 
 GUI_PACKAGES=(
@@ -30,3 +42,5 @@ packages=(
 )
 
 dnf5 install -y ${packages[@]}
+
+echo "::endgroup::"

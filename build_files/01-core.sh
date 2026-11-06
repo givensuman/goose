@@ -3,9 +3,8 @@
 echo "::group:: ===$(basename "$0")==="
 set -eou pipefail
 
-# Make Samba usershares work OOTB
 mkdir -p /var/lib/samba/usershares
-chown -R root:usershares /var/lib/samba/usershares
+# chown -R root:usershares /var/lib/samba/usershares
 firewall-offline-cmd --service=samba --service=samba-client
 setsebool -P samba_enable_home_dirs=1
 setsebool -P samba_export_all_ro=1
@@ -139,38 +138,40 @@ dnf -y install \
   --setopt=install_weak_deps=False \
   --enablerepo='fedora-multimedia' "${PACKAGES[@]}"
 
-COPR_UBLUE_OS_PACKAGES=(
-    kcm_ublue
-    krunner-bazaar
-    oversteer-udev
-    # https://github.com/ublue-os/akmods/issues/537
-    ublue-os-selinux-workarounds
-)
+# Covered by usage of ublue-os/base-main
+# COPR_UBLUE_OS_PACKAGES=(
+#     kcm_ublue
+#     krunner-bazaar
+#     oversteer-udev
+# )
 
-TERRA_PACKAGES=(
-  uupd
-  game-devices-udev
-)
+# dnf copr enable ublue-os/packages
+# dnf -y install "${COPR_UBLUE_OS_PACKAGES[@]}"
 
-COPR_PREFIX="copr:copr.fedorainfracloud.org"
+# TERRA_PACKAGES=(
+#   uupd
+#   game-devices-udev
+# )
 
-dnf -y install --from-repo="${COPR_PREFIX}:ublue-os:packages" "${COPR_UBLUE_OS_PACKAGES[@]}"
+# dnf5 install -y --nogpgcheck \
+#   --repofrompath "terra,https://repos.fyralabs.com/terra\$releasever" \
+#   terra-release
 
-# Packages to exclude - common to all versions
+# dnf -y install "${TERRA_PACKAGES[@]}"
+
 EXCLUDED_PACKAGES=(
     akonadi-server{,-mysql}
     fedora-bookmarks
     fedora-chromium-config{,-kde}
     fedora-third-party
-    firefox
     firewall-config
     kcharselect
     khelpcenter
     krfb{,-libs}
-    plasma-discover{,-libs}
-    plasma-welcome-fedora
     # https://github.com/ublue-os/aurora/issues/3066
     xwaylandvideobridge
 )
 
 dnf -y remove "${EXCLUDED_PACKAGES[@]}"
+
+echo "::endgroup::"
