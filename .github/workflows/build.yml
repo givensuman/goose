@@ -82,7 +82,9 @@ jobs:
 
           # Append matching timestamp tags to keep a version history
           for TAG in "${BUILD_TAGS[@]}"; do
-              BUILD_TAGS+=("${TAG}-${TIMESTAMP}")
+              if [[ ! -z "$TAG" ]]; then
+                BUILD_TAGS+=("${TAG}-${TIMESTAMP}")
+              fi
           done
 
           BUILD_TAGS+=("${TIMESTAMP}")
