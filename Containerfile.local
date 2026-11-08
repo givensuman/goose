@@ -1,12 +1,15 @@
-FROM ghcr.io/givensuman/goose:latest
+# A thin layer on top of the published image, for quick local iteration.
+# Built and switched to by `just switch`; see Justfile.
+ARG BASE="ghcr.io/givensuman/goose:latest"
 
-RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+FROM ${BASE}
+
+COPY local/files /
+
+RUN --mount=type=bind,source=local/build.sh,target=/ctx/build.sh \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    exec """
-    echo Building...
-    """
+    /bin/bash /ctx/build.sh
 
 RUN bootc container lint
-

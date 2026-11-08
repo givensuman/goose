@@ -1,18 +1,24 @@
-FROM ghcr.io/ublue-os/base-main:latest
+ARG BASE_IMAGE="ghcr.io/ublue-os/base-main"
+ARG BASE_TAG="latest"
 
-COPY build_files /build_files
+# Build context is mounted rather than copied so it never lands in the final image.
+FROM scratch AS ctx
+COPY build_files /
+
+FROM ${BASE_IMAGE}:${BASE_TAG}
+
 COPY system_files /
 
 # base-main symlinks /opt to /var/opt; Chromium applications need an immutable /opt.
-RUN rm /opt && mkdir /opt
+RUN rm -f /opt && mkdir /opt
 
-RUN --mount=type=cache,dst=/var/cache \
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /bin/bash -c 'for script in /build_files/*; do \
-        if [[ -f "$script" ]]; then \
-            /bin/bash "$script" || exit 1; \
-        fi; \
-    done'
+    for script in /ctx/*.sh; do \
+        echo "Running ${script}"; \
+        /bin/bash "${script}" || exit 1; \
+    done
 
 RUN bootc container lint

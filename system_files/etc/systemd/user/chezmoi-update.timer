@@ -1,0 +1,9 @@
+[Unit]
+Description=Update dotfiles daily
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=timers.target

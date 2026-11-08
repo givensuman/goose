@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize dotfiles
+Wants=network-online.target
+After=network-online.target
+# Skip for users that already have a chezmoi source directory
+ConditionPathExists=!%h/.local/share/chezmoi/.git
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/chezmoi init --apply --no-tty github.com/givensuman/goose
+
+[Install]
+WantedBy=default.target

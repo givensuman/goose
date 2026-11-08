@@ -1,5 +1,5 @@
-[Flatpak Preinstall org.freedesktop.Platform/x86_64/25.08]
-Branch=stable
+[Flatpak Preinstall org.freedesktop.Platform]
+Branch=25.08
 IsRuntime=true
 
 [Flatpak Preinstall org.gtk.Gtk3theme.adw-gtk3]

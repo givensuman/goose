@@ -1,6 +1,0 @@
-[Unit]
-Description=Update dotfiles
-
-[Service]
-ExecStart=/usr/bin/chezmoi update
-Type=oneshot

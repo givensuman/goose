@@ -4,7 +4,7 @@ echo "::group:: ===$(basename "$0")==="
 set -euo pipefail
 
 systemctl enable flatpak-preinstall.service
-systemctl enable chezmoi-init.service
-systemctl enable chezmoi-update.service
+systemctl --global enable chezmoi-init.service
+systemctl --global enable chezmoi-update.timer
 
 echo "::endgroup::"

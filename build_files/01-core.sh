@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "::group:: ===$(basename "$0")==="
-set -eou pipefail
+set -euo pipefail
 
 mkdir -p /var/lib/samba/usershares
 # chown -R root:usershares /var/lib/samba/usershares
