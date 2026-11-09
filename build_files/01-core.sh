@@ -145,19 +145,19 @@ dnf -y install \
 #     oversteer-udev
 # )
 
-# dnf copr enable ublue-os/packages
-# dnf -y install "${COPR_UBLUE_OS_PACKAGES[@]}"
+dnf copr enable ublue-os/packages
+dnf -y install "${COPR_UBLUE_OS_PACKAGES[@]}"
 
-# TERRA_PACKAGES=(
-#   uupd
-#   game-devices-udev
-# )
+TERRA_PACKAGES=(
+  uupd
+  game-devices-udev
+)
 
-# dnf5 install -y --nogpgcheck \
-#   --repofrompath "terra,https://repos.fyralabs.com/terra\$releasever" \
-#   terra-release
+dnf5 install -y --nogpgcheck \
+  --repofrompath "terra,https://repos.fyralabs.com/terra\$releasever" \
+  terra-release
 
-# dnf -y install "${TERRA_PACKAGES[@]}"
+dnf -y install "${TERRA_PACKAGES[@]}"
 
 EXCLUDED_PACKAGES=(
     akonadi-server{,-mysql}

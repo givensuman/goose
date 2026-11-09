@@ -4,12 +4,14 @@ ARG BASE="ghcr.io/givensuman/goose:latest"
 
 FROM ${BASE}
 
-COPY local/files /
+COPY local_files /
 
 RUN --mount=type=bind,source=local/build.sh,target=/ctx/build.sh \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /bin/bash /ctx/build.sh
+    /bin/bash -c "\
+    echo 'Building'...\
+    "
 
 RUN bootc container lint
