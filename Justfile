@@ -19,9 +19,9 @@ build tag=tag:
 switch tag=tag: (build tag)
     sudo bootc switch --transport containers-storage {{ local }}:{{ tag }}
 
-# Build the full image from Containerfile, without the remote (slow; for testing CI changes)
-build-full:
-    podman build --pull=newer -t localhost/goose-full .
+# Build an image from Containerfile, without the remote (slow; for testing CI changes)
+build-full target="goose":
+    podman build --pull=newer --target {{ target }} -t localhost/{{ target }}-full .
 
 # Apply dotfiles with chezmoi
 dotfiles source="https://github.com/givensuman/goose":

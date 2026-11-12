@@ -16,7 +16,6 @@ dnf5 install -y --nogpgcheck \
 dnf5 -y copr enable awood/bat-extras
 
 CLI_PACKAGES=(
-  age
   neovim
   mise
   chezmoi

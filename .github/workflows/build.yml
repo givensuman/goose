@@ -21,7 +21,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  MY_IMAGE_NAME: "goose"
   BASE_IMAGE: "ghcr.io/ublue-os/base-main"
   BASE_TAG: "latest"
   ARG_IMAGE_TAG: "${{ github.ref_name }}"
@@ -31,6 +30,14 @@ jobs:
     name: Build and push image
     runs-on: ubuntu-24.04
     continue-on-error: false
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: goosex
+            description: "given's own operating system experiment with Nix"
+          - image: goose
+            description: "given's own operating system experiment"
     permissions:
       contents: read
       packages: write
@@ -100,7 +107,7 @@ jobs:
               done
 
               alias_tags=("${TESTING_TAGS[@]}")
- 
+
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
               echo "Generated the following commit tags: "
               for TAG in "${COMMIT_TAGS[@]}"; do
@@ -122,7 +129,7 @@ jobs:
           {
               echo "tags<<EOF"
               for TAG in "${alias_tags[@]}"; do
-                  echo "${REGISTRY}/${{ env.MY_IMAGE_NAME }}:${TAG}"
+                  echo "${REGISTRY}/${{ matrix.image }}:${TAG}"
               done
               echo "EOF"
           } >> "$GITHUB_OUTPUT"
@@ -139,13 +146,13 @@ jobs:
         id: meta
         with:
           images: |
-            ${{ env.MY_IMAGE_NAME }}
+            ${{ matrix.image }}
 
           labels: |
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/${{ github.repository }}/main/README.md
             io.artifacthub.package.logo-url=https://raw.githubusercontent.com/${{ github.repository }}/main/assets/logo.jpg
-            org.opencontainers.image.description=given's own operating system experiment
-            org.opencontainers.image.title=${{ env.MY_IMAGE_NAME }}
+            org.opencontainers.image.description=${{ matrix.description }}
+            org.opencontainers.image.title=${{ matrix.image }}
             org.opencontainers.image.version=${{ steps.labels.outputs.VERSION }}
 
       - uses: docker/setup-buildx-action@v3
@@ -158,22 +165,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Layers are cached in the GitHub Actions cache, so unchanged
-      # build_files/system_files make re-runs near-instant.
       - name: Build and push image
         id: build_push
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Containerfile
+          target: ${{ matrix.image }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.generate-tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             BASE_IMAGE=${{ env.BASE_IMAGE }}
             BASE_TAG=${{ env.BASE_TAG }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}
 
       - uses: sigstore/cosign-installer@v3.8.2
         if: github.event_name != 'pull_request'

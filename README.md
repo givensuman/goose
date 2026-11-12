@@ -13,6 +13,29 @@ systemctl reboot
 
 Images are signed with [cosign](cosign.pub).
 
+## goosex
+
+A minimal sibling image: `ublue-os/base-main` plus Nix, with no desktop or personalization. goose is built on top of it.
+
+```bash
+sudo bootc switch ghcr.io/givensuman/goosex:stable
+```
+
+## Nix
+
+Both images ship Nix (flakes enabled), `nix-daemon`, `direnv` and [nix-direnv](https://github.com/nix-community/nix-direnv). The store lives in `/var/lib/nix`, bind-mounted at `/nix`, so it survives upgrades.
+
+```bash
+nix run nixpkgs#hello
+echo 'use flake' > .envrc && direnv allow
+```
+
+goose's dotfiles hook direnv into fish and load nix-direnv. On goosex, bash/zsh are hooked automatically; add this to `~/.config/direnv/direnvrc` for the cached `use flake`:
+
+```bash
+source /usr/share/nix-direnv/direnvrc
+```
+
 ## Dotfiles
 
 Dotfiles are managed with chezmoi and applied automatically on first login by a user service. To apply manually:
@@ -35,7 +58,8 @@ The unattended first-boot service skips encrypted files, so run `just secrets` o
 ## Development
 
 ```bash
-just build-full   # build the full image from scratch (slow, tests CI changes)
+just build-full         # build goose from scratch (slow, tests CI changes)
+just build-full goosex  # build only the Nix layer
 just build        # build the thin local layer on the published image
 just switch       # build the local layer and switch the running system to it
 ```

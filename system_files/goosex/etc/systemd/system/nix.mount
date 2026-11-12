@@ -1,0 +1,17 @@
+[Unit]
+Description=Nix store (bind mount from /var/lib/nix)
+DefaultDependencies=no
+# /var/lib/nix is created and seeded by tmpfiles.d/nix.conf
+After=systemd-tmpfiles-setup.service
+Before=nix-daemon.socket multi-user.target
+Conflicts=umount.target
+Before=umount.target
+
+[Mount]
+What=/var/lib/nix
+Where=/nix
+Type=none
+Options=bind
+
+[Install]
+WantedBy=multi-user.target

@@ -11,6 +11,7 @@ DESKTOP_PACKAGES=(
   wl-clipboard
   rsms-inter-fonts
   jetbrains-mono-fonts
+  age
 )
 
 dnf5 install -y "${DESKTOP_PACKAGES[@]}"

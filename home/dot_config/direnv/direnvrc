@@ -1,0 +1,2 @@
+# nix-direnv (baked into the image; provides a cached `use flake`)
+source /usr/share/nix-direnv/direnvrc
