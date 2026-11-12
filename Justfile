@@ -27,6 +27,10 @@ build-full:
 dotfiles source="https://github.com/givensuman/goose":
     chezmoi init --apply {{ source }}
 
+# Decrypt and apply age-encrypted dotfiles (prompts for the passphrase)
+secrets:
+    chezmoi apply --include=encrypted
+
 # Lint shell scripts
 lint:
     find . -name '*.sh' -not -path './home/*' -exec shellcheck {} +

@@ -7,7 +7,7 @@ ConditionPathExists=!%h/.local/share/chezmoi/.git
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/chezmoi init --apply --no-tty github.com/givensuman/goose
+ExecStart=/usr/bin/chezmoi init --apply --no-tty --exclude=encrypted github.com/givensuman/goose
 
 [Install]
 WantedBy=default.target

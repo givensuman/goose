@@ -21,6 +21,17 @@ Dotfiles are managed with chezmoi and applied automatically on first login by a 
 chezmoi init --apply https://github.com/givensuman/goose
 ```
 
+## Secrets
+
+Secrets are encrypted with [age](https://github.com/FiloSottile/age) using a passphrase, so only ciphertext is committed.
+
+```bash
+chezmoi add --encrypt ~/.config/gh/hosts.yml   # encrypt and track a file
+just secrets                                   # decrypt and apply on a new machine
+```
+
+The unattended first-boot service skips encrypted files, so run `just secrets` once after first login.
+
 ## Development
 
 ```bash
