@@ -2,12 +2,10 @@
 Description=Install Flatpak applications and global overrides
 Wants=network-online.target
 After=network-online.target
-ConditionPathExists=!/var/lib/flatpak/.flatpak-preinstall-done
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/dbus-run-session /usr/bin/flatpak preinstall -y --system --noninteractive --ostree-verbose
-ExecStart=/usr/bin/touch /var/lib/flatpak/.flatpak-preinstall-done
 RemainAfterExit=yes
 
 [Install]

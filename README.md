@@ -24,6 +24,7 @@ chezmoi init --apply https://github.com/givensuman/goose
 ## Development
 
 ```bash
-just build        # build the image with podman
-just build_local  # build and switch the running system to it
+just build-full   # build the full image from scratch (slow, tests CI changes)
+just build        # build the thin local layer on the published image
+just switch       # build the local layer and switch the running system to it
 ```
