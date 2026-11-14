@@ -1,9 +1,0 @@
-# A thin layer on top of the published image, for quick local iteration.
-# Built and switched to by `just switch`; see Justfile.
-ARG BASE="ghcr.io/givensuman/goose:latest"
-
-FROM ${BASE}
-
-COPY local_files /
-
-RUN bootc container lint

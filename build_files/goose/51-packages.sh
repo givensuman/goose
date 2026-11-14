@@ -25,6 +25,7 @@ CLI_PACKAGES=(
   eza
   fd-find
   fish
+  gh
   lazygit
   opencode
   ripgrep
